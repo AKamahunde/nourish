@@ -1,5 +1,5 @@
 (() => {
-  const APP_VERSION = 7;
+  const APP_VERSION = 8;
   const MEAL_SLOTS = [
     { id: 'breakfast', label: 'Breakfast' },
     { id: 'lunch', label: 'Lunch' },
@@ -676,14 +676,12 @@
 
     $('detailIngredientsList').innerHTML = r.ingredients.map((ing) => {
       const amt = formatAmount(ing.amount * ratio);
-      const est = Math.round((ing.estUgx || 0) * ratio);
       return `
         <li>
           <div class="ing-main">
             <strong>${escapeHtml(amt)} ${escapeHtml(ing.unit)}</strong> ${escapeHtml(ing.name)}
             ${ing.prep ? `<span class="ing-prep">(${escapeHtml(ing.prep)})</span>` : ''}
           </div>
-          <span class="ing-cost">~${formatUgx(est)}</span>
         </li>
       `;
     }).join('');
