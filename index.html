@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en" data-palette="sage">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="NourishTable" />
+  <meta name="theme-color" content="#FBF9F5" />
+  <title>NourishTable — Healthy Ugandan Recipe Book</title>
+
+  <link rel="manifest" href="./manifest.json" />
+  <link rel="icon" type="image/svg+xml" href="./icons/icon.svg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon.png" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="app-header">
+      <div class="brand-lockup">
+        <div class="brand-badge" aria-hidden="true">
+          <img src="./icons/icon.svg" alt="" width="28" height="28" />
+        </div>
+        <div>
+          <p class="brand-eyebrow">NourishTable</p>
+          <h1 id="viewTitle" class="header-title">Cookbook</h1>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <button id="headerQuickFavBtn" class="pill-btn" type="button" title="View saved recipes">
+          <span id="headerFavCount">0</span> Saved
+        </button>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <!-- DISCOVER VIEW -->
+      <section id="view-discover" class="view active" aria-label="Discover recipes">
+        <div class="search-wrap">
+          <span class="search-icon" id="searchIconSlot"></span>
+          <input id="searchInput" class="search-input" type="search" placeholder="Search tilapia, pasta, stir-fry, matooke, juice..." autocomplete="off" />
+          <button id="clearSearchBtn" class="clear-btn hidden" type="button" aria-label="Clear search"></button>
+        </div>
+
+        <div id="categoryTabs" class="chip-row" role="tablist" aria-label="Recipe categories"></div>
+        <div id="goalTabs" class="chip-row chip-row-secondary" aria-label="Health focus filters"></div>
+
+        <article id="spotlightCard" class="spotlight-card"></article>
+
+        <div class="section-head">
+          <h2 id="recipeGridHeading" class="section-title">All Recipes</h2>
+          <span id="recipeCountLabel" class="muted-label"></span>
+        </div>
+
+        <div id="recipeGrid" class="recipe-grid"></div>
+      </section>
+
+      <!-- SAVED & WEEKLY PLAN VIEW -->
+      <section id="view-plan" class="view" aria-label="Saved recipes and weekly menu">
+        <article class="card">
+          <div class="card-head">
+            <div>
+              <h2 class="card-title">This Week's Menu</h2>
+              <p class="card-sub">Tap a day to pick a healthy dish or juice, then build your market list in one tap.</p>
+            </div>
+          </div>
+          <div id="weekPlanList" class="week-list"></div>
+          <div class="card-actions-row">
+            <button id="buildGroceriesFromWeekBtn" class="primary-btn" type="button">Build Grocery List from Week</button>
+            <button id="clearWeekPlanBtn" class="ghost-btn" type="button">Clear Week</button>
+          </div>
+        </article>
+
+        <div class="section-head">
+          <h2 class="section-title">Saved Favorites</h2>
+          <span id="favCountLabel" class="muted-label"></span>
+        </div>
+        <div id="favoritesGrid" class="recipe-grid"></div>
+      </section>
+
+      <!-- GROCERIES VIEW -->
+      <section id="view-groceries" class="view" aria-label="Market grocery list">
+        <article class="grocery-hero card">
+          <div class="grocery-hero-top">
+            <div>
+              <p class="eyebrow-muted">Estimated Market Budget</p>
+              <div id="groceryTotalUgx" class="hero-ugx">UGX 0</div>
+              <p id="grocerySummaryMeta" class="card-sub">Add recipes or build from your week to generate a grouped market list.</p>
+            </div>
+            <div class="grocery-progress-ring">
+              <span id="groceryCheckedRatio">0/0</span>
+              <small>Packed</small>
+            </div>
+          </div>
+
+          <div class="pl-bridge-box">
+            <div class="pl-bridge-text">
+              <strong>Ready to log your market run?</strong>
+              <span>Send this estimated or checked spend straight to PocketLedger under Groceries &amp; Market.</span>
+            </div>
+            <div class="pl-bridge-actions">
+              <button id="sendToPocketLedgerBtn" class="primary-btn" type="button"></button>
+              <button id="copyGrocerySummaryBtn" class="secondary-btn" type="button"></button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <h2 class="card-title">Recipes in Your Basket</h2>
+            <button id="clearGroceryBasketBtn" class="text-danger-btn" type="button">Clear All</button>
+          </div>
+          <div id="groceryBasketChips" class="basket-chips"></div>
+        </article>
+
+        <article class="card">
+          <form id="customGroceryForm" class="quick-add-form">
+            <input id="customItemName" class="text-input" type="text" placeholder="Add extra item (e.g. Ginger, Mineral Water)" required />
+            <input id="customItemUgx" class="text-input ugx-input" type="number" min="0" step="500" placeholder="UGX" />
+            <button class="secondary-btn" type="submit">Add</button>
+          </form>
+        </article>
+
+        <div id="groceryAislesContainer" class="aisles-stack"></div>
+      </section>
+
+      <!-- GUIDE & SETTINGS VIEW -->
+      <section id="view-guide" class="view" aria-label="Health guide and settings">
+        <div class="section-head">
+          <h2 class="section-title">Healthy Eating Foundations</h2>
+          <span class="muted-label">Ugandan kitchen guide</span>
+        </div>
+        <div id="healthGuideList" class="guide-stack"></div>
+
+        <article class="card">
+          <h2 class="card-title">Cookbook Colors</h2>
+          <p class="card-sub">Pick a warm botanical palette for your kitchen screen.</p>
+          <div id="palettePicker" class="palette-grid"></div>
+        </article>
+
+        <article class="card">
+          <h2 class="card-title">PocketLedger Connection</h2>
+          <p class="card-sub">Used when you tap "Log in PocketLedger" from your grocery list.</p>
+          <label class="field-label" for="pocketLedgerUrlInput">PocketLedger App URL</label>
+          <div class="url-row">
+            <input id="pocketLedgerUrlInput" class="text-input" type="url" placeholder="https://pocketledger-brd.pages.dev/" />
+            <button id="savePlUrlBtn" class="secondary-btn" type="button">Save</button>
+          </div>
+        </article>
+
+        <article class="card">
+          <h2 class="card-title">Data, Backup &amp; App Updates</h2>
+          <p class="card-sub">Your favorites, weekly menu, and grocery list live privately on this phone.</p>
+          <div class="card-actions-row">
+            <button id="exportBackupBtn" class="secondary-btn" type="button">Export JSON Backup</button>
+            <label class="secondary-btn file-btn">
+              Import Backup
+              <input id="importBackupInput" type="file" accept="application/json" hidden />
+            </label>
+          </div>
+          <div class="version-row">
+            <span id="appVersionBadge" class="muted-label">NourishTable v1</span>
+            <button id="checkUpdateBtn" class="ghost-btn" type="button">Check for Update</button>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <!-- ACTIVE COOKING TIMER BAR -->
+    <div id="floatingTimerBar" class="floating-timer hidden" role="status">
+      <div class="timer-info">
+        <span id="floatingTimerIcon"></span>
+        <div>
+          <strong id="floatingTimerLabel">Simmer</strong>
+          <span id="floatingTimerRemaining">00:00</span>
+        </div>
+      </div>
+      <button id="stopTimerBtn" class="timer-stop-btn" type="button">Stop</button>
+    </div>
+
+    <!-- BOTTOM NAVIGATION -->
+    <nav class="bottom-nav" aria-label="Primary navigation">
+      <button class="nav-btn active" data-view="discover" type="button">
+        <span class="nav-icon" data-icon="discover"></span>
+        <span>Discover</span>
+      </button>
+      <button class="nav-btn" data-view="plan" type="button">
+        <span class="nav-icon" data-icon="plan"></span>
+        <span>Menu</span>
+      </button>
+      <button class="nav-btn" data-view="groceries" type="button">
+        <span class="nav-icon" data-icon="groceries"></span>
+        <span>Groceries</span>
+        <span id="navGroceryBadge" class="nav-badge hidden">0</span>
+      </button>
+      <button class="nav-btn" data-view="guide" type="button">
+        <span class="nav-icon" data-icon="guide"></span>
+        <span>Guide</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- RECIPE DETAIL SHEET -->
+  <div id="recipeModal" class="sheet-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
+    <article class="sheet-panel">
+      <div class="detail-hero">
+        <img id="detailImage" src="" alt="" />
+        <div class="detail-hero-scrim"></div>
+        <div class="detail-top-bar">
+          <button id="closeRecipeBtn" class="glass-icon-btn" type="button" aria-label="Back to recipes"></button>
+          <div class="detail-top-right">
+            <button id="wakeLockBtn" class="glass-pill-btn" type="button" title="Keep screen awake while cooking">Keep Awake</button>
+            <button id="detailFavBtn" class="glass-icon-btn" type="button" aria-label="Save recipe"></button>
+          </div>
+        </div>
+        <div class="detail-hero-caption">
+          <span id="detailCategoryPill" class="hero-cat-pill"></span>
+          <h2 id="detailTitle" class="detail-title"></h2>
+          <p id="detailSubtitle" class="detail-subtitle"></p>
+        </div>
+      </div>
+
+      <div class="detail-body">
+        <div id="detailStatsStrip" class="stats-strip"></div>
+
+        <div class="health-callout">
+          <span class="callout-icon" id="healthSparkSlot"></span>
+          <p id="detailHealthNote"></p>
+        </div>
+
+        <div class="detail-actions-bar">
+          <button id="addToGroceryBtn" class="primary-btn" type="button"></button>
+          <button id="addToPlanBtn" class="secondary-btn" type="button"></button>
+        </div>
+
+        <section class="detail-section">
+          <div class="section-head">
+            <h3 class="detail-h3">Ingredients</h3>
+            <div class="stepper" aria-label="Adjust servings">
+              <button id="servingsMinusBtn" class="step-btn" type="button" aria-label="Decrease servings"></button>
+              <span id="servingsLabel" class="step-val">2 servings</span>
+              <button id="servingsPlusBtn" class="step-btn" type="button" aria-label="Increase servings"></button>
+            </div>
+          </div>
+          <ul id="detailIngredientsList" class="ingredients-list"></ul>
+        </section>
+
+        <section class="detail-section">
+          <h3 class="detail-h3">Method</h3>
+          <ol id="detailStepsList" class="steps-list"></ol>
+        </section>
+
+        <div class="uganda-tip-box">
+          <strong>Ugandan Kitchen Tip</strong>
+          <p id="detailUgandaTip"></p>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <!-- DAY PICKER MODAL (FOR WEEKLY MENU) -->
+  <div id="dayPickerModal" class="dialog-backdrop hidden" role="dialog" aria-modal="true">
+    <div class="dialog-card">
+      <div class="card-head">
+        <h3 id="dayPickerTitle" class="card-title">Add to Weekly Menu</h3>
+        <button id="closeDayPickerBtn" class="icon-close-btn" type="button" aria-label="Close"></button>
+      </div>
+      <div id="dayPickerBody" class="day-picker-body"></div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+
+  <script src="./recipes.js"></script>
+  <script src="./recipes-more.js"></script>
+  <script src="./recipes-intl.js"></script>
+  <script src="./db.js"></script>
+  <script src="./icons.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
