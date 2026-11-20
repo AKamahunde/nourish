@@ -1,5 +1,5 @@
 ﻿(() => {
-  const APP_VERSION = 33;
+  const APP_VERSION = 34;
   const MEAL_SLOTS = [
     { id: 'breakfast', label: 'Breakfast' },
     { id: 'lunch', label: 'Lunch' },
@@ -78,6 +78,7 @@
   const ui = {
     view: 'discover',
     discoverMode: 'browse',
+    guideMode: 'guide',
     category: 'all',
     cuisine: 'All',
     goal: '',
@@ -694,12 +695,27 @@
   }
 
   function renderGuide() {
-    $('healthGuideList').innerHTML = data.UGANDA_HEALTH_GUIDE.map((sec) => `
-      <article class="card guide-card">
-        <h3 class="card-title">${escapeHtml(sec.title)}</h3>
-        <ul>${sec.points.map((p) => `<li>${escapeHtml(p)}</li>`).join('')}</ul>
-      </article>
-    `).join('');
+    const isSettings = ui.guideMode === 'settings';
+    $('guideModeBtn')?.classList.toggle('active', !isSettings);
+    $('settingsModeBtn')?.classList.toggle('active', isSettings);
+    $('guidePanel')?.classList.toggle('hidden', isSettings);
+    $('settingsPanel')?.classList.toggle('hidden', !isSettings);
+
+    const guideEl = $('healthGuideList');
+    if (guideEl && !guideEl.dataset.rendered) {
+      guideEl.innerHTML = data.UGANDA_HEALTH_GUIDE.map((sec, idx) => `
+        <details class="card guide-accordion" ${idx === 0 ? 'open' : ''}>
+          <summary class="accordion-head">
+            <h3 class="card-title">${escapeHtml(sec.title)}</h3>
+            <span class="accordion-chevron" aria-hidden="true"></span>
+          </summary>
+          <div class="accordion-body guide-card">
+            <ul>${sec.points.map((p) => `<li>${escapeHtml(p)}</li>`).join('')}</ul>
+          </div>
+        </details>
+      `).join('');
+      guideEl.dataset.rendered = '1';
+    }
 
     const HERB_BY_HERB_GUIDE = [
       {
@@ -753,7 +769,7 @@
     ];
 
     const pairingEl = $('spicePairingBox');
-    if (pairingEl && Array.isArray(data.HERB_SPICE_PAIRINGS)) {
+    if (pairingEl && !pairingEl.dataset.rendered && Array.isArray(data.HERB_SPICE_PAIRINGS)) {
       const herbCards = `<div class="aisle-title" style="margin:2px 0 4px;">Herb by Herb (What Goes With What)</div>` +
         HERB_BY_HERB_GUIDE.map((h) => `
           <div class="meal-slot-card">
@@ -774,6 +790,7 @@
         `).join('');
 
       pairingEl.innerHTML = herbCards + foodCards;
+      pairingEl.dataset.rendered = '1';
     }
 
     $('palettePicker').innerHTML = PALETTES.map((p) => `
@@ -1350,6 +1367,13 @@
       if (modeBtn) {
         ui.discoverMode = modeBtn.dataset.discoverMode;
         renderDiscover();
+        return;
+      }
+
+      const guideModeBtn = e.target.closest('[data-guide-mode]');
+      if (guideModeBtn) {
+        ui.guideMode = guideModeBtn.dataset.guideMode;
+        renderGuide();
         return;
       }
 

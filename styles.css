@@ -967,6 +967,58 @@ button, input {
   justify-content: space-between;
 }
 
+/* Guide & Settings Accordions */
+.guide-accordion,
+.settings-accordion {
+  padding: 0;
+  overflow: hidden;
+}
+
+.accordion-head {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 15px 16px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.accordion-head::-webkit-details-marker {
+  display: none;
+}
+
+.accordion-chevron {
+  width: 10px;
+  height: 10px;
+  flex-shrink: 0;
+  border-right: 2px solid var(--muted);
+  border-bottom: 2px solid var(--muted);
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+  margin-right: 4px;
+}
+
+details[open] > .accordion-head .accordion-chevron {
+  transform: rotate(-135deg);
+  margin-top: 4px;
+}
+
+.accordion-body {
+  padding: 0 16px 16px;
+  border-top: 1px solid var(--border);
+}
+
+.accordion-body.guide-card ul {
+  margin-top: 12px;
+}
+
+.accordion-body .palette-grid,
+.accordion-body .card-actions-row {
+  margin-top: 12px;
+}
+
 /* Floating Timer */
 .floating-timer {
   position: fixed;

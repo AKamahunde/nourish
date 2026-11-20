@@ -208,53 +208,84 @@
 
       <!-- GUIDE & SETTINGS VIEW -->
       <section id="view-guide" class="view" aria-label="Health guide and settings">
-        <div class="section-head">
-          <h2 class="section-title">Healthy Eating Foundations</h2>
-          <span class="muted-label">Ugandan kitchen guide</span>
+        <div class="mode-switch" role="tablist" aria-label="Guide or Settings">
+          <button id="guideModeBtn" class="mode-pill active" type="button" data-guide-mode="guide">Kitchen Guide</button>
+          <button id="settingsModeBtn" class="mode-pill" type="button" data-guide-mode="settings">Settings</button>
         </div>
-        <div id="healthGuideList" class="guide-stack"></div>
 
-        <article class="card">
-          <div class="card-head">
-            <div>
-              <h2 class="card-title">Herb &amp; Spice Pairing Cheat Sheet</h2>
-              <p class="card-sub">Never guess what spice goes with what ingredient.</p>
+        <div id="guidePanel" class="guide-stack">
+          <div class="section-head">
+            <h2 class="section-title">Healthy Eating Foundations</h2>
+            <span class="muted-label">Tap to expand</span>
+          </div>
+          <div id="healthGuideList" class="guide-stack"></div>
+
+          <details class="card guide-accordion">
+            <summary class="accordion-head">
+              <div>
+                <h2 class="card-title">Herb &amp; Spice Pairing Cheat Sheet</h2>
+                <p class="card-sub">What spice goes with what ingredient.</p>
+              </div>
+              <span class="accordion-chevron" aria-hidden="true"></span>
+            </summary>
+            <div id="spicePairingBox" class="guide-stack accordion-body"></div>
+          </details>
+        </div>
+
+        <div id="settingsPanel" class="guide-stack hidden">
+          <details class="card settings-accordion" open>
+            <summary class="accordion-head">
+              <div>
+                <h2 class="card-title">Cookbook Colors</h2>
+                <p class="card-sub">Pick a warm botanical palette for your kitchen screen.</p>
+              </div>
+              <span class="accordion-chevron" aria-hidden="true"></span>
+            </summary>
+            <div class="accordion-body">
+              <div id="palettePicker" class="palette-grid"></div>
             </div>
-          </div>
-          <div id="spicePairingBox" class="guide-stack"></div>
-        </article>
+          </details>
 
-        <article class="card">
-          <h2 class="card-title">Cookbook Colors</h2>
-          <p class="card-sub">Pick a warm botanical palette for your kitchen screen.</p>
-          <div id="palettePicker" class="palette-grid"></div>
-        </article>
+          <details class="card settings-accordion">
+            <summary class="accordion-head">
+              <div>
+                <h2 class="card-title">PocketLedger Connection</h2>
+                <p class="card-sub">Used when opening PocketLedger from your market list.</p>
+              </div>
+              <span class="accordion-chevron" aria-hidden="true"></span>
+            </summary>
+            <div class="accordion-body">
+              <label class="field-label" for="pocketLedgerUrlInput">PocketLedger App URL</label>
+              <div class="url-row">
+                <input id="pocketLedgerUrlInput" class="text-input" type="url" placeholder="https://pocketledger-brd.pages.dev/" />
+                <button id="savePlUrlBtn" class="secondary-btn" type="button">Save</button>
+              </div>
+            </div>
+          </details>
 
-        <article class="card">
-          <h2 class="card-title">PocketLedger Connection</h2>
-          <p class="card-sub">Used when you tap "Log in PocketLedger" from your grocery list.</p>
-          <label class="field-label" for="pocketLedgerUrlInput">PocketLedger App URL</label>
-          <div class="url-row">
-            <input id="pocketLedgerUrlInput" class="text-input" type="url" placeholder="https://pocketledger-brd.pages.dev/" />
-            <button id="savePlUrlBtn" class="secondary-btn" type="button">Save</button>
-          </div>
-        </article>
-
-        <article class="card">
-          <h2 class="card-title">Data, Backup &amp; App Updates</h2>
-          <p class="card-sub">Your favorites, weekly menu, and grocery list live privately on this phone.</p>
-          <div class="card-actions-row">
-            <button id="exportBackupBtn" class="secondary-btn" type="button">Export JSON Backup</button>
-            <label class="secondary-btn file-btn">
-              Import Backup
-              <input id="importBackupInput" type="file" accept="application/json" hidden />
-            </label>
-          </div>
-          <div class="version-row">
-            <span id="appVersionBadge" class="muted-label">NourishTable v1</span>
-            <button id="checkUpdateBtn" class="ghost-btn" type="button">Check for Update</button>
-          </div>
-        </article>
+          <details class="card settings-accordion">
+            <summary class="accordion-head">
+              <div>
+                <h2 class="card-title">Data, Backup &amp; App Updates</h2>
+                <p class="card-sub">Favorites, weekly menu, and groceries stay private on your phone.</p>
+              </div>
+              <span class="accordion-chevron" aria-hidden="true"></span>
+            </summary>
+            <div class="accordion-body">
+              <div class="card-actions-row">
+                <button id="exportBackupBtn" class="secondary-btn" type="button">Export JSON Backup</button>
+                <label class="secondary-btn file-btn">
+                  Import Backup
+                  <input id="importBackupInput" type="file" accept="application/json" hidden />
+                </label>
+              </div>
+              <div class="version-row">
+                <span id="appVersionBadge" class="muted-label">NourishTable v1</span>
+                <button id="checkUpdateBtn" class="ghost-btn" type="button">Check for Update</button>
+              </div>
+            </div>
+          </details>
+        </div>
       </section>
     </main>
 
