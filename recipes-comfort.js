@@ -162,6 +162,37 @@
         { text: 'Spread mince in a baking dish, spoon mashed Irish potatoes over top, and bake at 200C for 20 minutes until golden.', timerMin: 20 }
       ],
       ugandaTip: 'No oven? Put the mashed potato layer right over the mince in a wide heavy pot, cover tightly, and cook on very low heat for 10 minutes.'
+    },
+    {
+      id: 'mince-cabbage-veggie-soup',
+      title: 'Slow-Simmered Mince, Cabbage & Veggie Soup',
+      subtitle: 'Rich one-pot lean beef mince simmered slowly with sweet cabbage, carrots, and peppers — great on its own or over pasta, rice, or Irish',
+      cuisine: 'Ugandan',
+      category: 'onepot',
+      mealSlots: ['lunch', 'dinner'],
+      image: './images/mince-cabbage-veggie-soup.jpg',
+      prepMinutes: 10,
+      cookMinutes: 35,
+      totalMinutes: 45,
+      servings: 4,
+      tags: ['High-Protein', 'Light & Lean', 'Low-Sugar'],
+      healthNote: 'Slow-simmering lean mince with high-volume cabbage and veggies makes a filling, nutrient-packed pot with minimal oil.',
+      nutrition: { kcal: 295, protein: '26g', fiber: '6g', sugar: 'Low' },
+      ingredients: [
+        { id: 'beef-mince', name: 'Lean beef mince', amount: 400, unit: 'g', aisle: 'protein', estUgx: 9500, prep: 'browned dry, excess fat drained' },
+        { id: 'cabbage', name: 'Fresh green cabbage', amount: 0.5, unit: 'medium head', aisle: 'greens', estUgx: 1500, prep: 'coarsely shredded' },
+        { id: 'carrots', name: 'Carrots & bell pepper', amount: 2, unit: 'pcs', aisle: 'produce', estUgx: 1500, prep: 'diced' },
+        { id: 'tomatoes', name: 'Ripe market tomatoes', amount: 4, unit: 'pcs', aisle: 'produce', estUgx: 2000, prep: 'chopped or blended' },
+        { id: 'onion-garlic', name: 'Onion, garlic, fresh ginger & thyme', amount: 1, unit: 'set', aisle: 'pantry', estUgx: 1000, prep: 'finely chopped' },
+        { id: 'coriander', name: 'Fresh coriander (dhania)', amount: 0.5, unit: 'bunch', aisle: 'greens', estUgx: 500, prep: 'chopped for garnish' }
+      ],
+      steps: [
+        { text: 'Brown lean beef mince in a dry heavy pot over medium-high heat for 5 minutes until crumbly, draining off any excess surface fat.', timerMin: 5 },
+        { text: 'Stir in onion, garlic, ginger, thyme, paprika pinch, and tomatoes; cook 5 minutes until tomatoes soften into a rich base.', timerMin: 5 },
+        { text: 'Add diced carrots, bell pepper, shredded cabbage, salt, black pepper, and 3.5 cups water. Cover and simmer gently on low heat for 25 to 30 minutes until the broth is deeply flavorful and veggies are tender.', timerMin: 28 },
+        { text: 'Finish with chopped fresh coriander. Enjoy as a hearty bowl on its own, or ladle over boiled Irish potatoes, steamed rice, or pasta.' }
+      ],
+      ugandaTip: 'Make a big pot once — eat it straight as a light evening soup, then toss leftovers with pasta or spoon over boiled Irish potatoes or rice for lunch.'
     }
   ];
 
