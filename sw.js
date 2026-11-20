@@ -6,7 +6,6 @@ const SHELL_ASSETS = [
   './index.html',
   './styles.css',
   './recipes.js',
-  './recipes-salads.js',
   './db.js',
   './icons.js',
   './app.js',
