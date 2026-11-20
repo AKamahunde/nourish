@@ -1,4 +1,4 @@
-const CACHE_NAME = 'nourishtable-v14';
+const CACHE_NAME = 'nourishtable-v15';
 
 const APP_ASSETS = [
   './',
@@ -11,6 +11,7 @@ const APP_ASSETS = [
   './recipes-expanded.js',
   './recipes-pantry.js',
   './recipes-cassava.js',
+  './recipes-irish.js',
   './recipes-veggies.js',
   './recipes-comfort.js',
   './recipes-dairy.js',
@@ -30,6 +31,10 @@ const APP_ASSETS = [
   './images/boiled-cassava-eggs-breakfast.jpg',
   './images/baked-herb-cassava-wedges.jpg',
   './images/cassava-beans-katogo.jpg',
+  './images/crispy-baked-irish-wedges.jpg',
+  './images/boiled-irish-herb-plate.jpg',
+  './images/light-pan-fried-irish-potatoes.jpg',
+  './images/loaded-baked-jacket-irish.jpg',
   './images/mediterranean-shakshuka-greens.jpg',
   './images/avocado-poached-egg-toast.jpg',
   './images/green-power-smoothie-bowl.jpg',

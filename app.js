@@ -1,5 +1,5 @@
 (() => {
-  const APP_VERSION = 14;
+  const APP_VERSION = 16;
   const MEAL_SLOTS = [
     { id: 'breakfast', label: 'Breakfast' },
     { id: 'lunch', label: 'Lunch' },

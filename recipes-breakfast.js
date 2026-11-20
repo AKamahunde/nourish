@@ -220,32 +220,6 @@
         { text: 'Poach or soft-boil eggs for 5 minutes and nestle onto the yogurt, finishing with 1 teaspoon warm paprika-infused olive oil and fresh herbs.', timerMin: 5 }
       ],
       ugandaTip: 'Serve with a slice of toasted whole-grain bread or warm steamed matooke to scoop up the yogurt sauce.'
-    },
-    {
-      id: 'spinach-tomato-egg-muffin-cups',
-      title: 'Make-Ahead Egg, Dodo & Pepper Breakfast Cups',
-      subtitle: 'Grab-and-go baked egg bites loaded with leafy greens, tomatoes, and onions',
-      cuisine: 'Ugandan',
-      category: 'breakfast',
-      mealSlots: ['breakfast'],
-      image: './images/spinach-tomato-egg-muffin-cups.jpg',
-      prepMinutes: 8,
-      cookMinutes: 18,
-      totalMinutes: 26,
-      servings: 3,
-      tags: ['High-Protein', 'Light & Lean', 'No Red Meat', 'Low-Sugar'],
-      healthNote: 'Bake a batch once and grab two protein-packed egg cups on busy mornings with zero prep.',
-      nutrition: { kcal: 215, protein: '16g', fiber: '2g', sugar: 'Low' },
-      ingredients: [
-        { id: 'eggs', name: 'Farm eggs', amount: 6, unit: 'pcs', aisle: 'protein', estUgx: 3600, prep: 'whisked with 2 tbsp milk' },
-        { id: 'dodo', name: 'Dodo or spinach leaves', amount: 1, unit: 'handful', aisle: 'greens', estUgx: 600, prep: 'finely chopped' },
-        { id: 'bell-pepper', name: 'Bell pepper, tomato & onion', amount: 1, unit: 'set', aisle: 'produce', estUgx: 1500, prep: 'finely diced' }
-      ],
-      steps: [
-        { text: 'Divide chopped dodo, bell pepper, tomato, and onion across 6 lightly greased muffin cups.' },
-        { text: 'Pour whisked eggs (seasoned with salt, pepper, and turmeric pinch) over the veggies and bake at 180C for 18 minutes until puffed and set.', timerMin: 18 }
-      ],
-      ugandaTip: 'Store cooled egg cups in the fridge for up to 4 days and warm for 20 seconds when rushing out.'
     }
   ];
 
