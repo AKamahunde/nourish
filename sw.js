@@ -45,7 +45,7 @@ const APP_ASSETS = [
   './images/italian-lemon-chicken-orzo-rice.jpg',
   './images/whole-grilled-tilapia.jpg',
   './images/steamed-matooke-dodo.jpg',
-  './images/goat-pumpkin-stew.jpg',
+  './images/beef-pumpkin-stew.jpg',
   './images/mediterranean-herb-chicken.jpg',
   './images/roasted-kuroiler-root-tray.jpg',
   './images/asian-sesame-glazed-tilapia.jpg',

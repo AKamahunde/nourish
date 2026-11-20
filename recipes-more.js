@@ -82,31 +82,31 @@
       ugandaTip: 'Make extra steamed matooke and portion into containers — it reheats wonderfully for lunch.'
     },
     {
-      id: 'goat-pumpkin-stew',
-      title: 'Slow-Braised Lean Goat & Pumpkin Pot',
-      subtitle: 'Herb-simmered lean goat cuts with sweet orange ensujju pumpkin and carrots',
+      id: 'beef-pumpkin-stew',
+      title: 'Slow-Braised Lean Beef & Pumpkin Pot',
+      subtitle: 'Herb-simmered lean beef cubes with sweet orange ensujju pumpkin and carrots',
       category: 'slow',
-      image: './images/goat-pumpkin-stew.jpg',
+      image: './images/beef-pumpkin-stew.jpg',
       prepMinutes: 15,
       cookMinutes: 65,
       totalMinutes: 80,
       servings: 4,
       tags: ['High-Protein', 'Low-Sugar'],
-      healthNote: 'Trimming visible fat from goat meat yields high iron and zinc alongside antioxidant-rich pumpkin.',
-      nutrition: { kcal: 410, protein: '35g', fiber: '5g', sugar: 'Low' },
+      healthNote: 'Trimming visible fat from lean beef yields high iron and zinc alongside antioxidant-rich pumpkin.',
+      nutrition: { kcal: 410, protein: '36g', fiber: '5g', sugar: 'Low' },
       ingredients: [
-        { id: 'goat-meat', name: 'Lean goat meat (fat trimmed)', amount: 500, unit: 'g', aisle: 'protein', estUgx: 12000, prep: 'cut into cubes' },
+        { id: 'beef-meat', name: 'Lean beef steak (fat trimmed)', amount: 500, unit: 'g', aisle: 'protein', estUgx: 11500, prep: 'cut into cubes' },
         { id: 'pumpkin', name: 'Orange pumpkin (ensujju)', amount: 350, unit: 'g', aisle: 'produce', estUgx: 2000, prep: 'peeled & chunked' },
         { id: 'carrots', name: 'Carrots', amount: 2, unit: 'pcs', aisle: 'produce', estUgx: 1000, prep: 'thick rounds' },
         { id: 'tomatoes', name: 'Ripe tomatoes', amount: 3, unit: 'pcs', aisle: 'produce', estUgx: 1500, prep: 'chopped' },
         { id: 'garlic-ginger', name: 'Garlic, ginger & rosemary', amount: 2, unit: 'tbsp', aisle: 'pantry', estUgx: 1000, prep: 'minced' }
       ],
       steps: [
-        { text: 'Brown trimmed goat cubes in a dry heavy pot for 6 minutes with salt, garlic, and ginger.', timerMin: 6 },
+        { text: 'Brown trimmed beef cubes in a dry heavy pot for 6 minutes with salt, garlic, and ginger.', timerMin: 6 },
         { text: 'Add onions, tomatoes, rosemary, and 2 cups water; cover and simmer gently for 45 minutes until tender.', timerMin: 45 },
         { text: 'Add pumpkin chunks and carrots; simmer 15 more minutes so the vegetables thicken the rich broth naturally.', timerMin: 15 }
       ],
-      ugandaTip: 'Skim any surface fat after simmering so the broth stays light and clean on the stomach.'
+      ugandaTip: 'Ask your butcher for lean topside or steak without visible fat so the stew stays light and clean.'
     },
     {
       id: 'hibiscus-sobolo',
