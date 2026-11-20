@@ -14,7 +14,8 @@
     priceOverrides: {}, // { itemKey: number }
     settings: {
       theme: 'sage',
-      pocketLedgerUrl: 'https://pocketledger-brd.pages.dev/'
+      pocketLedgerUrl: 'https://pocketledger-brd.pages.dev/',
+      syncWeekGroceries: true
     }
   };
 

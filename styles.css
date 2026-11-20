@@ -1939,3 +1939,23 @@ button, input {
   padding: 10px 8px;
   font-size: 12.5px;
 }
+
+/* Unified Grocery List */
+.quick-add-wrap {
+  flex-wrap: wrap;
+}
+
+.aisle-select {
+  flex: 0 0 auto;
+  width: 118px;
+}
+
+.grocery-remove-btn {
+  border: none;
+  background: none;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1;
+  padding: 4px;
+  cursor: pointer;
+}

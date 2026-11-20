@@ -1,5 +1,5 @@
 (() => {
-  const APP_VERSION = 22;
+  const APP_VERSION = 23;
   const MEAL_SLOTS = [
     { id: 'breakfast', label: 'Breakfast' },
     { id: 'lunch', label: 'Lunch' },
@@ -1103,30 +1103,41 @@
     showToast('Auto-filled open meal slots for the day');
   }
 
-  function sendGroceriesToPocketLedger() {
+  function getTargetGroceryTotal() {
     const items = buildAggregatedGroceries();
-    if (!items.length) {
-      showToast('Add ingredients to your grocery list first');
-      return;
-    }
+    if (!items.length) return 0;
     const checkedItems = items.filter((i) => i.checked);
     const targetItems = checkedItems.length ? checkedItems : items;
-    const totalAmount = targetItems.reduce((s, i) => s + i.estUgx, 0);
-    const recipeNames = [...new Set(appState.groceryEntries.map((e) => getRecipeById(e.recipeId)?.title).filter(Boolean))];
-    const note = recipeNames.length
-      ? `NourishTable Market: ${recipeNames.slice(0, 3).join(', ')}${recipeNames.length > 3 ? ` +${recipeNames.length - 3}` : ''}`
-      : 'NourishTable Healthy Market Run';
+    return Math.round(targetItems.reduce((s, i) => s + i.estUgx, 0));
+  }
 
-    let baseUrl = (appState.settings.pocketLedgerUrl || 'https://pocketledger-brd.pages.dev/').trim();
-    if (!/^https?:\/\//i.test(baseUrl)) baseUrl = `https://${baseUrl}`;
-    const url = new URL(baseUrl);
-    url.searchParams.set('plAction', 'addExpense');
-    url.searchParams.set('amount', String(totalAmount));
-    url.searchParams.set('category', 'cat-groceries');
-    url.searchParams.set('note', note);
+  async function copyForPocketLedger() {
+    const totalAmount = getTargetGroceryTotal();
+    if (totalAmount <= 0) {
+      showToast('Add priced items to your grocery list first');
+      return;
+    }
+    const text = `Paid UGX ${totalAmount.toLocaleString('en-US')} at Market / Groceries (NourishTable)`;
+    try {
+      await navigator.clipboard.writeText(text);
+      showToast('Copied for PocketLedger Quick Paste — switch to PocketLedger');
+    } catch {
+      showToast('Could not access clipboard');
+    }
+  }
 
-    window.open(url.toString(), '_blank', 'noopener');
-    showToast(`Opening PocketLedger (${formatUgx(totalAmount)})`);
+  async function copyGroceryAmount() {
+    const totalAmount = getTargetGroceryTotal();
+    if (totalAmount <= 0) {
+      showToast('Add priced items to your grocery list first');
+      return;
+    }
+    try {
+      await navigator.clipboard.writeText(String(totalAmount));
+      showToast(`Copied ${totalAmount} — paste into PocketLedger amount`);
+    } catch {
+      showToast('Could not access clipboard');
+    }
   }
 
   async function copyGrocerySummary() {
@@ -1165,9 +1176,10 @@
     $('openRandomMealBtn').innerHTML = `${icons.get('shuffle')} Surprise Me`;
     $('spinAgainBtn').innerHTML = `${icons.get('shuffle')} Spin Again`;
 
-    $('addToGroceryBtn').innerHTML = `${icons.get('groceries')} Add to Groceries`;
+    $('addToGroceryBtn').innerHTML = `${icons.get('groceries')} Add to List`;
     $('addToPlanBtn').innerHTML = `${icons.get('plan')} Add to Calendar`;
-    $('sendToPocketLedgerBtn').innerHTML = `${icons.get('external')} Log in PocketLedger`;
+    $('copyForPocketLedgerBtn').innerHTML = `${icons.get('copy')} Copy for PocketLedger`;
+    $('copyAmountBtn').innerHTML = `${icons.get('copy')} Copy Amount`;
     $('copyGrocerySummaryBtn').innerHTML = `${icons.get('copy')} Copy List`;
 
     document.querySelectorAll('.nav-icon[data-icon]').forEach((slot) => {
@@ -1432,6 +1444,39 @@
         return;
       }
 
+      const stapleBtn = e.target.closest('[data-toggle-staple]');
+      if (stapleBtn) {
+        const sId = stapleBtn.dataset.toggleStaple;
+        const staple = QUICK_GROCERY_STAPLES.find((s) => s.id === sId);
+        if (!staple) return;
+        const exists = appState.customGroceries.some((c) => c.id === sId);
+        if (exists) {
+          appState.customGroceries = appState.customGroceries.filter((c) => c.id !== sId);
+        } else {
+          appState.customGroceries.push({
+            id: staple.id,
+            name: staple.name,
+            qtyText: staple.qtyText,
+            aisle: staple.aisle,
+            estUgx: staple.estUgx,
+            checked: false,
+            source: 'Market staple'
+          });
+        }
+        await persist();
+        renderGroceries();
+        return;
+      }
+
+      const remCustomBtn = e.target.closest('[data-remove-custom]');
+      if (remCustomBtn) {
+        const key = remCustomBtn.dataset.removeCustom;
+        appState.customGroceries = appState.customGroceries.filter((c) => c.id !== key);
+        await persist();
+        renderGroceries();
+        return;
+      }
+
       const remBasketBtn = e.target.closest('[data-remove-basket]');
       if (remBasketBtn) {
         const idx = Number(remBasketBtn.dataset.removeBasket);
@@ -1560,10 +1605,25 @@
       showToast('Cleared meals for this week');
     });
 
+    $('syncWeekGroceriesToggle')?.addEventListener('change', async (e) => {
+      appState.settings.syncWeekGroceries = e.target.checked;
+      await persist();
+      renderGroceries();
+    });
+
+    $('clearCheckedGroceriesBtn')?.addEventListener('click', async () => {
+      appState.customGroceries = appState.customGroceries.filter((c) => !c.checked);
+      appState.groceryChecked = {};
+      await persist();
+      renderGroceries();
+      showToast('Cleared packed items');
+    });
+
     $('clearGroceryBasketBtn').addEventListener('click', async () => {
       appState.groceryEntries = [];
       appState.groceryChecked = {};
       appState.customGroceries = [];
+      appState.settings.syncWeekGroceries = false;
       await persist();
       renderGroceries();
       showToast('Market list cleared');
@@ -1573,12 +1633,13 @@
       e.preventDefault();
       const name = $('customItemName').value.trim();
       if (!name) return;
+      const aisle = $('customItemAisle')?.value || 'produce';
       const ugx = Math.max(0, Math.round(Number($('customItemUgx').value) || 0));
       appState.customGroceries.push({
         id: `custom_${Date.now()}`,
         name,
         qtyText: '1 item',
-        aisle: 'produce',
+        aisle,
         estUgx: ugx,
         checked: false
       });
@@ -1588,7 +1649,8 @@
       renderGroceries();
     });
 
-    $('sendToPocketLedgerBtn').addEventListener('click', sendGroceriesToPocketLedger);
+    $('copyForPocketLedgerBtn').addEventListener('click', copyForPocketLedger);
+    $('copyAmountBtn').addEventListener('click', copyGroceryAmount);
     $('copyGrocerySummaryBtn').addEventListener('click', copyGrocerySummary);
     $('stopTimerBtn').addEventListener('click', stopCookingTimer);
 

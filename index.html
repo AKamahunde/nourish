@@ -142,11 +142,12 @@
 
           <div class="pl-bridge-box">
             <div class="pl-bridge-text">
-              <strong>Ready to log your market run?</strong>
-              <span>Send this estimated or checked spend straight to PocketLedger under Groceries &amp; Market.</span>
+              <strong>Log in your Home Screen PocketLedger</strong>
+              <span>Copy the amount or paste-ready line, then switch to your Home Screen PocketLedger app and paste.</span>
             </div>
             <div class="pl-bridge-actions">
-              <button id="sendToPocketLedgerBtn" class="primary-btn" type="button"></button>
+              <button id="copyForPocketLedgerBtn" class="primary-btn" type="button"></button>
+              <button id="copyAmountBtn" class="secondary-btn" type="button"></button>
               <button id="copyGrocerySummaryBtn" class="secondary-btn" type="button"></button>
             </div>
           </div>
@@ -154,15 +155,32 @@
 
         <article class="card">
           <div class="card-head">
-            <h2 class="card-title">Recipes in Your Basket</h2>
-            <button id="clearGroceryBasketBtn" class="text-danger-btn" type="button">Clear All</button>
+            <div>
+              <h2 class="card-title">Single Market List</h2>
+              <p class="card-sub">Tap everyday staples to add, or auto-include this week's Planner meals.</p>
+            </div>
+            <div class="day-bar-actions">
+              <button id="clearCheckedGroceriesBtn" class="ghost-btn compact-btn" type="button">Clear Checked</button>
+              <button id="clearGroceryBasketBtn" class="text-danger-btn" type="button">Clear All</button>
+            </div>
           </div>
-          <div id="groceryBasketChips" class="basket-chips"></div>
-        </article>
 
-        <article class="card">
-          <form id="customGroceryForm" class="quick-add-form">
-            <input id="customItemName" class="text-input" type="text" placeholder="Add extra item (e.g. Ginger, Mineral Water)" required />
+          <label class="pantry-toggle-row">
+            <input id="syncWeekGroceriesToggle" type="checkbox" checked />
+            <span>Auto-include this week's Planner meals</span>
+          </label>
+
+          <div id="quickGroceryStaples" class="pantry-chips" style="margin-bottom:12px;"></div>
+
+          <form id="customGroceryForm" class="quick-add-form quick-add-wrap">
+            <input id="customItemName" class="text-input" type="text" placeholder="Add item (e.g. Mineral Water, Paprika)" required />
+            <select id="customItemAisle" class="text-input aisle-select" aria-label="Market section">
+              <option value="produce">Produce</option>
+              <option value="greens">Greens</option>
+              <option value="protein">Proteins</option>
+              <option value="grains">Grains/Beans</option>
+              <option value="pantry">Spices/Pantry</option>
+            </select>
             <input id="customItemUgx" class="text-input ugx-input" type="number" min="0" step="500" placeholder="UGX" />
             <button class="secondary-btn" type="submit">Add</button>
           </form>
