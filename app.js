@@ -1,5 +1,5 @@
 ﻿(() => {
-  const APP_VERSION = 28;
+  const APP_VERSION = 29;
   const MEAL_SLOTS = [
     { id: 'breakfast', label: 'Breakfast' },
     { id: 'lunch', label: 'Lunch' },
@@ -350,6 +350,20 @@
         ${escapeHtml(g)}
       </button>
     `).join('');
+
+    const extraCount = (ui.cuisine !== 'All' ? 1 : 0) + (ui.goal ? 1 : 0);
+    const badgeEl = $('activeFilterCount');
+    if (badgeEl) {
+      badgeEl.textContent = String(extraCount);
+      badgeEl.classList.toggle('hidden', extraCount === 0);
+    }
+    const toggleBtn = $('toggleFiltersBtn');
+    if (toggleBtn) {
+      toggleBtn.classList.toggle('active', extraCount > 0 || Boolean(ui.filtersOpen));
+      toggleBtn.setAttribute('aria-expanded', ui.filtersOpen ? 'true' : 'false');
+    }
+    $('moreFiltersDrawer')?.classList.toggle('hidden', !ui.filtersOpen);
+    $('resetExtraFiltersBtn')?.classList.toggle('hidden', extraCount === 0);
 
     const showSpotlight = ui.category === 'all' && ui.cuisine === 'All' && !ui.goal && !ui.search.trim();
     const spotlightEl = $('spotlightCard');

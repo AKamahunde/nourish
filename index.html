@@ -46,16 +46,33 @@
           </button>
         </div>
 
-        <div id="browseControls">
-          <div class="search-wrap">
-            <span class="search-icon" id="searchIconSlot"></span>
-            <input id="searchInput" class="search-input" type="search" placeholder="Search tilapia, pasta, breakfast, stir-fry, juice..." autocomplete="off" />
-            <button id="clearSearchBtn" class="clear-btn hidden" type="button" aria-label="Clear search"></button>
+        <div id="browseControls" class="browse-controls">
+          <div class="search-bar-row">
+            <div class="search-wrap">
+              <span class="search-icon" id="searchIconSlot"></span>
+              <input id="searchInput" class="search-input" type="search" placeholder="Search tilapia, pasta, breakfast, juice..." autocomplete="off" />
+              <button id="clearSearchBtn" class="clear-btn hidden" type="button" aria-label="Clear search"></button>
+            </div>
+            <button id="toggleFiltersBtn" class="filter-toggle-btn" type="button" aria-expanded="false" aria-controls="moreFiltersDrawer">
+              Filters <span id="activeFilterCount" class="inline-count hidden">0</span>
+            </button>
           </div>
 
           <div id="categoryTabs" class="chip-row" role="tablist" aria-label="Recipe categories"></div>
-          <div id="cuisineTabs" class="chip-row chip-row-secondary" aria-label="Cuisine filters"></div>
-          <div id="goalTabs" class="chip-row chip-row-secondary" aria-label="Health focus filters"></div>
+
+          <div id="moreFiltersDrawer" class="filters-drawer hidden">
+            <div class="filter-group">
+              <div class="filter-group-head">
+                <span class="filter-group-label">Cuisine</span>
+                <button id="resetExtraFiltersBtn" class="text-link-btn hidden" type="button">Reset</button>
+              </div>
+              <div id="cuisineTabs" class="chip-row chip-row-secondary" aria-label="Cuisine filters"></div>
+            </div>
+            <div class="filter-group">
+              <span class="filter-group-label">Health Focus</span>
+              <div id="goalTabs" class="chip-row chip-row-secondary" aria-label="Health focus filters"></div>
+            </div>
+          </div>
         </div>
 
         <article id="kitchenPanel" class="card kitchen-panel hidden">
@@ -372,6 +389,7 @@
 
   <script src="./recipes.js"></script>
   <script src="./recipes-user-picks.js"></script>
+  <script src="./recipes-batch2.js"></script>
   <script src="./db.js"></script>
   <script src="./icons.js"></script>
   <script src="./app.js"></script>
