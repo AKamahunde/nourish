@@ -2,8 +2,8 @@
   const INTL_RECIPES = [
     {
       id: 'mediterranean-chickpea-salad',
-      title: 'Mediterranean Cucumber, Tomato & Chickpea Salad',
-      subtitle: 'Crisp Greek-style chopped salad with chickpeas, herbs, lemon, and olive oil',
+      title: 'Mediterranean Cucumber, Tomato & Black Bean Salad',
+      subtitle: 'Crisp Greek-style chopped salad with black or white beans, herbs, lemon, and olive oil',
       cuisine: 'Mediterranean',
       category: 'salads',
       image: './images/mediterranean-chickpea-salad.jpg',
@@ -12,10 +12,10 @@
       totalMinutes: 12,
       servings: 2,
       tags: ['Plant-Forward', 'Light & Lean', 'No Red Meat', 'Low-Sugar'],
-      healthNote: 'Chickpeas and extra-virgin olive oil offer steady plant protein, fiber, and heart-protective fats.',
+      healthNote: 'Black or white beans and extra-virgin olive oil offer steady plant protein, fiber, and heart-protective fats.',
       nutrition: { kcal: 330, protein: '13g', fiber: '9g', sugar: 'Low' },
       ingredients: [
-        { id: 'chickpeas', name: 'Cooked or canned chickpeas', amount: 1.5, unit: 'cups', aisle: 'grains', estUgx: 3500, prep: 'rinsed & drained' },
+        { id: 'black-beans', name: 'Pre-boiled black or white beans', amount: 1.5, unit: 'cups', aisle: 'grains', estUgx: 2000, prep: 'rinsed & drained' },
         { id: 'cucumber', name: 'Fresh cucumber', amount: 1, unit: 'medium', aisle: 'produce', estUgx: 1000, prep: 'chunked' },
         { id: 'tomatoes', name: 'Ripe firm tomatoes', amount: 3, unit: 'pcs', aisle: 'produce', estUgx: 1500, prep: 'cut in wedges' },
         { id: 'red-onion', name: 'Red onion', amount: 0.5, unit: 'pc', aisle: 'produce', estUgx: 400, prep: 'thin rings' },
@@ -23,11 +23,11 @@
         { id: 'olive-oil', name: 'Olive oil & lemon juice', amount: 1.5, unit: 'tbsp', aisle: 'pantry', estUgx: 1000, prep: 'with dried oregano' }
       ],
       steps: [
-        { text: 'Combine cucumber chunks, tomato wedges, thin red onion rings, and rinsed chickpeas in a shallow salad bowl.' },
+        { text: 'Combine cucumber chunks, tomato wedges, thin red onion rings, and rinsed black or white beans in a shallow salad bowl.' },
         { text: 'Whisk olive oil, fresh lemon juice, dried oregano, salt, and black pepper; pour over the vegetables and toss gently.' },
         { text: 'Scatter crumbled feta (or diced ripe avocado if skipping dairy) over the top and serve chilled.' }
       ],
-      ugandaTip: 'Dry chickpeas (chana) are sold cheaply in Nakasero & Owino spice stalls, or grab canned chickpeas at any Kampala supermarket.'
+      ugandaTip: 'Use your pre-boiled black beans or Nambale beans — no hard-to-find chickpeas needed.'
     },
     {
       id: 'mediterranean-herb-chicken',

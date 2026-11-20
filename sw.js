@@ -1,4 +1,4 @@
-const CACHE_NAME = 'nourishtable-v5';
+const CACHE_NAME = 'nourishtable-v7';
 
 const APP_ASSETS = [
   './',
@@ -10,6 +10,7 @@ const APP_ASSETS = [
   './recipes-intl.js',
   './recipes-expanded.js',
   './recipes-pantry.js',
+  './recipes-veggies.js',
   './db.js',
   './icons.js',
   './app.js',
@@ -57,7 +58,19 @@ const APP_ASSETS = [
   './images/yogurt-chia-mango-parfait.jpg',
   './images/overnight-chia-pineapple-pudding.jpg',
   './images/black-bean-avocado-lime-salad.jpg',
-  './images/spiced-yogurt-herb-chicken.jpg'
+  './images/spiced-yogurt-herb-chicken.jpg',
+  './images/med-roasted-cauliflower-bean-salad.jpg',
+  './images/med-stuffed-bell-peppers.jpg',
+  './images/med-zucchini-chicken-skewers.jpg',
+  './images/med-broccoli-lemon-garlic-bowl.jpg',
+  './images/italian-zucchini-pepper-bean-skillet.jpg',
+  './images/italian-broccoli-cauliflower-chicken-tray.jpg',
+  './images/italian-creamy-cauliflower-garlic-soup.jpg',
+  './images/italian-sukuma-garlic-spaghetti.jpg',
+  './images/asian-chicken-broccoli-stirfry.jpg',
+  './images/asian-cauliflower-carrot-fried-rice.jpg',
+  './images/asian-sesame-cabbage-pepper-bowl.jpg',
+  './images/asian-ginger-glazed-cauliflower-broccoli.jpg'
 ];
 
 self.addEventListener('install', (event) => {

@@ -1,5 +1,5 @@
 (() => {
-  const APP_VERSION = 5;
+  const APP_VERSION = 7;
   const MEAL_SLOTS = [
     { id: 'breakfast', label: 'Breakfast' },
     { id: 'lunch', label: 'Lunch' },
@@ -22,6 +22,10 @@
     { key: 'matooke', label: 'Matooke', aliases: ['matooke'] },
     { key: 'sweet potato', label: 'Sweet Potato', aliases: ['sweet-potato', 'sweet potato'] },
     { key: 'greens', label: 'Dodo / Sukuma', aliases: ['dodo', 'sukuma', 'nakati', 'lettuce'] },
+    { key: 'broccoli', label: 'Broccoli', aliases: ['broccoli'] },
+    { key: 'cauliflower', label: 'Cauliflower', aliases: ['cauliflower'] },
+    { key: 'zucchini', label: 'Zucchini', aliases: ['courgette', 'zucchini'] },
+    { key: 'bell pepper', label: 'Bell Peppers', aliases: ['bell-pepper', 'pepper'] },
     { key: 'cabbage', label: 'Cabbage', aliases: ['cabbage', 'lettuce-cabbage'] },
     { key: 'cucumber', label: 'Cucumber', aliases: ['cucumber'] },
     { key: 'carrots', label: 'Carrots', aliases: ['carrots', 'carrot'] },
@@ -29,7 +33,6 @@
     { key: 'mango', label: 'Mango', aliases: ['mango'] },
     { key: 'groundnut', label: 'G-Nut Paste', aliases: ['gnut-paste', 'groundnut'] },
     { key: 'citrus', label: 'Lime / Lemon', aliases: ['lime', 'lemon'] },
-    { key: 'chickpeas', label: 'Chickpeas', aliases: ['chickpeas'] },
     { key: 'spaghetti', label: 'Spaghetti', aliases: ['spaghetti', 'pasta'] },
     { key: 'oats', label: 'Oats', aliases: ['rolled-oats', 'oats'] }
   ];
