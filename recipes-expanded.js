@@ -190,7 +190,7 @@
       ],
       steps: [
         { text: 'Saute onion and micro-diced sweet potato in 1 teaspoon oil for 4 minutes.', timerMin: 4 },
-        { text: 'Stir in pilau spices for 30 seconds, then add beans and 1/2 cup water; cover and simmer 6 minutes until tender.', timerMin: 6 }
+        { text: 'Stir in pilau spices for 30 seconds, then add beans and 1/2 cup water; cover and simmer 6 minutes until tender. Scatter fresh chopped coriander on top.', timerMin: 6 }
       ],
       ugandaTip: 'Top with a fried or poached egg when you want extra post-workout protein.'
     },

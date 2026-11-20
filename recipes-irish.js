@@ -49,7 +49,7 @@
         { id: 'lemon', name: 'Fresh lemon, 1 tsp olive oil & black pepper', amount: 1, unit: 'pc', aisle: 'produce', estUgx: 700, prep: 'tossed while warm' }
       ],
       steps: [
-        { text: 'Boil halved Irish potatoes in lightly salted water for 14 to 15 minutes until fork-tender, then drain.', timerMin: 15 },
+        { text: 'Boil halved Irish potatoes in lightly salted water for 14 to 15 minutes until fork-tender, while boiling the eggs in a small pot for 7 to 8 minutes.', timerMin: 15 },
         { text: 'While still steaming, toss gently with 1 teaspoon olive oil, lemon juice, chopped coriander, and black pepper.' },
         { text: 'Serve beside peeled boiled eggs and a crisp cucumber-tomato salad.' }
       ],

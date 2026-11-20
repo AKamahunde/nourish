@@ -124,7 +124,7 @@
       steps: [
         { text: 'Place sliced red onion in a bowl with cold water and a pinch of salt for 10 minutes, then drain well so the bite stays mild.', timerMin: 10 },
         { text: 'Combine diced tomatoes, drained onions, chopped coriander, and fresh lime juice in a wide mixing bowl.' },
-        { text: 'Gently fold in diced mango and avocado cubes last so they hold their shape. Finish with black pepper and serve fresh.' }
+        { text: 'Gently fold in diced mango and avocado cubes last so they hold their shape. Finish with black pepper, an optional drizzle of cold-pressed oil, and serve fresh.' }
       ],
       ugandaTip: 'Pair this beside grilled tilapia or roasted sweet potato instead of heavy fried sides.'
     },
@@ -265,28 +265,28 @@
         { id: 'oil', name: 'Vegetable oil', amount: 1, unit: 'tbsp', aisle: 'pantry', estUgx: 500, prep: 'measured' }
       ],
       steps: [
-        { text: 'Saute onion, garlic, and ginger in 1 measured tablespoon oil for 3 minutes. Add tomatoes and cook down into a thick paste.', timerMin: 5 },
+        { text: 'Saute onion, garlic, and ginger in 1 measured tablespoon oil for 3 minutes, then add tomatoes and cook down 2 more minutes (5 minutes total) into a thick paste.', timerMin: 5 },
         { text: 'Stir in pre-boiled beans and katunkuma berries with a pinch of salt and turmeric.' },
         { text: 'Lay peeled matooke fingers over the beans, add water just up to the top of the bananas, cover tightly, and simmer on medium-low for 20 to 25 minutes until fork-tender.', timerMin: 22 }
       ],
       ugandaTip: 'Avoid stirring while the matooke cooks so the fingers stay intact and soak up the bean sauce.'
     },
     {
-      id: 'chicken-okra-nakati',
-      title: 'Lean Chicken, Okra & Nakati One-Pot',
-      subtitle: 'Light tomato-garlic chicken simmered with tender okra and local greens',
+      id: 'chicken-greenbeans-nakati',
+      title: 'Lean Chicken, Green Beans & Nakati One-Pot',
+      subtitle: 'Light tomato-garlic chicken simmered with crisp French beans and local greens',
       category: 'onepot',
-      image: './images/chicken-okra-nakati.jpg',
+      image: './images/chicken-greenbeans-nakati.jpg',
       prepMinutes: 10,
       cookMinutes: 25,
       totalMinutes: 35,
       servings: 3,
       tags: ['High-Protein', 'Light & Lean', 'No Red Meat', 'Low-Sugar'],
-      healthNote: 'Okra fiber aids gentle digestion while nakati greens add natural calcium and plant micronutrients.',
+      healthNote: 'Crisp French green beans add fiber and crunch while nakati greens bring natural calcium and plant micronutrients.',
       nutrition: { kcal: 365, protein: '34g', fiber: '6g', sugar: 'Low' },
       ingredients: [
         { id: 'chicken-pieces', name: 'Skinless chicken thighs or breast', amount: 450, unit: 'g', aisle: 'protein', estUgx: 11000, prep: 'cut in medium pieces' },
-        { id: 'okra', name: 'Fresh green okra', amount: 150, unit: 'g', aisle: 'produce', estUgx: 1500, prep: 'trimmed & sliced' },
+        { id: 'green-beans', name: 'Fresh French green beans', amount: 150, unit: 'g', aisle: 'produce', estUgx: 1500, prep: 'trimmed & halved' },
         { id: 'nakati', name: 'Fresh nakati greens', amount: 1, unit: 'bunch', aisle: 'greens', estUgx: 1000, prep: 'washed, tough stems removed' },
         { id: 'tomatoes', name: 'Ripe tomatoes', amount: 3, unit: 'pcs', aisle: 'produce', estUgx: 1500, prep: 'diced' },
         { id: 'onion-garlic', name: 'Onion, garlic & ginger', amount: 1, unit: 'set', aisle: 'produce', estUgx: 1000, prep: 'minced' }
@@ -294,7 +294,7 @@
       steps: [
         { text: 'Brown chicken pieces in a dry or 1-teaspoon oiled pot for 5 minutes with salt and black pepper.', timerMin: 5 },
         { text: 'Add onions, garlic, ginger, and tomatoes; cover and simmer 15 minutes until chicken is tender and saucy.', timerMin: 15 },
-        { text: 'Stir in sliced okra and chopped nakati; simmer uncovered for 5 minutes until greens wilt and okra is tender.', timerMin: 5 }
+        { text: 'Stir in French green beans and chopped nakati; simmer uncovered for 5 minutes until greens wilt and beans stay crisp-tender.', timerMin: 5 }
       ],
       ugandaTip: 'Adding nakati right at the end keeps its clean bright flavor without turning bitter.'
     }

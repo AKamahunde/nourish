@@ -1,4 +1,4 @@
-const CACHE_NAME = 'nourishtable-v17';
+const CACHE_NAME = 'nourishtable-v18';
 
 const APP_ASSETS = [
   './',
@@ -53,7 +53,7 @@ const APP_ASSETS = [
   './images/pilau-bean-sweet-potato-hash.jpg',
   './images/asian-garlic-soy-egg-rice.jpg',
   './images/matooke-beans-katogo.jpg',
-  './images/chicken-okra-nakati.jpg',
+  './images/chicken-greenbeans-nakati.jpg',
   './images/gnut-mushroom-stew.jpg',
   './images/italian-tuscan-bean-soup.jpg',
   './images/coconut-cassava-blackeye-peas.jpg',

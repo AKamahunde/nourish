@@ -164,7 +164,7 @@
       ],
       steps: [
         { text: 'Blend rolled oats, ripe banana, eggs, milk, and cinnamon for 30 seconds until smooth; let batter rest 2 minutes.' },
-        { text: 'Spoon small pancakes onto a lightly brushed non-stick pan over medium-low heat for 2 minutes per side until golden. Top with plain yogurt and fruit.', timerMin: 4 }
+        { text: 'Spoon small pancakes onto a lightly brushed non-stick pan over medium-low heat for 2 minutes per side (4 minutes total) until golden. Top with plain yogurt and fruit.', timerMin: 4 }
       ],
       ugandaTip: 'Riper spotty bogoya bananas make the pancakes naturally sweeter without honey or syrup.'
     },
