@@ -1,4 +1,4 @@
-const SHELL_CACHE = 'nourishtable-shell-v24';
+const SHELL_CACHE = 'nourishtable-shell-v25';
 const IMG_CACHE = 'nourishtable-images-v3';
 
 const SHELL_ASSETS = [
@@ -6,6 +6,7 @@ const SHELL_ASSETS = [
   './index.html',
   './styles.css',
   './recipes.js',
+  './recipes-user-picks.js',
   './db.js',
   './icons.js',
   './app.js',

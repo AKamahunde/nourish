@@ -8764,6 +8764,256 @@
                                       }
                                   ],
                         "ugandaTip":  "Pair 2 baked spring rolls with a glass of hibiscus sobolo or green dodo juice for a light, energizing breakfast."
+                    },
+                    {
+                        "id":  "roasted-gonja-sweet-plantain",
+                        "title":  "Oven-Roasted Sweet Plantain (Gonja), Eggs \u0026 Avocado",
+                        "subtitle":  "Caramelized baked Ugandan gonja paired with soft-boiled farm eggs and creamy avocado",
+                        "cuisine":  "Ugandan",
+                        "category":  "breakfast",
+                        "mealSlots":  [
+                                          "breakfast",
+                                          "lunch"
+                                      ],
+                        "image":  "./images/roasted-gonja-sweet-plantain.jpg",
+                        "prepMinutes":  5,
+                        "cookMinutes":  20,
+                        "totalMinutes":  25,
+                        "servings":  2,
+                        "tags":  [
+                                     "High-Protein",
+                                     "No Red Meat",
+                                     "Low-Sugar"
+                                 ],
+                        "healthNote":  "Roasting ripe plantain with 1 teaspoon of oil caramelizes its natural sugars with zero deep-frying grease.",
+                        "nutrition":  {
+                                          "kcal":  395,
+                                          "protein":  "14g",
+                                          "fiber":  "6g",
+                                          "sugar":  "Natural fruit only"
+                                      },
+                        "ingredients":  [
+                                            {
+                                                "id":  "plantain",
+                                                "name":  "Ripe yellow-black sweet plantains (gonja)",
+                                                "amount":  2,
+                                                "unit":  "medium",
+                                                "aisle":  "produce",
+                                                "estUgx":  2000,
+                                                "prep":  "peeled \u0026 sliced diagonally"
+                                            },
+                                            {
+                                                "id":  "eggs",
+                                                "name":  "Fresh farm eggs",
+                                                "amount":  4,
+                                                "unit":  "pcs",
+                                                "aisle":  "protein",
+                                                "estUgx":  2400,
+                                                "prep":  "soft- or hard-boiled"
+                                            },
+                                            {
+                                                "id":  "avocado",
+                                                "name":  "Ripe avocado",
+                                                "amount":  1,
+                                                "unit":  "pc",
+                                                "aisle":  "produce",
+                                                "estUgx":  1500,
+                                                "prep":  "sliced"
+                                            },
+                                            {
+                                                "id":  "olive-oil",
+                                                "name":  "Cooking oil \u0026 pinch of salt/cinnamon",
+                                                "amount":  1,
+                                                "unit":  "tsp",
+                                                "aisle":  "pantry",
+                                                "estUgx":  300,
+                                                "prep":  "brushed lightly"
+                                            }
+                                        ],
+                        "steps":  [
+                                      {
+                                          "text":  "Slice ripe gonja diagonally into 1.5cm pieces, brush lightly with 1 teaspoon oil and a pinch of salt, and arrange on a lined baking tray."
+                                      },
+                                      {
+                                          "text":  "Roast at 200C (or air-fry at 190C) for 18 to 20 minutes, flipping halfway, until golden and caramelized at the edges.",
+                                          "timerMin":  18
+                                      },
+                                      {
+                                          "text":  "Serve warm beside peeled soft-boiled eggs, sliced avocado, and fresh black pepper."
+                                      }
+                                  ],
+                        "ugandaTip":  "Choose yellow plantains with a few black spots — they bake up naturally sweet and tender like street charcoal gonja."
+                    },
+                    {
+                        "id":  "pan-seared-plantain-black-bean-bowl",
+                        "title":  "Caramelized Plantain, Spiced Black Beans \u0026 Kachumbari",
+                        "subtitle":  "Golden pan-seared ripe plantain paired with cumin-garlic black beans and crisp tomato salad",
+                        "cuisine":  "Ugandan",
+                        "category":  "quick",
+                        "mealSlots":  [
+                                          "lunch",
+                                          "dinner"
+                                      ],
+                        "image":  "./images/pan-seared-plantain-black-bean-bowl.jpg",
+                        "prepMinutes":  6,
+                        "cookMinutes":  12,
+                        "totalMinutes":  18,
+                        "servings":  2,
+                        "tags":  [
+                                     "Plant-Forward",
+                                     "High-Protein",
+                                     "No Red Meat",
+                                     "Low-Sugar"
+                                 ],
+                        "healthNote":  "Sweet plantain potassium plus high-fiber black beans create a deeply satisfying plant-powered bowl.",
+                        "nutrition":  {
+                                          "kcal":  430,
+                                          "protein":  "15g",
+                                          "fiber":  "12g",
+                                          "sugar":  "Natural fruit only"
+                                      },
+                        "ingredients":  [
+                                            {
+                                                "id":  "plantain",
+                                                "name":  "Ripe sweet plantains (gonja)",
+                                                "amount":  2,
+                                                "unit":  "medium",
+                                                "aisle":  "produce",
+                                                "estUgx":  2000,
+                                                "prep":  "sliced thick rounds"
+                                            },
+                                            {
+                                                "id":  "black-beans",
+                                                "name":  "Cooked black beans (or Nambale beans)",
+                                                "amount":  1.5,
+                                                "unit":  "cups",
+                                                "aisle":  "grains",
+                                                "estUgx":  2000,
+                                                "prep":  "rinsed"
+                                            },
+                                            {
+                                                "id":  "tomatoes",
+                                                "name":  "Ripe tomatoes, red onion \u0026 lime",
+                                                "amount":  2,
+                                                "unit":  "pcs",
+                                                "aisle":  "produce",
+                                                "estUgx":  1200,
+                                                "prep":  "diced kachumbari"
+                                            },
+                                            {
+                                                "id":  "cumin-garlic",
+                                                "name":  "Garlic, ground cumin \u0026 fresh coriander",
+                                                "amount":  1,
+                                                "unit":  "tbsp",
+                                                "aisle":  "pantry",
+                                                "estUgx":  600,
+                                                "prep":  "measured"
+                                            },
+                                            {
+                                                "id":  "avocado",
+                                                "name":  "Ripe avocado",
+                                                "amount":  0.5,
+                                                "unit":  "pc",
+                                                "aisle":  "produce",
+                                                "estUgx":  800,
+                                                "prep":  "sliced"
+                                            }
+                                        ],
+                        "steps":  [
+                                      {
+                                          "text":  "Pan-sear plantain rounds in a non-stick skillet with 1 teaspoon oil for 3 minutes per side until golden and tender.",
+                                          "timerMin":  6
+                                      },
+                                      {
+                                          "text":  "Warm black beans in a small pot with garlic, ground cumin, pinch of salt, and 1/4 cup water for 5 minutes until glossy.",
+                                          "timerMin":  5
+                                      },
+                                      {
+                                          "text":  "Assemble bowls with spiced black beans, sweet seared plantains, crisp kachumbari, coriander, and avocado."
+                                      }
+                                  ],
+                        "ugandaTip":  "Drizzle with the Creamy Avocado-Coriander or Plain Yogurt-Mint dressing for an unforgettable lunch bowl."
+                    },
+                    {
+                        "id":  "baked-plantain-grilled-tilapia-plate",
+                        "title":  "Baked Gonja, Spiced Tilapia \u0026 Sukuma Wiki Plate",
+                        "subtitle":  "Sweet oven-roasted plantain served with lemon-garlic grilled tilapia and bright sautéed greens",
+                        "cuisine":  "Ugandan",
+                        "category":  "slow",
+                        "mealSlots":  [
+                                          "lunch",
+                                          "dinner"
+                                      ],
+                        "image":  "./images/baked-plantain-grilled-tilapia-plate.jpg",
+                        "prepMinutes":  10,
+                        "cookMinutes":  25,
+                        "totalMinutes":  35,
+                        "servings":  2,
+                        "tags":  [
+                                     "High-Protein",
+                                     "Light \u0026 Lean",
+                                     "No Red Meat",
+                                     "Low-Sugar"
+                                 ],
+                        "healthNote":  "Lean Lake Victoria tilapia, iron-rich sukuma wiki, and oil-light roasted gonja hit every macro cleanly.",
+                        "nutrition":  {
+                                          "kcal":  445,
+                                          "protein":  "36g",
+                                          "fiber":  "7g",
+                                          "sugar":  "Natural fruit only"
+                                      },
+                        "ingredients":  [
+                                            {
+                                                "id":  "plantain",
+                                                "name":  "Ripe sweet plantains (gonja)",
+                                                "amount":  2,
+                                                "unit":  "medium",
+                                                "aisle":  "produce",
+                                                "estUgx":  2000,
+                                                "prep":  "halved lengthwise"
+                                            },
+                                            {
+                                                "id":  "tilapia-fillet",
+                                                "name":  "Fresh tilapia fillets",
+                                                "amount":  350,
+                                                "unit":  "g",
+                                                "aisle":  "protein",
+                                                "estUgx":  9500,
+                                                "prep":  "marinated in lemon, garlic \u0026 ginger"
+                                            },
+                                            {
+                                                "id":  "sukuma",
+                                                "name":  "Fresh sukuma wiki or dodo greens",
+                                                "amount":  1,
+                                                "unit":  "bunch",
+                                                "aisle":  "greens",
+                                                "estUgx":  1000,
+                                                "prep":  "finely shredded"
+                                            },
+                                            {
+                                                "id":  "tomatoes",
+                                                "name":  "Tomato, onion \u0026 lemon",
+                                                "amount":  1,
+                                                "unit":  "set",
+                                                "aisle":  "produce",
+                                                "estUgx":  1000,
+                                                "prep":  "chopped"
+                                            }
+                                        ],
+                        "steps":  [
+                                      {
+                                          "text":  "Brush halved gonja lightly with 1 teaspoon oil and bake at 200C for 22 minutes until golden and tender.",
+                                          "timerMin":  22
+                                      },
+                                      {
+                                          "text":  "Pan-sear or grill lemon-garlic tilapia fillets for 4 minutes per side until flaky.",
+                                          "timerMin":  8
+                                      },
+                                      {
+                                          "text":  "Flash-saute shredded sukuma wiki with onion and tomato for 3 minutes and plate everything warm with a fresh lemon wedge."
+                                      }
+                                  ],
+                        "ugandaTip":  "Works equally well with charcoal-roasted gonja bought fresh from the roadside — just pair it with your home-cooked fish and greens."
                     }
                 ]
 };
