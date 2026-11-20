@@ -25,6 +25,44 @@
     pantry: { label: 'Spices, Oils & Pantry', order: 5 }
   };
 
+  const HERB_SPICE_PAIRINGS = [
+    {
+      ingredient: 'Tilapia & Fish',
+      pairings: 'Lemon or lime + Garlic + Fresh ginger + Turmeric + Coriander or Parsley',
+      why: 'Citrus cuts fishiness while turmeric and ginger brighten lake fish with zero heavy frying.'
+    },
+    {
+      ingredient: 'Chicken (Breast / Kuroiler)',
+      pairings: 'Garlic + Ginger + Rosemary or Thyme + Paprika + Cumin (or Plain Yogurt + Turmeric)',
+      why: 'Yogurt + warm spices tenderizes lean chicken; rosemary + garlic shines on roasted trays.'
+    },
+    {
+      ingredient: 'Black Beans & Red Beans',
+      pairings: 'Cumin + Garlic + Onion + Paprika + Thyme/Bay + Fresh Lime & Coriander at the end',
+      why: 'Earthy cumin makes black beans taste rich and savory without needing fatty meats.'
+    },
+    {
+      ingredient: 'Matooke, Sweet Potato & Cassava',
+      pairings: 'Ginger + Garlic + Turmeric + Curry Powder + Cardamom & Cinnamon (for pilau-style)',
+      why: 'Warm spices bring natural sweetness out of root starches and green bananas.'
+    },
+    {
+      ingredient: 'Dodo, Nakati & Sukuma Wiki',
+      pairings: 'Onion + Garlic + Tomato + Black Pepper or Bird-Eye Chili + a squeeze of Lemon',
+      why: 'Simple aromatics let the bright green taste shine; vitamin C in lemon boosts iron absorption.'
+    },
+    {
+      ingredient: 'Plain Yogurt & Chia Seeds',
+      pairings: 'Sweet: Cinnamon + Cardamom + Mango/Pawpaw/Passion · Savory: Garlic + Mint + Cucumber + Lemon',
+      why: 'Plain yogurt switches effortlessly between sweet breakfast bowls and cooling sauces for grilled meats.'
+    },
+    {
+      ingredient: 'Fresh Juices & Tonics',
+      pairings: 'Fresh Ginger + Mint + Lime/Lemon + Cinnamon/Cloves (Sobolo) + Turmeric & Black Pepper pinch',
+      why: 'Herbs and spices turn plain fruit blends into refreshing, low-sugar wellness tonics.'
+    }
+  ];
+
   const UGANDA_HEALTH_GUIDE = [
     {
       title: 'The Healthy Ugandan Plate',
@@ -266,6 +304,7 @@
     CATEGORIES,
     HEALTH_GOALS,
     AISLE_META,
+    HERB_SPICE_PAIRINGS,
     UGANDA_HEALTH_GUIDE,
     RECIPES: [...RECIPES_PART_1]
   };

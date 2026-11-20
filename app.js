@@ -1,5 +1,5 @@
 (() => {
-  const APP_VERSION = 4;
+  const APP_VERSION = 5;
   const MEAL_SLOTS = [
     { id: 'breakfast', label: 'Breakfast' },
     { id: 'lunch', label: 'Lunch' },
@@ -15,7 +15,10 @@
     { key: 'eggs', label: 'Eggs', aliases: ['eggs', 'egg'] },
     { key: 'chicken', label: 'Chicken', aliases: ['chicken', 'chicken-breast', 'chicken-pieces'] },
     { key: 'tilapia', label: 'Tilapia', aliases: ['tilapia', 'tilapia-fillet', 'whole-tilapia'] },
-    { key: 'beans', label: 'Beans', aliases: ['beans', 'cooked-beans', 'white-beans'] },
+    { key: 'black beans', label: 'Black Beans', aliases: ['black-beans', 'black beans'] },
+    { key: 'beans', label: 'Red Beans', aliases: ['beans', 'cooked-beans', 'white-beans', 'black-beans'] },
+    { key: 'yogurt', label: 'Plain Yogurt', aliases: ['yogurt'] },
+    { key: 'chia', label: 'Chia Seeds', aliases: ['chia', 'chia-seeds'] },
     { key: 'matooke', label: 'Matooke', aliases: ['matooke'] },
     { key: 'sweet potato', label: 'Sweet Potato', aliases: ['sweet-potato', 'sweet potato'] },
     { key: 'greens', label: 'Dodo / Sukuma', aliases: ['dodo', 'sukuma', 'nakati', 'lettuce'] },
@@ -620,6 +623,17 @@
         <ul>${sec.points.map((p) => `<li>${escapeHtml(p)}</li>`).join('')}</ul>
       </article>
     `).join('');
+
+    const pairingEl = $('spicePairingBox');
+    if (pairingEl && Array.isArray(data.HERB_SPICE_PAIRINGS)) {
+      pairingEl.innerHTML = data.HERB_SPICE_PAIRINGS.map((row) => `
+        <div class="meal-slot-card">
+          <div class="meal-slot-label">${escapeHtml(row.ingredient)}</div>
+          <div style="font-size:13.5px;font-weight:700;margin:4px 0 3px;">${escapeHtml(row.pairings)}</div>
+          <div style="font-size:12.5px;color:var(--muted);">${escapeHtml(row.why)}</div>
+        </div>
+      `).join('');
+    }
 
     $('palettePicker').innerHTML = PALETTES.map((p) => `
       <button class="palette-opt ${appState.settings.theme === p.id ? 'active' : ''}" type="button" data-pick-palette="${p.id}">
