@@ -1,5 +1,5 @@
 ﻿(() => {
-  const APP_VERSION = 32;
+  const APP_VERSION = 33;
   const MEAL_SLOTS = [
     { id: 'breakfast', label: 'Breakfast' },
     { id: 'lunch', label: 'Lunch' },
@@ -239,7 +239,7 @@
     });
   }
 
-  function renderRecipeCard(r, matchInfo = null) {
+  function renderRecipeCard(r, matchInfo = null, idx = 99) {
     const saved = isFavorite(r.id);
     let matchHtml = '';
     if (matchInfo && (appState.pantryHave || []).length > 0) {
@@ -257,10 +257,11 @@
       }
     }
 
+    const imgLoadingAttr = idx < 6 ? 'fetchpriority="high"' : 'loading="lazy"';
     return `
       <article class="recipe-card" data-open-recipe="${escapeHtml(r.id)}">
         <div class="recipe-thumb">
-          <img src="${escapeHtml(r.image)}" alt="${escapeHtml(r.title)}" loading="lazy" />
+          <img src="${escapeHtml(r.image)}" alt="${escapeHtml(r.title)}" width="640" height="480" decoding="async" ${imgLoadingAttr} />
           <button class="card-fav-btn ${saved ? 'saved' : ''}" type="button" data-fav-id="${escapeHtml(r.id)}" aria-label="Save ${escapeHtml(r.title)}">
             ${icons.get(saved ? 'heartFilled' : 'heart')}
           </button>
@@ -325,7 +326,7 @@
       $('recipeGridHeading').textContent = readyCount ? `Ready to Cook (${readyCount})` : 'Best Matches';
       $('recipeCountLabel').textContent = `${scored.length} matches`;
       $('recipeGrid').innerHTML = scored.length
-        ? scored.map((x) => renderRecipeCard(x.recipe, x.match)).join('')
+        ? scored.map((x, idx) => renderRecipeCard(x.recipe, x.match, idx)).join('')
         : `<div class="empty-state">No exact matches for those items yet — try adding one staple like Onion, Tomatoes, or Eggs.</div>`;
       return;
     }
@@ -374,7 +375,7 @@
       spotlightEl.dataset.openRecipe = pick.id;
       spotlightEl.innerHTML = `
         <div class="spotlight-media">
-          <img src="${escapeHtml(pick.image)}" alt="${escapeHtml(pick.title)}" />
+          <img src="${escapeHtml(pick.image)}" alt="${escapeHtml(pick.title)}" width="640" height="480" decoding="async" fetchpriority="high" />
           <div class="spotlight-scrim"></div>
           <div class="spotlight-overlay">
             <span class="spotlight-badge">Today's Fresh Pick · ${pick.totalMinutes} min</span>
@@ -391,7 +392,7 @@
     $('recipeGridHeading').textContent = ui.category === 'all' ? 'All Recipes' : getCategoryLabel(ui.category);
     $('recipeCountLabel').textContent = `${list.length} ${list.length === 1 ? 'dish' : 'dishes'}`;
     $('recipeGrid').innerHTML = list.length
-      ? list.map((r) => renderRecipeCard(r)).join('')
+      ? list.map((r, idx) => renderRecipeCard(r, null, idx)).join('')
       : `<div class="empty-state">No dishes match that filter yet. Try clearing the search or health tag.</div>`;
   }
 
@@ -519,7 +520,7 @@
     const favRecipes = appState.favorites.map(getRecipeById).filter(Boolean);
     $('favCountLabel').textContent = `${favRecipes.length} saved`;
     $('favoritesGrid').innerHTML = favRecipes.length
-      ? favRecipes.map((r) => renderRecipeCard(r)).join('')
+      ? favRecipes.map((r, idx) => renderRecipeCard(r, null, idx)).join('')
       : `<div class="empty-state">Tap the heart on any salad, meal, breakfast, or juice to keep your go-to dishes right here.</div>`;
   }
 
@@ -1688,6 +1689,22 @@
       showToast('PocketLedger URL saved');
     });
 
+    document.addEventListener('error', (e) => {
+      const img = e.target;
+      if (!img || img.tagName !== 'IMG') return;
+      const attempt = Number(img.dataset.retry || 0);
+      if (attempt >= 2) {
+        img.classList.add('img-broken');
+        return;
+      }
+      img.dataset.retry = String(attempt + 1);
+      const baseSrc = (img.getAttribute('src') || '').split('?')[0];
+      if (!baseSrc) return;
+      setTimeout(() => {
+        if (img.isConnected) img.src = `${baseSrc}?retry=${attempt + 1}`;
+      }, attempt === 0 ? 350 : 1000);
+    }, true);
+
     $('exportBackupBtn').addEventListener('click', () => {
       const blob = new Blob([JSON.stringify(appState, null, 2)], { type: 'application/json' });
       const a = document.createElement('a');
@@ -1749,8 +1766,9 @@
     bindEvents();
     renderAll();
     registerSw();
+    const prevSnapshot = JSON.stringify(appState);
     const idbState = await window.NourishDB.loadState();
-    if (idbState) {
+    if (idbState && JSON.stringify(idbState) !== prevSnapshot) {
       appState = idbState;
       applyPalette(appState.settings.theme);
       renderAll();

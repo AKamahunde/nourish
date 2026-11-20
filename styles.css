@@ -406,6 +406,11 @@ button, input {
   display: block;
 }
 
+.recipe-thumb img.img-broken,
+.spotlight-media img.img-broken {
+  opacity: 0.15;
+}
+
 .card-fav-btn {
   position: absolute;
   top: 10px;

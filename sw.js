@@ -1,5 +1,6 @@
-﻿const SHELL_CACHE = 'nourishtable-shell-v32';
-const IMG_CACHE = 'nourishtable-images-v8';
+﻿const SHELL_CACHE = 'nourishtable-shell-v33';
+// Keep IMG_CACHE stable across minor text/code updates so mobile devices do not re-download 130+ photos.
+const IMG_CACHE = 'nourishtable-images-v9';
 
 const SHELL_ASSETS = [
   './',
@@ -52,20 +53,28 @@ self.addEventListener('fetch', (event) => {
   const reqUrl = new URL(event.request.url);
   if (reqUrl.origin !== self.location.origin) return;
 
-  // Lazy cache-first for recipe images so initial SW install stays lightweight (~270 KB)
+  // Cache-first for recipe images (ignoring query strings unless retrying a failed load)
   if (reqUrl.pathname.includes('/images/')) {
+    const cleanUrl = `${reqUrl.origin}${reqUrl.pathname}`;
+    const isRetry = reqUrl.searchParams.has('retry');
     event.respondWith(
-      caches.open(IMG_CACHE).then((cache) =>
-        cache.match(event.request).then((cached) => {
+      caches.open(IMG_CACHE).then(async (cache) => {
+        if (!isRetry) {
+          const cached = await cache.match(cleanUrl);
           if (cached) return cached;
-          return fetch(event.request).then((resp) => {
-            if (resp && resp.status === 200) {
-              cache.put(event.request, resp.clone());
-            }
-            return resp;
-          });
-        })
-      )
+        }
+        try {
+          const resp = await fetch(event.request);
+          if (resp && resp.status === 200) {
+            cache.put(cleanUrl, resp.clone());
+          }
+          return resp;
+        } catch (err) {
+          const stale = await cache.match(cleanUrl);
+          if (stale) return stale;
+          return new Response('', { status: 504, statusText: 'Image Unavailable' });
+        }
+      })
     );
     return;
   }
