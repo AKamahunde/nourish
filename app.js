@@ -17,7 +17,7 @@
     { key: 'mince', label: 'Beef Mince', aliases: ['beef-mince', 'mince', 'beef-meat'] },
     { key: 'tilapia', label: 'Tilapia', aliases: ['tilapia', 'tilapia-fillet', 'whole-tilapia'] },
     { key: 'black beans', label: 'Black Beans', aliases: ['black-beans', 'black beans'] },
-    { key: 'beans', label: 'Red Beans', aliases: ['beans', 'cooked-beans', 'white-beans', 'black-beans'] },
+    { key: 'beans', label: 'Red Beans', aliases: ['beans', 'red-beans', 'cooked-beans', 'white-beans', 'black-beans'] },
     { key: 'yogurt', label: 'Plain Yogurt', aliases: ['yogurt'] },
     { key: 'milk', label: "Cow's / Soya Milk", aliases: ['milk', 'soya', 'cow'] },
     { key: 'chia', label: 'Chia Seeds', aliases: ['chia', 'chia-seeds'] },
@@ -77,6 +77,7 @@
     view: 'discover',
     discoverMode: 'browse',
     category: 'all',
+    cuisine: 'All',
     goal: '',
     search: '',
     selectedDate: todayStr,
@@ -221,6 +222,7 @@
     const q = ui.search.trim().toLowerCase();
     return data.RECIPES.filter((r) => {
       if (ui.category !== 'all' && r.category !== ui.category) return false;
+      if (ui.cuisine && ui.cuisine !== 'All' && (r.cuisine || 'Ugandan') !== ui.cuisine) return false;
       if (ui.goal && !r.tags.includes(ui.goal)) return false;
       if (!q) return true;
       const haystack = [
@@ -332,13 +334,22 @@
       </button>
     `).join('');
 
+    const cuisines = data.CUISINES || ['All', 'Ugandan', 'Mediterranean', 'Italian', 'Asian'];
+    if ($('cuisineTabs')) {
+      $('cuisineTabs').innerHTML = cuisines.map((c) => `
+        <button class="chip-btn ${ui.cuisine === c ? 'active' : ''}" type="button" data-cuisine="${escapeHtml(c)}">
+          ${escapeHtml(c === 'All' ? 'All Cuisines' : c)}
+        </button>
+      `).join('');
+    }
+
     $('goalTabs').innerHTML = data.HEALTH_GOALS.map((g) => `
       <button class="chip-btn ${ui.goal === g ? 'active' : ''}" type="button" data-goal="${escapeHtml(g)}">
         ${escapeHtml(g)}
       </button>
     `).join('');
 
-    const showSpotlight = ui.category === 'all' && !ui.goal && !ui.search.trim();
+    const showSpotlight = ui.category === 'all' && ui.cuisine === 'All' && !ui.goal && !ui.search.trim();
     const spotlightEl = $('spotlightCard');
     if (showSpotlight && data.RECIPES.length) {
       const dayIdx = Math.floor(Date.now() / 86400000) % data.RECIPES.length;
@@ -637,13 +648,28 @@
 
     const pairingEl = $('spicePairingBox');
     if (pairingEl && Array.isArray(data.HERB_SPICE_PAIRINGS)) {
-      pairingEl.innerHTML = data.HERB_SPICE_PAIRINGS.map((row) => `
-        <div class="meal-slot-card">
-          <div class="meal-slot-label">${escapeHtml(row.ingredient)}</div>
-          <div style="font-size:13.5px;font-weight:700;margin:4px 0 3px;">${escapeHtml(row.pairings)}</div>
-          <div style="font-size:12.5px;color:var(--muted);">${escapeHtml(row.why)}</div>
-        </div>
-      `).join('');
+      const herbCards = Array.isArray(data.HERB_BY_HERB_GUIDE)
+        ? `<div class="aisle-title" style="margin:2px 0 4px;">Herb by Herb (What Goes With What)</div>` +
+          data.HERB_BY_HERB_GUIDE.map((h) => `
+            <div class="meal-slot-card">
+              <div class="meal-slot-label">${escapeHtml(h.herb)}</div>
+              <div style="font-size:13px;font-weight:700;margin:4px 0 3px;">Pairs with: ${escapeHtml(h.pairsWith)}</div>
+              <div style="font-size:12px;color:var(--accent);font-weight:600;margin-bottom:2px;">When to add: ${escapeHtml(h.addWhen)}</div>
+              <div style="font-size:12px;color:var(--muted);">${escapeHtml(h.avoid)}</div>
+            </div>
+          `).join('')
+        : '';
+
+      const foodCards = `<div class="aisle-title" style="margin:10px 0 4px;">By Ingredient / Dish</div>` +
+        data.HERB_SPICE_PAIRINGS.map((row) => `
+          <div class="meal-slot-card">
+            <div class="meal-slot-label">${escapeHtml(row.ingredient)}</div>
+            <div style="font-size:13.5px;font-weight:700;margin:4px 0 3px;">${escapeHtml(row.pairings)}</div>
+            <div style="font-size:12.5px;color:var(--muted);">${escapeHtml(row.why)}</div>
+          </div>
+        `).join('');
+
+      pairingEl.innerHTML = herbCards + foodCards;
     }
 
     $('palettePicker').innerHTML = PALETTES.map((p) => `
@@ -1249,6 +1275,13 @@
       const catBtn = e.target.closest('[data-cat]');
       if (catBtn) {
         ui.category = catBtn.dataset.cat;
+        renderDiscover();
+        return;
+      }
+
+      const cuisineBtn = e.target.closest('[data-cuisine]');
+      if (cuisineBtn) {
+        ui.cuisine = cuisineBtn.dataset.cuisine;
         renderDiscover();
         return;
       }
