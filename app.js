@@ -1,5 +1,5 @@
 (() => {
-  const APP_VERSION = 10;
+  const APP_VERSION = 11;
   const MEAL_SLOTS = [
     { id: 'breakfast', label: 'Breakfast' },
     { id: 'lunch', label: 'Lunch' },
@@ -14,12 +14,14 @@
     { key: 'avocado', label: 'Avocado', aliases: ['avocado', 'feta-or-avocado'] },
     { key: 'eggs', label: 'Eggs', aliases: ['eggs', 'egg'] },
     { key: 'chicken', label: 'Chicken', aliases: ['chicken', 'chicken-breast', 'chicken-pieces'] },
+    { key: 'mince', label: 'Beef Mince', aliases: ['beef-mince', 'mince', 'beef-meat'] },
     { key: 'tilapia', label: 'Tilapia', aliases: ['tilapia', 'tilapia-fillet', 'whole-tilapia'] },
     { key: 'black beans', label: 'Black Beans', aliases: ['black-beans', 'black beans'] },
     { key: 'beans', label: 'Red Beans', aliases: ['beans', 'cooked-beans', 'white-beans', 'black-beans'] },
     { key: 'yogurt', label: 'Plain Yogurt', aliases: ['yogurt'] },
     { key: 'chia', label: 'Chia Seeds', aliases: ['chia', 'chia-seeds'] },
     { key: 'matooke', label: 'Matooke', aliases: ['matooke'] },
+    { key: 'irish', label: 'Irish Potatoes', aliases: ['irish-potatoes', 'irish'] },
     { key: 'sweet potato', label: 'Sweet Potato', aliases: ['sweet-potato', 'sweet potato'] },
     { key: 'greens', label: 'Dodo / Sukuma', aliases: ['dodo', 'sukuma', 'nakati', 'lettuce'] },
     { key: 'broccoli', label: 'Broccoli', aliases: ['broccoli'] },
@@ -31,9 +33,10 @@
     { key: 'carrots', label: 'Carrots', aliases: ['carrots', 'carrot'] },
     { key: 'pineapple', label: 'Pineapple', aliases: ['pineapple'] },
     { key: 'mango', label: 'Mango', aliases: ['mango'] },
-    { key: 'groundnut', label: 'G-Nut Paste', aliases: ['gnut-paste', 'groundnut'] },
+    { key: 'groundnut', label: 'G-Nut / Peanut Butter', aliases: ['gnut-paste', 'groundnut', 'peanut-butter', 'peanut butter'] },
+    { key: 'bread', label: 'Brown Bread', aliases: ['whole-bread', 'bread'] },
     { key: 'citrus', label: 'Lime / Lemon', aliases: ['lime', 'lemon'] },
-    { key: 'spaghetti', label: 'Spaghetti', aliases: ['spaghetti', 'pasta'] },
+    { key: 'spaghetti', label: 'Pasta', aliases: ['spaghetti', 'pasta', 'pasta-shapes'] },
     { key: 'oats', label: 'Oats', aliases: ['rolled-oats', 'oats'] }
   ];
   const PALETTES = [

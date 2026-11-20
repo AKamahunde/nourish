@@ -56,6 +56,89 @@
         { text: 'Pour into a bowl and top with sliced bogoya banana, fresh pawpaw or mango cubes, and toasted simsim or groundnuts.' }
       ],
       ugandaTip: 'Swap oats for roasted millet flour (obushera style) when you want a traditional gluten-free porridge.'
+    },
+    {
+      id: 'veggie-herb-omelette',
+      title: 'Fluffy Veggie & Herb Farm Egg Omelette',
+      subtitle: 'Light 3-egg omelette folded with tomatoes, onions, bell pepper, and fresh coriander',
+      cuisine: 'Ugandan',
+      category: 'breakfast',
+      mealSlots: ['breakfast', 'lunch'],
+      image: './images/veggie-herb-omelette.jpg',
+      prepMinutes: 4,
+      cookMinutes: 5,
+      totalMinutes: 9,
+      servings: 1,
+      tags: ['High-Protein', 'Light & Lean', 'No Red Meat', 'Low-Sugar'],
+      healthNote: 'High-protein, low-carb morning meal cooked with just 1 teaspoon of oil so you stay sharp and full.',
+      nutrition: { kcal: 310, protein: '20g', fiber: '3g', sugar: 'Low' },
+      ingredients: [
+        { id: 'eggs', name: 'Fresh farm eggs', amount: 3, unit: 'pcs', aisle: 'protein', estUgx: 1800, prep: 'beaten with pinch salt & pepper' },
+        { id: 'tomatoes', name: 'Ripe firm tomato', amount: 1, unit: 'small', aisle: 'produce', estUgx: 500, prep: 'seeded & diced' },
+        { id: 'onion', name: 'Red onion', amount: 0.25, unit: 'pc', aisle: 'produce', estUgx: 300, prep: 'finely diced' },
+        { id: 'bell-pepper', name: 'Green or red bell pepper', amount: 0.25, unit: 'pc', aisle: 'produce', estUgx: 400, prep: 'finely chopped' },
+        { id: 'coriander', name: 'Fresh coriander (dhania)', amount: 2, unit: 'tbsp', aisle: 'greens', estUgx: 300, prep: 'chopped' }
+      ],
+      steps: [
+        { text: 'Saute diced onion and bell pepper in 1 teaspoon oil over medium heat for 2 minutes until fragrant.' },
+        { text: 'Pour in beaten eggs mixed with diced tomato and coriander; swirl gently so eggs spread evenly.' },
+        { text: 'Cook covered on low heat for 2 to 3 minutes until set, fold in half, and serve hot with avocado slices or fresh fruit.' }
+      ],
+      ugandaTip: 'Seeding the tomato before dicing keeps your omelette fluffy instead of watery.'
+    },
+    {
+      id: 'bread-and-eggs-plate',
+      title: 'Whole-Wheat Toast, Eggs & Fresh Kachumbari',
+      subtitle: 'Everyday Ugandan bread and eggs balanced with whole grain, soft eggs, and crisp tomatoes',
+      cuisine: 'Ugandan',
+      category: 'breakfast',
+      mealSlots: ['breakfast'],
+      image: './images/bread-and-eggs-plate.jpg',
+      prepMinutes: 4,
+      cookMinutes: 6,
+      totalMinutes: 10,
+      servings: 1,
+      tags: ['High-Protein', 'Light & Lean', 'No Red Meat', 'Low-Sugar'],
+      healthNote: 'Choosing brown whole-wheat bread over white bread doubles the fiber and pairs cleanly with 2 eggs.',
+      nutrition: { kcal: 365, protein: '18g', fiber: '6g', sugar: 'Low' },
+      ingredients: [
+        { id: 'whole-bread', name: 'Whole-wheat (brown) bread', amount: 2, unit: 'slices', aisle: 'grains', estUgx: 1500, prep: 'lightly toasted' },
+        { id: 'eggs', name: 'Fresh farm eggs', amount: 2, unit: 'pcs', aisle: 'protein', estUgx: 1200, prep: 'soft-boiled or pan-cooked' },
+        { id: 'tomatoes', name: 'Ripe tomato & red onion', amount: 1, unit: 'small', aisle: 'produce', estUgx: 600, prep: 'diced with lime pinch' },
+        { id: 'avocado', name: 'Ripe avocado', amount: 0.25, unit: 'pc', aisle: 'produce', estUgx: 400, prep: 'sliced on the side' }
+      ],
+      steps: [
+        { text: 'Boil eggs for 7 minutes for jammy yolks (or pan-cook lightly in 1/2 teaspoon oil) while toasting whole-wheat bread.', timerMin: 7 },
+        { text: 'Serve warm toast and eggs alongside quick diced tomato-onion kachumbari and sliced avocado.' }
+      ],
+      ugandaTip: 'Skip margarine and spread ripe avocado on the warm toast instead for clean heart-healthy fat.'
+    },
+    {
+      id: 'bread-peanut-butter-banana',
+      title: 'Whole-Grain Toast, Peanut Butter, Banana & Chia',
+      subtitle: 'Natural unsweetened peanut butter on toasted brown bread with bogoya banana and chia seeds',
+      cuisine: 'Ugandan',
+      category: 'breakfast',
+      mealSlots: ['breakfast'],
+      image: './images/bread-peanut-butter-banana.jpg',
+      prepMinutes: 4,
+      cookMinutes: 2,
+      totalMinutes: 6,
+      servings: 1,
+      tags: ['Plant-Forward', 'High-Protein', 'No Red Meat', 'Low-Sugar'],
+      healthNote: 'Natural groundnut butter, chia omega-3s, and banana potassium make a fast, sustained-energy breakfast.',
+      nutrition: { kcal: 380, protein: '13g', fiber: '9g', sugar: 'Natural fruit only' },
+      ingredients: [
+        { id: 'whole-bread', name: 'Whole-wheat (brown) bread', amount: 2, unit: 'slices', aisle: 'grains', estUgx: 1500, prep: 'toasted crisp' },
+        { id: 'peanut-butter', name: 'Natural unsweetened peanut butter', amount: 1.5, unit: 'tbsp', aisle: 'grains', estUgx: 1000, prep: '100% roasted g-nuts' },
+        { id: 'banana', name: 'Sweet yellow banana (bogoya)', amount: 0.5, unit: 'pc', aisle: 'produce', estUgx: 400, prep: 'thinly sliced' },
+        { id: 'chia-seeds', name: 'Chia seeds & cinnamon pinch', amount: 1, unit: 'tsp', aisle: 'grains', estUgx: 400, prep: 'sprinkled on top' }
+      ],
+      steps: [
+        { text: 'Toast whole-wheat bread slices until golden and crisp.' },
+        { text: 'Spread natural peanut butter evenly, layer sliced bogoya banana on top, and finish with chia seeds and a light dusting of cinnamon.' }
+      ],
+      ugandaTip: 'Check the label or buy freshly ground roasted g-nut butter from the market so there is no added sugar or palm oil.'
     }
   ];
 

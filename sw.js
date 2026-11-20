@@ -1,4 +1,4 @@
-const CACHE_NAME = 'nourishtable-v10';
+const CACHE_NAME = 'nourishtable-v11';
 
 const APP_ASSETS = [
   './',
@@ -11,6 +11,7 @@ const APP_ASSETS = [
   './recipes-expanded.js',
   './recipes-pantry.js',
   './recipes-veggies.js',
+  './recipes-comfort.js',
   './db.js',
   './icons.js',
   './app.js',
@@ -21,6 +22,9 @@ const APP_ASSETS = [
   './icons/apple-touch-icon.png',
   './images/egg-sukuma-scramble.jpg',
   './images/savory-oat-simsim-bowl.jpg',
+  './images/veggie-herb-omelette.jpg',
+  './images/bread-and-eggs-plate.jpg',
+  './images/bread-peanut-butter-banana.jpg',
   './images/mediterranean-shakshuka-greens.jpg',
   './images/avocado-poached-egg-toast.jpg',
   './images/green-power-smoothie-bowl.jpg',
@@ -70,7 +74,13 @@ const APP_ASSETS = [
   './images/asian-chicken-broccoli-stirfry.jpg',
   './images/asian-cauliflower-carrot-fried-rice.jpg',
   './images/asian-sesame-cabbage-pepper-bowl.jpg',
-  './images/asian-ginger-glazed-cauliflower-broccoli.jpg'
+  './images/asian-ginger-glazed-cauliflower-broccoli.jpg',
+  './images/lean-mince-tomato-pasta.jpg',
+  './images/healthy-mince-irish-shepherd-skillet.jpg',
+  './images/ugandan-irish-potato-herb-hash.jpg',
+  './images/mediterranean-chicken-pasta-salad.jpg',
+  './images/creamy-yogurt-irish-potato-salad.jpg',
+  './images/slow-baked-mince-irish-potato-casserole.jpg'
 ];
 
 self.addEventListener('install', (event) => {
