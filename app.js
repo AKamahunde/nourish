@@ -1,5 +1,5 @@
 ﻿(() => {
-  const APP_VERSION = 29;
+  const APP_VERSION = 30;
   const MEAL_SLOTS = [
     { id: 'breakfast', label: 'Breakfast' },
     { id: 'lunch', label: 'Lunch' },
@@ -1253,6 +1253,17 @@
       ui.search = '';
       $('searchInput').value = '';
       $('clearSearchBtn').classList.add('hidden');
+      renderDiscover();
+    });
+
+    $('toggleFiltersBtn')?.addEventListener('click', () => {
+      ui.filtersOpen = !ui.filtersOpen;
+      renderDiscover();
+    });
+
+    $('resetExtraFiltersBtn')?.addEventListener('click', () => {
+      ui.cuisine = 'All';
+      ui.goal = '';
       renderDiscover();
     });
 
