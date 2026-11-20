@@ -31,7 +31,7 @@
                        },
                        {
                            "id":  "juices",
-                           "label":  "Juices \u0026 Tonics"
+                           "label":  "Juices \u0026 Teas"
                        }
                    ],
     "CUISINES":  [

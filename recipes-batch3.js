@@ -413,6 +413,106 @@
         { text: 'Strain through a fine mesh strainer, add fresh lemon juice plus a tiny pinch of black pepper (boosts turmeric absorption), and serve chilled.' }
       ],
       ugandaTip: 'Add a squeeze of fresh lime or passion fruit pulp at the end for an unmistakable Kampala market twist.'
+    },
+    {
+      id: 'ugandan-tangawizi-masala-chai',
+      title: 'Ugandan Ginger, Cardamom & Clove Spiced Chai',
+      subtitle: 'Creamy comforting East African milk tea simmered with crushed tangawizi, green cardamom, and cinnamon',
+      cuisine: 'Ugandan',
+      category: 'juices',
+      image: './images/spiced-milk-chai-tea.jpg',
+      prepMinutes: 3,
+      cookMinutes: 7,
+      totalMinutes: 10,
+      servings: 2,
+      tags: ['Light & Lean', 'Plant-Forward', 'No Red Meat', 'Low-Sugar'],
+      healthNote: 'Naturally sweet warm cow or soya milk plus crushed ginger and cardamom let you skip refined sugar altogether.',
+      nutrition: { kcal: 95, protein: '5g', fiber: '0g', sugar: 'Low' },
+      ingredients: [
+        { id: 'cow-milk', name: 'Fresh cow milk or unsweetened soya milk', amount: 1.5, unit: 'cups', aisle: 'protein', estUgx: 2000, prep: 'chilled' },
+        { id: 'ginger', name: 'Fresh ginger (tangawizi)', amount: 1, unit: 'thumb', aisle: 'produce', estUgx: 400, prep: 'crushed' },
+        { id: 'chai-spices', name: 'Cardamom pods, cinnamon bark, cloves & black tea', amount: 1, unit: 'set', aisle: 'pantry', estUgx: 600, prep: 'lightly bruised' }
+      ],
+      steps: [
+        { text: 'Simmer 1 cup water with crushed ginger, bruised cardamom, cloves, cinnamon stick, and black tea leaves for 4 minutes until deeply fragrant.', timerMin: 4 },
+        { text: 'Pour in fresh cow or soya milk, bring gently just to a frothy simmer for 3 minutes, strain into warm mugs, and serve hot.', timerMin: 3 }
+      ],
+      ugandaTip: 'Use soya milk with just a pinch of cinnamon for a super-light dairy-free evening cup.'
+    },
+    {
+      id: 'fresh-kisubi-lemongrass-mint-tea',
+      title: 'Hot Lemongrass (Kisubi), Fresh Mint & Ginger Tea',
+      subtitle: 'Caffeine-free soothing Kampala garden infusion steeped with lemongrass stalks, mint, and lemon',
+      cuisine: 'Ugandan',
+      category: 'juices',
+      image: './images/kisubi-lemongrass-mint-tea.jpg',
+      prepMinutes: 4,
+      cookMinutes: 6,
+      totalMinutes: 10,
+      servings: 2,
+      tags: ['Light & Lean', 'Plant-Forward', 'No Red Meat', 'Low-Sugar'],
+      healthNote: 'Zero calories and caffeine-free — calms digestion after dinner while reducing evening cravings.',
+      nutrition: { kcal: 8, protein: '0g', fiber: '0g', sugar: 'Zero' },
+      ingredients: [
+        { id: 'lemongrass', name: 'Fresh lemongrass (kisubi) stalks', amount: 2, unit: 'stalks', aisle: 'greens', estUgx: 500, prep: 'bruised & tied' },
+        { id: 'mint', name: 'Fresh garden mint leaves', amount: 1, unit: 'handful', aisle: 'greens', estUgx: 500, prep: 'rinsed' },
+        { id: 'ginger-lemon', name: 'Sliced fresh ginger & lemon wedge', amount: 1, unit: 'set', aisle: 'produce', estUgx: 600, prep: 'sliced' }
+      ],
+      steps: [
+        { text: 'Simmer bruised lemongrass stalks and sliced ginger in 2.5 cups water covered for 5 minutes.', timerMin: 5 },
+        { text: 'Take off heat, drop in fresh mint leaves to steep 2 minutes, then strain into cups with a bright squeeze of lemon.' }
+      ],
+      ugandaTip: 'Grow a pot of kisubi and mint on your kitchen veranda — both thrive effortlessly year-round in Uganda.'
+    },
+    {
+      id: 'iced-mint-green-tea-lime',
+      title: 'Chilled Green Tea, Fresh Mint & Lime Hydration Cooler',
+      subtitle: 'Crisp antioxidant green tea steeped warm, chilled over ice with crushed garden mint and lime',
+      cuisine: 'Asian',
+      category: 'juices',
+      image: './images/iced-mint-green-tea-lime.jpg',
+      prepMinutes: 6,
+      cookMinutes: 3,
+      totalMinutes: 9,
+      servings: 2,
+      tags: ['Light & Lean', 'Plant-Forward', 'No Red Meat', 'Low-Sugar'],
+      healthNote: 'Green tea catechins paired with lime vitamin C hydrate cleanly and gently lift afternoon focus without jitters.',
+      nutrition: { kcal: 10, protein: '0g', fiber: '0g', sugar: 'Zero' },
+      ingredients: [
+        { id: 'green-tea', name: 'Green tea bags or loose leaves', amount: 2, unit: 'bags', aisle: 'pantry', estUgx: 800, prep: 'steep 3 min only' },
+        { id: 'mint', name: 'Fresh mint leaves & thin cucumber slices', amount: 1, unit: 'handful', aisle: 'greens', estUgx: 700, prep: 'lightly crushed' },
+        { id: 'lime', name: 'Fresh lime', amount: 1, unit: 'pc', aisle: 'produce', estUgx: 500, prep: 'juiced' }
+      ],
+      steps: [
+        { text: 'Steep green tea in 2 cups hot (not boiling) water for 3 minutes only so it stays smooth and never bitter.', timerMin: 3 },
+        { text: 'Remove tea bags, cool slightly, and pour over ice with crushed fresh mint, cucumber ribbons, and fresh lime juice.' }
+      ],
+      ugandaTip: 'Never boil green tea leaves directly — letting hot water cool 1 minute first keeps the flavor fresh and mellow.'
+    },
+    {
+      id: 'cinnamon-clove-hibiscus-hot-tea',
+      title: 'Warm Hibiscus, Clove, Ginger & Orange Peel Tea',
+      subtitle: 'Deep ruby antioxidant herbal tea spiced gently with cloves, cinnamon bark, and citrus zest',
+      cuisine: 'Ugandan',
+      category: 'juices',
+      image: './images/cinnamon-clove-hibiscus-tea.jpg',
+      prepMinutes: 4,
+      cookMinutes: 8,
+      totalMinutes: 12,
+      servings: 2,
+      tags: ['Light & Lean', 'Plant-Forward', 'No Red Meat', 'Low-Sugar'],
+      healthNote: 'Rich in anthocyanin antioxidants, tart hibiscus naturally helps support healthy blood pressure without caffeine.',
+      nutrition: { kcal: 14, protein: '0g', fiber: '0g', sugar: 'Zero' },
+      ingredients: [
+        { id: 'hibiscus', name: 'Dried red hibiscus petals (karkadeh/sobolo)', amount: 3, unit: 'tbsp', aisle: 'pantry', estUgx: 1000, prep: 'rinsed briefly' },
+        { id: 'cloves-cinnamon', name: 'Whole cloves, cinnamon stick & ginger slices', amount: 1, unit: 'set', aisle: 'pantry', estUgx: 600, prep: 'whole spices' },
+        { id: 'orange', name: 'Fresh orange peel strip & lime juice', amount: 1, unit: 'pc', aisle: 'produce', estUgx: 700, prep: 'washed peel' }
+      ],
+      steps: [
+        { text: 'Simmer water with ginger slices, cloves, cinnamon stick, and a strip of orange peel for 5 minutes.', timerMin: 5 },
+        { text: 'Stir in hibiscus petals off the heat, steep 4 minutes until deep ruby, then strain and enjoy hot or over ice.', timerMin: 4 }
+      ],
+      ugandaTip: 'If tartness feels sharp at first, drop in 2 slices of fresh sweet pineapple while steeping instead of adding sugar.'
     }
   ];
 
