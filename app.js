@@ -82,6 +82,8 @@
     weekMonday: toYMD(getMondayOfWeek(new Date())),
     showMonthCal: false,
     pickerSlot: 'lunch',
+    randomFilter: 'any',
+    randomRecipeId: null,
     detailRecipeId: null,
     detailServings: 2,
     wakeLock: null,
@@ -881,6 +883,112 @@
     $('dayPickerModal').classList.add('hidden');
   }
 
+  // Random Meal Generator
+  const RANDOM_FILTERS = [
+    { id: 'any', label: 'Any Meal' },
+    { id: 'breakfast', label: 'Breakfast' },
+    { id: 'lunchdinner', label: 'Lunch / Dinner' },
+    { id: 'salads', label: 'Salads' },
+    { id: 'quick', label: '15-Min' },
+    { id: 'juices', label: 'Juices' }
+  ];
+
+  function getRandomCandidates() {
+    let pool = data.RECIPES.filter((r) => {
+      if (ui.randomFilter === 'any') return true;
+      if (ui.randomFilter === 'lunchdinner') return r.category !== 'breakfast' && r.category !== 'juices';
+      return r.category === ui.randomFilter;
+    });
+    if ($('randomPantryOnly')?.checked && (appState.pantryHave || []).length > 0) {
+      const matched = pool.filter((r) => getPantryMatchInfo(r).matchedCount > 0);
+      if (matched.length) pool = matched;
+    }
+    return pool;
+  }
+
+  function pickRandomRecipe() {
+    const pool = getRandomCandidates();
+    if (!pool.length) {
+      ui.randomRecipeId = null;
+      return;
+    }
+    const filtered = pool.length > 1 ? pool.filter((r) => r.id !== ui.randomRecipeId) : pool;
+    const chosen = filtered[Math.floor(Math.random() * filtered.length)];
+    ui.randomRecipeId = chosen.id;
+  }
+
+  function renderRandomModal() {
+    $('randomFilterRow').innerHTML = RANDOM_FILTERS.map((f) => `
+      <button class="chip-btn ${ui.randomFilter === f.id ? 'active' : ''}" type="button" data-random-filter="${f.id}">
+        ${escapeHtml(f.label)}
+      </button>
+    `).join('');
+
+    const r = getRecipeById(ui.randomRecipeId);
+    if (!r) {
+      $('randomResultCard').innerHTML = `<div class="empty-state">No recipes found for that filter.</div>`;
+      return;
+    }
+    $('randomResultCard').innerHTML = `
+      <img class="random-result-img" src="${escapeHtml(r.image)}" alt="${escapeHtml(r.title)}" />
+      <div class="random-result-body">
+        <span class="recipe-cat-label">${escapeHtml(r.cuisine ? `${r.cuisine} · ${getCategoryLabel(r.category)}` : getCategoryLabel(r.category))}</span>
+        <h4>${escapeHtml(r.title)}</h4>
+        <p>${escapeHtml(r.subtitle)}</p>
+        <div class="random-meta-row">
+          <span class="mini-tag">${r.totalMinutes} min</span>
+          <span class="mini-tag">${r.nutrition.kcal} kcal</span>
+          <span class="mini-tag">${escapeHtml(r.nutrition.protein)} protein</span>
+        </div>
+      </div>
+    `;
+  }
+
+  function openRandomModal() {
+    if (!ui.randomRecipeId) pickRandomRecipe();
+    renderRandomModal();
+    $('randomMealModal').classList.remove('hidden');
+  }
+
+  function closeRandomModal() {
+    $('randomMealModal').classList.add('hidden');
+  }
+
+  async function autoFillSelectedDay() {
+    const rec = getDayRecord(ui.selectedDate);
+    const used = new Set([...rec.breakfast, ...rec.lunch, ...rec.dinner, ...rec.juice]);
+    const pickOne = (pool) => {
+      const avail = pool.filter((r) => !used.has(r.id));
+      const src = avail.length ? avail : pool;
+      if (!src.length) return null;
+      const hit = src[Math.floor(Math.random() * src.length)];
+      used.add(hit.id);
+      return hit.id;
+    };
+
+    if (!rec.breakfast.length) {
+      const b = pickOne(data.RECIPES.filter((r) => r.category === 'breakfast'));
+      if (b) rec.breakfast = [b];
+    }
+    if (!rec.lunch.length) {
+      const l = pickOne(data.RECIPES.filter((r) => ['salads', 'quick', 'onepot'].includes(r.category)));
+      if (l) rec.lunch = [l];
+    }
+    if (!rec.dinner.length) {
+      const d = pickOne(data.RECIPES.filter((r) => ['onepot', 'slow', 'quick'].includes(r.category)));
+      if (d) rec.dinner = [d];
+    }
+    if (!rec.juice.length) {
+      const j = pickOne(data.RECIPES.filter((r) => r.category === 'juices'));
+      if (j) rec.juice = [j];
+    }
+
+    appState.calendarPlan[ui.selectedDate] = rec;
+    await persist();
+    renderPlan();
+    showToast('Auto-filled open meal slots for the day');
+  }
+
   function sendGroceriesToPocketLedger() {
     const items = buildAggregatedGroceries();
     if (!items.length) {
@@ -939,6 +1047,9 @@
     $('healthSparkSlot').innerHTML = icons.get('spark');
     $('floatingTimerIcon').innerHTML = icons.get('timer');
     $('closeDayPickerBtn').innerHTML = icons.get('close');
+    $('closeRandomModalBtn').innerHTML = icons.get('close');
+    $('openRandomMealBtn').innerHTML = `${icons.get('shuffle')} Surprise Me`;
+    $('spinAgainBtn').innerHTML = `${icons.get('shuffle')} Spin Again`;
 
     $('addToGroceryBtn').innerHTML = `${icons.get('groceries')} Add to Groceries`;
     $('addToPlanBtn').innerHTML = `${icons.get('plan')} Add to Calendar`;
@@ -956,6 +1067,39 @@
     });
 
     $('headerQuickFavBtn').addEventListener('click', () => setView('plan'));
+    $('openRandomMealBtn').addEventListener('click', openRandomModal);
+    $('closeRandomModalBtn').addEventListener('click', closeRandomModal);
+    $('randomMealModal').addEventListener('click', (e) => {
+      if (e.target === $('randomMealModal')) closeRandomModal();
+    });
+    $('randomPantryOnly').addEventListener('change', () => {
+      pickRandomRecipe();
+      renderRandomModal();
+    });
+    $('spinAgainBtn').addEventListener('click', () => {
+      pickRandomRecipe();
+      renderRandomModal();
+    });
+    $('randomOpenRecipeBtn').addEventListener('click', () => {
+      const id = ui.randomRecipeId;
+      closeRandomModal();
+      if (id) openRecipeModal(id);
+    });
+    $('randomAddTodayBtn').addEventListener('click', async () => {
+      const r = getRecipeById(ui.randomRecipeId);
+      if (!r) return;
+      const slot = r.category === 'breakfast' ? 'breakfast' : r.category === 'juices' ? 'juice' : 'dinner';
+      const rec = getDayRecord(todayStr);
+      if (!rec[slot].includes(r.id)) {
+        rec[slot] = [...rec[slot], r.id];
+        appState.calendarPlan[todayStr] = rec;
+        await persist();
+        renderPlan();
+      }
+      closeRandomModal();
+      showToast(`Added to Today's ${MEAL_SLOTS.find((s) => s.id === slot)?.label || slot}`);
+    });
+    $('autoFillDayBtn').addEventListener('click', autoFillSelectedDay);
 
     $('searchInput').addEventListener('input', (e) => {
       ui.search = e.target.value;
@@ -1040,6 +1184,14 @@
     });
 
     document.addEventListener('click', async (e) => {
+      const randomFilterBtn = e.target.closest('[data-random-filter]');
+      if (randomFilterBtn) {
+        ui.randomFilter = randomFilterBtn.dataset.randomFilter;
+        pickRandomRecipe();
+        renderRandomModal();
+        return;
+      }
+
       const modeBtn = e.target.closest('[data-discover-mode]');
       if (modeBtn) {
         ui.discoverMode = modeBtn.dataset.discoverMode;

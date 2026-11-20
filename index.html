@@ -29,6 +29,7 @@
       </div>
 
       <div class="header-actions">
+        <button id="openRandomMealBtn" class="pill-btn accent-pill-btn" type="button" title="Random meal generator"></button>
         <button id="headerQuickFavBtn" class="pill-btn" type="button" title="View saved recipes">
           <span id="headerFavCount">0</span> Saved
         </button>
@@ -102,7 +103,10 @@
 
           <div class="selected-day-bar">
             <h3 id="selectedDayTitle" class="selected-day-title"></h3>
-            <button id="addDayToGroceriesBtn" class="ghost-btn compact-btn" type="button">Day &rarr; Market</button>
+            <div class="day-bar-actions">
+              <button id="autoFillDayBtn" class="ghost-btn compact-btn" type="button">Auto-Fill Day</button>
+              <button id="addDayToGroceriesBtn" class="ghost-btn compact-btn" type="button">Day &rarr; Market</button>
+            </div>
           </div>
 
           <div id="daySlotsContainer" class="meal-slots-stack"></div>
@@ -318,6 +322,30 @@
         <button id="closeDayPickerBtn" class="icon-close-btn" type="button" aria-label="Close"></button>
       </div>
       <div id="dayPickerBody" class="day-picker-body"></div>
+    </div>
+  </div>
+
+  <!-- RANDOM MEAL GENERATOR MODAL -->
+  <div id="randomMealModal" class="dialog-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="randomModalTitle">
+    <div class="dialog-card random-dialog">
+      <div class="card-head">
+        <div>
+          <h3 id="randomModalTitle" class="card-title">Random Meal Generator</h3>
+          <p class="card-sub">Not sure what to cook? Let NourishTable pick.</p>
+        </div>
+        <button id="closeRandomModalBtn" class="icon-close-btn" type="button" aria-label="Close"></button>
+      </div>
+      <div id="randomFilterRow" class="chip-row" style="margin-bottom:10px;"></div>
+      <label class="pantry-toggle-row">
+        <input id="randomPantryOnly" type="checkbox" />
+        <span>Match ingredients in my kitchen</span>
+      </label>
+      <div id="randomResultCard" class="random-result"></div>
+      <div class="random-actions-row">
+        <button id="spinAgainBtn" class="secondary-btn" type="button"></button>
+        <button id="randomOpenRecipeBtn" class="primary-btn" type="button">View Recipe</button>
+        <button id="randomAddTodayBtn" class="ghost-btn" type="button">Add Today</button>
+      </div>
     </div>
   </div>
 

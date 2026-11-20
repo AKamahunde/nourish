@@ -1847,3 +1847,95 @@ button, input {
   border-color: var(--accent);
   color: #FFFFFF;
 }
+
+/* Random Meal Generator */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.accent-pill-btn {
+  background: var(--accent-soft);
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 26%, transparent);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.accent-pill-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+.day-bar-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.random-dialog {
+  width: min(100%, 440px);
+}
+
+.pantry-toggle-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.random-result {
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--bg);
+  margin-bottom: 12px;
+}
+
+.random-result-img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  display: block;
+}
+
+.random-result-body {
+  padding: 12px 13px;
+}
+
+.random-result-body h4 {
+  margin: 4px 0;
+  font-family: "Iowan Old Style", Georgia, serif;
+  font-size: 18px;
+  line-height: 1.25;
+}
+
+.random-result-body p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.random-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.random-actions-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 7px;
+}
+
+.random-actions-row button {
+  padding: 10px 8px;
+  font-size: 12.5px;
+}
