@@ -1,4 +1,4 @@
-const CACHE_NAME = 'nourishtable-v3';
+const CACHE_NAME = 'nourishtable-v4';
 
 const APP_ASSETS = [
   './',
@@ -8,6 +8,7 @@ const APP_ASSETS = [
   './recipes-breakfast.js',
   './recipes-more.js',
   './recipes-intl.js',
+  './recipes-expanded.js',
   './db.js',
   './icons.js',
   './app.js',
@@ -18,25 +19,40 @@ const APP_ASSETS = [
   './icons/apple-touch-icon.png',
   './images/egg-sukuma-scramble.jpg',
   './images/savory-oat-simsim-bowl.jpg',
+  './images/mediterranean-shakshuka-greens.jpg',
+  './images/avocado-poached-egg-toast.jpg',
+  './images/green-power-smoothie-bowl.jpg',
+  './images/roasted-millet-fruit-porridge.jpg',
   './images/avocado-mango-kachumbari.jpg',
   './images/tilapia-avocado-salad.jpg',
   './images/nambale-bean-salad.jpg',
+  './images/chicken-cabbage-simsim-slaw.jpg',
+  './images/sweet-potato-avocado-bowl.jpg',
+  './images/mediterranean-chickpea-salad.jpg',
   './images/chicken-sweet-potato-curry.jpg',
   './images/swahili-tilapia-beans.jpg',
+  './images/italian-tomato-basil-pasta.jpg',
+  './images/asian-ginger-chicken-stirfry.jpg',
+  './images/pilau-bean-sweet-potato-hash.jpg',
+  './images/asian-garlic-soy-egg-rice.jpg',
   './images/matooke-beans-katogo.jpg',
   './images/chicken-okra-nakati.jpg',
   './images/gnut-mushroom-stew.jpg',
+  './images/italian-tuscan-bean-soup.jpg',
+  './images/coconut-cassava-blackeye-peas.jpg',
+  './images/italian-lemon-chicken-orzo-rice.jpg',
   './images/whole-grilled-tilapia.jpg',
   './images/steamed-matooke-dodo.jpg',
   './images/goat-pumpkin-stew.jpg',
+  './images/mediterranean-herb-chicken.jpg',
+  './images/roasted-kuroiler-root-tray.jpg',
+  './images/asian-sesame-glazed-tilapia.jpg',
   './images/hibiscus-sobolo.jpg',
   './images/beet-carrot-passion.jpg',
   './images/green-dodo-detox.jpg',
-  './images/mediterranean-chickpea-salad.jpg',
-  './images/mediterranean-herb-chicken.jpg',
-  './images/italian-tomato-basil-pasta.jpg',
-  './images/italian-tuscan-bean-soup.jpg',
-  './images/asian-ginger-chicken-stirfry.jpg'
+  './images/mango-pawpaw-turmeric-tonic.jpg',
+  './images/watermelon-mint-lime-cooler.jpg',
+  './images/pineapple-ginger-lemongrass-tea.jpg'
 ];
 
 self.addEventListener('install', (event) => {
