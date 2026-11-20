@@ -1,4 +1,4 @@
-const CACHE_NAME = 'nourishtable-v13';
+const CACHE_NAME = 'nourishtable-v14';
 
 const APP_ASSETS = [
   './',
@@ -89,7 +89,11 @@ const APP_ASSETS = [
   './images/turmeric-ginger-golden-milk.jpg',
   './images/soya-milk-chia-banana-shake.jpg',
   './images/milk-soaked-oats-chia-berry-jar.jpg',
-  './images/creamy-yogurt-herb-tilapia-bowl.jpg'
+  './images/creamy-yogurt-herb-tilapia-bowl.jpg',
+  './images/banana-oat-blender-pancakes.jpg',
+  './images/boiled-sweet-potato-eggs-avocado.jpg',
+  './images/turkish-garlic-yogurt-poached-eggs.jpg',
+  './images/spinach-tomato-egg-muffin-cups.jpg'
 ];
 
 self.addEventListener('install', (event) => {

@@ -139,6 +139,113 @@
         { text: 'Spread natural peanut butter evenly, layer sliced bogoya banana on top, and finish with chia seeds and a light dusting of cinnamon.' }
       ],
       ugandaTip: 'Check the label or buy freshly ground roasted g-nut butter from the market so there is no added sugar or palm oil.'
+    },
+    {
+      id: 'banana-oat-blender-pancakes',
+      title: 'Flourless Banana, Oat & Egg Pancakes',
+      subtitle: 'Naturally sweet bogoya banana and rolled oat pancakes with plain yogurt & mango',
+      cuisine: 'Ugandan',
+      category: 'breakfast',
+      mealSlots: ['breakfast'],
+      image: './images/banana-oat-blender-pancakes.jpg',
+      prepMinutes: 5,
+      cookMinutes: 8,
+      totalMinutes: 13,
+      servings: 2,
+      tags: ['High-Protein', 'Plant-Forward', 'No Red Meat', 'Low-Sugar'],
+      healthNote: 'Blending whole rolled oats and ripe banana replaces refined white flour and sugar completely.',
+      nutrition: { kcal: 340, protein: '14g', fiber: '6g', sugar: 'Natural fruit only' },
+      ingredients: [
+        { id: 'rolled-oats', name: 'Rolled oats', amount: 1, unit: 'cup', aisle: 'grains', estUgx: 1800, prep: 'blended smooth' },
+        { id: 'banana', name: 'Ripe sweet banana (bogoya)', amount: 1, unit: 'large', aisle: 'produce', estUgx: 500, prep: 'peeled' },
+        { id: 'eggs', name: 'Farm eggs', amount: 2, unit: 'pcs', aisle: 'protein', estUgx: 1200, prep: 'whole' },
+        { id: 'milk', name: 'Cow or soya milk', amount: 0.25, unit: 'cup', aisle: 'protein', estUgx: 500, prep: 'for batter' },
+        { id: 'yogurt', name: 'Plain yogurt & cinnamon', amount: 0.25, unit: 'cup', aisle: 'protein', estUgx: 800, prep: 'topping' }
+      ],
+      steps: [
+        { text: 'Blend rolled oats, ripe banana, eggs, milk, and cinnamon for 30 seconds until smooth; let batter rest 2 minutes.' },
+        { text: 'Spoon small pancakes onto a lightly brushed non-stick pan over medium-low heat for 2 minutes per side until golden. Top with plain yogurt and fruit.', timerMin: 4 }
+      ],
+      ugandaTip: 'Riper spotty bogoya bananas make the pancakes naturally sweeter without honey or syrup.'
+    },
+    {
+      id: 'boiled-sweet-potato-eggs-avocado',
+      title: 'Steamed Sweet Potato, Boiled Eggs & Avocado',
+      subtitle: 'Wholesome Ugandan morning plate with slow-energy sweet potato and fresh kachumbari',
+      cuisine: 'Ugandan',
+      category: 'breakfast',
+      mealSlots: ['breakfast', 'lunch'],
+      image: './images/boiled-sweet-potato-eggs-avocado.jpg',
+      prepMinutes: 5,
+      cookMinutes: 15,
+      totalMinutes: 20,
+      servings: 2,
+      tags: ['High-Protein', 'Light & Lean', 'No Red Meat', 'Low-Sugar'],
+      healthNote: 'Traditional steamed sweet potatoes paired with boiled eggs and avocado give clean morning fuel with zero fried oil.',
+      nutrition: { kcal: 390, protein: '16g', fiber: '8g', sugar: 'Low' },
+      ingredients: [
+        { id: 'sweet-potato', name: 'Sweet potatoes (yellow or orange)', amount: 2, unit: 'medium', aisle: 'produce', estUgx: 2000, prep: 'peeled & halved' },
+        { id: 'eggs', name: 'Farm eggs', amount: 4, unit: 'pcs', aisle: 'protein', estUgx: 2400, prep: 'soft or hard boiled' },
+        { id: 'avocado', name: 'Ripe avocado', amount: 1, unit: 'pc', aisle: 'produce', estUgx: 1500, prep: 'sliced' },
+        { id: 'tomatoes', name: 'Tomatoes, red onion & lime', amount: 1, unit: 'set', aisle: 'produce', estUgx: 1000, prep: 'diced kachumbari' }
+      ],
+      steps: [
+        { text: 'Steam or boil sweet potato halves for 15 minutes until fork-tender, boiling the eggs alongside for 8 minutes.', timerMin: 15 },
+        { text: 'Plate warm sweet potatoes with halved eggs, sliced avocado, and fresh tomato-lime kachumbari.' }
+      ],
+      ugandaTip: 'Steam extra sweet potatoes the night before — they are great lightly warmed or even at room temperature.'
+    },
+    {
+      id: 'turkish-garlic-yogurt-poached-eggs',
+      title: 'Mediterranean Garlic Yogurt & Poached Eggs',
+      subtitle: 'Creamy herbed plain yogurt topped with soft eggs and warm paprika-olive oil',
+      cuisine: 'Mediterranean',
+      category: 'breakfast',
+      mealSlots: ['breakfast'],
+      image: './images/turkish-garlic-yogurt-poached-eggs.jpg',
+      prepMinutes: 5,
+      cookMinutes: 6,
+      totalMinutes: 11,
+      servings: 1,
+      tags: ['High-Protein', 'Light & Lean', 'No Red Meat', 'Low-Sugar'],
+      healthNote: 'High-protein eggs over probiotic garlic-mint yogurt keep carbs ultra-low and energy sharp.',
+      nutrition: { kcal: 320, protein: '20g', fiber: '2g', sugar: 'Low' },
+      ingredients: [
+        { id: 'yogurt', name: 'Plain unsweetened yogurt', amount: 0.75, unit: 'cup', aisle: 'protein', estUgx: 2000, prep: 'room-temp with grated garlic' },
+        { id: 'eggs', name: 'Fresh farm eggs', amount: 2, unit: 'pcs', aisle: 'protein', estUgx: 1200, prep: 'poached or soft-boiled' },
+        { id: 'paprika-olive', name: 'Olive oil, paprika & fresh mint/coriander', amount: 1, unit: 'tbsp', aisle: 'pantry', estUgx: 700, prep: 'warmed gently' }
+      ],
+      steps: [
+        { text: 'Whisk plain yogurt with a tiny pinch of grated garlic, lemon, and salt; spread onto a shallow plate.' },
+        { text: 'Poach or soft-boil eggs for 5 minutes and nestle onto the yogurt, finishing with 1 teaspoon warm paprika-infused olive oil and fresh herbs.', timerMin: 5 }
+      ],
+      ugandaTip: 'Serve with a slice of toasted whole-grain bread or warm steamed matooke to scoop up the yogurt sauce.'
+    },
+    {
+      id: 'spinach-tomato-egg-muffin-cups',
+      title: 'Make-Ahead Egg, Dodo & Pepper Breakfast Cups',
+      subtitle: 'Grab-and-go baked egg bites loaded with leafy greens, tomatoes, and onions',
+      cuisine: 'Ugandan',
+      category: 'breakfast',
+      mealSlots: ['breakfast'],
+      image: './images/spinach-tomato-egg-muffin-cups.jpg',
+      prepMinutes: 8,
+      cookMinutes: 18,
+      totalMinutes: 26,
+      servings: 3,
+      tags: ['High-Protein', 'Light & Lean', 'No Red Meat', 'Low-Sugar'],
+      healthNote: 'Bake a batch once and grab two protein-packed egg cups on busy mornings with zero prep.',
+      nutrition: { kcal: 215, protein: '16g', fiber: '2g', sugar: 'Low' },
+      ingredients: [
+        { id: 'eggs', name: 'Farm eggs', amount: 6, unit: 'pcs', aisle: 'protein', estUgx: 3600, prep: 'whisked with 2 tbsp milk' },
+        { id: 'dodo', name: 'Dodo or spinach leaves', amount: 1, unit: 'handful', aisle: 'greens', estUgx: 600, prep: 'finely chopped' },
+        { id: 'bell-pepper', name: 'Bell pepper, tomato & onion', amount: 1, unit: 'set', aisle: 'produce', estUgx: 1500, prep: 'finely diced' }
+      ],
+      steps: [
+        { text: 'Divide chopped dodo, bell pepper, tomato, and onion across 6 lightly greased muffin cups.' },
+        { text: 'Pour whisked eggs (seasoned with salt, pepper, and turmeric pinch) over the veggies and bake at 180C for 18 minutes until puffed and set.', timerMin: 18 }
+      ],
+      ugandaTip: 'Store cooled egg cups in the fridge for up to 4 days and warm for 20 seconds when rushing out.'
     }
   ];
 
