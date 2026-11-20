@@ -1,4 +1,4 @@
-const SHELL_CACHE = 'nourishtable-shell-v26';
+﻿const SHELL_CACHE = 'nourishtable-shell-v27';
 const IMG_CACHE = 'nourishtable-images-v4';
 
 const SHELL_ASSETS = [
