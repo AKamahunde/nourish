@@ -39,6 +39,7 @@
     { key: 'bread', label: 'Brown Bread', aliases: ['whole-bread', 'bread'] },
     { key: 'citrus', label: 'Lime / Lemon', aliases: ['lime', 'lemon'] },
     { key: 'spaghetti', label: 'Pasta', aliases: ['spaghetti', 'pasta', 'pasta-shapes'] },
+    { key: 'rice', label: 'Rice', aliases: ['rice', 'cooked-rice'] },
     { key: 'oats', label: 'Oats', aliases: ['rolled-oats', 'oats'] }
   ];
   const PALETTES = [
