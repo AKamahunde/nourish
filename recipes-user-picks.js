@@ -182,7 +182,7 @@
       ugandaTip: 'Add 1 finely chopped bird-eye chili if you want classic Ugandan heat.'
     },
     {
-      id: 'roasted-gonja-sweet-plantain',
+      id: 'pan-roasted-gonja-slices',
       title: 'Lightly Pan-Roasted Sweet Plantain (Gonja)',
       subtitle: 'Caramelized golden ripe plantain slices brushed with a hint of oil and cinnamon',
       cuisine: 'Ugandan',
