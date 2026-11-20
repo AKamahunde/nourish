@@ -646,19 +646,68 @@
       </article>
     `).join('');
 
+    const HERB_BY_HERB_GUIDE = [
+      {
+        herb: 'Coriander (Dhania) · Soft Leafy Herb',
+        addWhen: 'Stir in at the very end off heat (or raw in salads)',
+        pairsWith: 'Avocado, mango, tomatoes, black & red beans, tilapia, chicken curries, kachumbari, pilau, lime & ginger',
+        avoid: 'Skip in creamy Italian pasta or sweet cinnamon porridge.'
+      },
+      {
+        herb: 'Rosemary · Woody Herb',
+        addWhen: 'Add at the start when roasting or simmering',
+        pairsWith: 'Irish potatoes, sweet potatoes, roasted chicken, lean beef mince, pumpkin, carrots, garlic & lemon',
+        avoid: 'Use sparingly (a little goes far); skip in Asian stir-fries or fresh juices.'
+      },
+      {
+        herb: 'Thyme · Woody Herb',
+        addWhen: 'Add early in soups, stews & oven trays',
+        pairsWith: 'Chicken stew, lean beef & Irish potato skillet, black/white bean soups, carrots, mushrooms, garlic & bay leaf',
+        avoid: 'Pairs effortlessly with almost all savory stews; skip in sweet bowls.'
+      },
+      {
+        herb: 'Oregano · Bold Mediterranean Herb',
+        addWhen: 'Add into simmering tomato sauces or salad dressings',
+        pairsWith: 'Tomato pasta sauces, shakshuka, chickpea & cucumber salads, grilled chicken, lemon, olive oil & garlic',
+        avoid: 'Skip in East African coconut curries or ginger stir-fries.'
+      },
+      {
+        herb: 'Sweet Basil · Soft Leafy Herb',
+        addWhen: 'Tear and fold in right before serving',
+        pairsWith: 'Ripe tomatoes, spaghetti/pasta, zucchini, bell peppers, garlic, olive oil, lemon & white beans',
+        avoid: 'Heat turns basil black — always add last.'
+      },
+      {
+        herb: 'Parsley · Fresh Balancing Herb',
+        addWhen: 'Sprinkle at the end or mix into salads/fish',
+        pairsWith: 'Grilled tilapia, Irish potato salads, minced beef, white bean minestrone, lemon, garlic & olive oil',
+        avoid: 'Very mild — works nearly anywhere savory.'
+      },
+      {
+        herb: 'Garden Mint · Cooling Leafy Herb',
+        addWhen: 'Add fresh at the end or blend raw',
+        pairsWith: 'Plain yogurt sauces, cucumber, watermelon juice, hibiscus sobolo, pineapple, lime, ginger & grilled fish',
+        avoid: 'Avoid in heavy tomato stews or bean katogo.'
+      },
+      {
+        herb: 'Lemongrass (Kisubi) · Aromatic Stalk',
+        addWhen: 'Bruise/crush and simmer in liquids, then remove before eating',
+        pairsWith: 'Pineapple-ginger tea, coconut chicken curries, steamed tilapia broth, garlic, lime & chili',
+        avoid: 'Too tough to eat raw — always bruise and steep or blend & strain.'
+      }
+    ];
+
     const pairingEl = $('spicePairingBox');
     if (pairingEl && Array.isArray(data.HERB_SPICE_PAIRINGS)) {
-      const herbCards = Array.isArray(data.HERB_BY_HERB_GUIDE)
-        ? `<div class="aisle-title" style="margin:2px 0 4px;">Herb by Herb (What Goes With What)</div>` +
-          data.HERB_BY_HERB_GUIDE.map((h) => `
-            <div class="meal-slot-card">
-              <div class="meal-slot-label">${escapeHtml(h.herb)}</div>
-              <div style="font-size:13px;font-weight:700;margin:4px 0 3px;">Pairs with: ${escapeHtml(h.pairsWith)}</div>
-              <div style="font-size:12px;color:var(--accent);font-weight:600;margin-bottom:2px;">When to add: ${escapeHtml(h.addWhen)}</div>
-              <div style="font-size:12px;color:var(--muted);">${escapeHtml(h.avoid)}</div>
-            </div>
-          `).join('')
-        : '';
+      const herbCards = `<div class="aisle-title" style="margin:2px 0 4px;">Herb by Herb (What Goes With What)</div>` +
+        HERB_BY_HERB_GUIDE.map((h) => `
+          <div class="meal-slot-card">
+            <div class="meal-slot-label">${escapeHtml(h.herb)}</div>
+            <div style="font-size:13px;font-weight:700;margin:4px 0 3px;">Pairs with: ${escapeHtml(h.pairsWith)}</div>
+            <div style="font-size:12px;color:var(--accent);font-weight:600;margin-bottom:2px;">When to add: ${escapeHtml(h.addWhen)}</div>
+            <div style="font-size:12px;color:var(--muted);">${escapeHtml(h.avoid)}</div>
+          </div>
+        `).join('');
 
       const foodCards = `<div class="aisle-title" style="margin:10px 0 4px;">By Ingredient / Dish</div>` +
         data.HERB_SPICE_PAIRINGS.map((row) => `
