@@ -362,6 +362,57 @@
         { text: 'Strain lightly if desired, stir in 1 teaspoon chia seeds, and drink fresh.' }
       ],
       ugandaTip: 'Tender young dodo or kale works effortlessly whenever baby spinach is unavailable at the market.'
+    },
+    {
+      id: 'apple-ginger-lemon-juice',
+      title: 'Crisp Apple, Ginger & Lemon Morning Juice',
+      subtitle: 'Bright zesty cold-pressed style blend of sweet-tart apples, fiery fresh ginger, and lemon juice',
+      cuisine: 'Ugandan',
+      category: 'juices',
+      image: './images/apple-ginger-lemon-juice.jpg',
+      prepMinutes: 8,
+      cookMinutes: 0,
+      totalMinutes: 8,
+      servings: 2,
+      tags: ['Light & Lean', 'Plant-Forward', 'No Red Meat', 'Low-Sugar'],
+      healthNote: 'Crisp apple pectin paired with warming ginger root and vitamin-C-rich lemon kickstarts digestion without added sugar.',
+      nutrition: { kcal: 78, protein: '1g', fiber: '2g', sugar: 'Natural fruit only' },
+      ingredients: [
+        { id: 'apple', name: 'Crisp green or red apples', amount: 3, unit: 'medium', aisle: 'produce', estUgx: 3500, prep: 'cored & chopped' },
+        { id: 'ginger', name: 'Fresh ginger root', amount: 1.5, unit: 'thumbs', aisle: 'produce', estUgx: 600, prep: 'peeled & sliced' },
+        { id: 'lemon', name: 'Fresh lemons', amount: 1.5, unit: 'pcs', aisle: 'produce', estUgx: 800, prep: 'juiced' }
+      ],
+      steps: [
+        { text: 'Blend chopped apples, sliced fresh ginger, and 1.25 cups chilled water until completely smooth.' },
+        { text: 'Strain through a fine sieve or cheesecloth, stir in freshly squeezed lemon juice, and serve chilled over ice.' }
+      ],
+      ugandaTip: 'Leave the apple skins on before blending for extra polyphenols and a brighter golden hue.'
+    },
+    {
+      id: 'pineapple-ginger-turmeric-carrot-juice',
+      title: 'Pineapple, Ginger, Turmeric & Carrot Anti-Inflammatory Juice',
+      subtitle: 'Vibrant golden-orange tonic blending sweet pineapple, beta-carotene carrots, turmeric, and ginger',
+      cuisine: 'Ugandan',
+      category: 'juices',
+      image: './images/pineapple-ginger-turmeric-carrot-juice.jpg',
+      prepMinutes: 10,
+      cookMinutes: 0,
+      totalMinutes: 10,
+      servings: 2,
+      tags: ['Light & Lean', 'Plant-Forward', 'No Red Meat', 'Low-Sugar'],
+      healthNote: 'Fresh pineapple bromelain, curcumin from turmeric, and carrot antioxidants make a soothing anti-inflammatory tonic.',
+      nutrition: { kcal: 96, protein: '1g', fiber: '2g', sugar: 'Natural fruit only' },
+      ingredients: [
+        { id: 'pineapple', name: 'Ripe sweet Ugandan pineapple', amount: 2, unit: 'cups', aisle: 'produce', estUgx: 2000, prep: 'peeled & cubed' },
+        { id: 'carrots', name: 'Fresh carrots', amount: 3, unit: 'medium', aisle: 'produce', estUgx: 1200, prep: 'scrubbed & chopped' },
+        { id: 'turmeric-ginger', name: 'Fresh turmeric (or 1 tsp ground) & ginger root', amount: 1, unit: 'set', aisle: 'produce', estUgx: 800, prep: 'peeled' },
+        { id: 'lemon', name: 'Lemon juice & tiny pinch black pepper', amount: 1, unit: 'pc', aisle: 'pantry', estUgx: 500, prep: 'juiced' }
+      ],
+      steps: [
+        { text: 'Blend pineapple cubes, chopped carrots, turmeric, fresh ginger, and 1 cup cold water until completely smooth.' },
+        { text: 'Strain through a fine mesh strainer, add fresh lemon juice plus a tiny pinch of black pepper (boosts turmeric absorption), and serve chilled.' }
+      ],
+      ugandaTip: 'Add a squeeze of fresh lime or passion fruit pulp at the end for an unmistakable Kampala market twist.'
     }
   ];
 
