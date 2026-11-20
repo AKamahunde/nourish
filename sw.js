@@ -1,5 +1,5 @@
-const SHELL_CACHE = 'nourishtable-shell-v23';
-const IMG_CACHE = 'nourishtable-images-v2';
+const SHELL_CACHE = 'nourishtable-shell-v24';
+const IMG_CACHE = 'nourishtable-images-v3';
 
 const SHELL_ASSETS = [
   './',
