@@ -9014,6 +9014,196 @@
                                       }
                                   ],
                         "ugandaTip":  "Works equally well with charcoal-roasted gonja bought fresh from the roadside — just pair it with your home-cooked fish and greens."
+                    },
+                    {
+                        "id":  "light-ugandan-chicken-pilau",
+                        "title":  "Light Spiced Ugandan Chicken Pilau \u0026 Kachumbari",
+                        "subtitle":  "Fluffy basmati rice simmered with skinless chicken, caramelized onions, garlic, ginger, and pilau masala",
+                        "cuisine":  "Ugandan",
+                        "category":  "onepot",
+                        "mealSlots":  [
+                                          "lunch",
+                                          "dinner"
+                                      ],
+                        "image":  "./images/light-ugandan-chicken-pilau.jpg",
+                        "prepMinutes":  10,
+                        "cookMinutes":  30,
+                        "totalMinutes":  40,
+                        "servings":  4,
+                        "tags":  [
+                                     "High-Protein",
+                                     "Light \u0026 Lean",
+                                     "No Red Meat",
+                                     "Low-Sugar"
+                                 ],
+                        "healthNote":  "Removing chicken skin and using 1 measured tablespoon oil keeps classic Ugandan chicken pilau lean and clean.",
+                        "nutrition":  {
+                                          "kcal":  420,
+                                          "protein":  "30g",
+                                          "fiber":  "4g",
+                                          "sugar":  "Low"
+                                      },
+                        "ingredients":  [
+                                            {
+                                                "id":  "chicken-pieces",
+                                                "name":  "Skinless chicken breast or thighs",
+                                                "amount":  450,
+                                                "unit":  "g",
+                                                "aisle":  "protein",
+                                                "estUgx":  11000,
+                                                "prep":  "cut in medium pieces"
+                                            },
+                                            {
+                                                "id":  "rice",
+                                                "name":  "Basmati or super rice",
+                                                "amount":  1.5,
+                                                "unit":  "cups",
+                                                "aisle":  "grains",
+                                                "estUgx":  3500,
+                                                "prep":  "washed \u0026 soaked 10 min"
+                                            },
+                                            {
+                                                "id":  "red-onion",
+                                                "name":  "Red onions",
+                                                "amount":  2,
+                                                "unit":  "medium",
+                                                "aisle":  "produce",
+                                                "estUgx":  1200,
+                                                "prep":  "thinly sliced"
+                                            },
+                                            {
+                                                "id":  "pilau-spices",
+                                                "name":  "Pilau masala (cumin, cardamom, cinnamon, cloves)",
+                                                "amount":  2,
+                                                "unit":  "tsp",
+                                                "aisle":  "pantry",
+                                                "estUgx":  800,
+                                                "prep":  "ground blend"
+                                            },
+                                            {
+                                                "id":  "garlic-ginger",
+                                                "name":  "Fresh garlic \u0026 ginger",
+                                                "amount":  1.5,
+                                                "unit":  "tbsp",
+                                                "aisle":  "produce",
+                                                "estUgx":  700,
+                                                "prep":  "crushed paste"
+                                            },
+                                            {
+                                                "id":  "tomatoes",
+                                                "name":  "Tomatoes \u0026 lime (for kachumbari)",
+                                                "amount":  2,
+                                                "unit":  "pcs",
+                                                "aisle":  "produce",
+                                                "estUgx":  1000,
+                                                "prep":  "served fresh on the side"
+                                            }
+                                        ],
+                        "steps":  [
+                                      {
+                                          "text":  "Caramelize sliced onions in 1 tablespoon oil with a splash of water for 6 minutes until golden-brown.",
+                                          "timerMin":  6
+                                      },
+                                      {
+                                          "text":  "Add crushed garlic, ginger, pilau masala, and skinless chicken pieces; sear 5 minutes until sealed and fragrant.",
+                                          "timerMin":  5
+                                      },
+                                      {
+                                          "text":  "Fold in drained rice, 2.75 cups warm water, and salt. Cover tightly and simmer on low for 18 minutes until fluffy. Rest 5 minutes and serve with crisp kachumbari.",
+                                          "timerMin":  18
+                                      }
+                                  ],
+                        "ugandaTip":  "Soaking basmati rice for 10 minutes before cooking ensures long, separate, non-sticky pilau grains."
+                    },
+                    {
+                        "id":  "plain-spiced-ugandan-pilau",
+                        "title":  "Plain Spiced Ugandan Pilau (No Meat)",
+                        "subtitle":  "Aromatic caramelized-onion and pilau-masala rice cooked light — ideal with beans, grilled fish, or kachumbari",
+                        "cuisine":  "Ugandan",
+                        "category":  "onepot",
+                        "mealSlots":  [
+                                          "lunch",
+                                          "dinner"
+                                      ],
+                        "image":  "./images/plain-spiced-ugandan-pilau.jpg",
+                        "prepMinutes":  8,
+                        "cookMinutes":  22,
+                        "totalMinutes":  30,
+                        "servings":  3,
+                        "tags":  [
+                                     "Plant-Forward",
+                                     "Light \u0026 Lean",
+                                     "No Red Meat",
+                                     "Low-Sugar"
+                                 ],
+                        "healthNote":  "Deep caramelized onions and warm whole spices build big flavor without meat fat or heavy oil.",
+                        "nutrition":  {
+                                          "kcal":  310,
+                                          "protein":  "6g",
+                                          "fiber":  "3g",
+                                          "sugar":  "Low"
+                                      },
+                        "ingredients":  [
+                                            {
+                                                "id":  "rice",
+                                                "name":  "Basmati or super rice",
+                                                "amount":  1.5,
+                                                "unit":  "cups",
+                                                "aisle":  "grains",
+                                                "estUgx":  3500,
+                                                "prep":  "washed \u0026 soaked 10 min"
+                                            },
+                                            {
+                                                "id":  "red-onion",
+                                                "name":  "Red onions",
+                                                "amount":  2,
+                                                "unit":  "large",
+                                                "aisle":  "produce",
+                                                "estUgx":  1400,
+                                                "prep":  "thinly sliced for deep color"
+                                            },
+                                            {
+                                                "id":  "pilau-spices",
+                                                "name":  "Pilau masala (cumin, cardamom, cinnamon, cloves)",
+                                                "amount":  2,
+                                                "unit":  "tsp",
+                                                "aisle":  "pantry",
+                                                "estUgx":  800,
+                                                "prep":  "ground"
+                                            },
+                                            {
+                                                "id":  "garlic-ginger",
+                                                "name":  "Fresh garlic \u0026 ginger",
+                                                "amount":  1.5,
+                                                "unit":  "tbsp",
+                                                "aisle":  "produce",
+                                                "estUgx":  700,
+                                                "prep":  "crushed"
+                                            },
+                                            {
+                                                "id":  "olive-oil",
+                                                "name":  "Cooking oil",
+                                                "amount":  1,
+                                                "unit":  "tbsp",
+                                                "aisle":  "pantry",
+                                                "estUgx":  600,
+                                                "prep":  "measured"
+                                            }
+                                        ],
+                        "steps":  [
+                                      {
+                                          "text":  "Cook sliced red onions slowly in 1 tablespoon oil with a splash of water for 7 minutes until rich dark golden-brown (this gives plain pilau its color).",
+                                          "timerMin":  7
+                                      },
+                                      {
+                                          "text":  "Stir in garlic, ginger, and pilau masala for 1 minute until fragrant, then gently fold in drained rice."
+                                      },
+                                      {
+                                          "text":  "Pour in 2.75 cups warm water and salt, cover tightly, and simmer on lowest heat for 18 minutes. Fluff and serve with kachumbari, avocado, beans, or grilled tilapia.",
+                                          "timerMin":  18
+                                      }
+                                  ],
+                        "ugandaTip":  "Toss in a handful of diced Irish potatoes or green peas right before adding the water for an easy veggie pilau upgrade."
                     }
                 ]
 };
