@@ -1,5 +1,5 @@
 (() => {
-  const APP_VERSION = 21;
+  const APP_VERSION = 22;
   const MEAL_SLOTS = [
     { id: 'breakfast', label: 'Breakfast' },
     { id: 'lunch', label: 'Lunch' },
@@ -507,9 +507,48 @@
       : `<div class="empty-state">Tap the heart on any salad, meal, breakfast, or juice to keep your go-to dishes right here.</div>`;
   }
 
+  const QUICK_GROCERY_STAPLES = [
+    { id: 'staple_tomatoes', name: 'Tomatoes', qtyText: '1 heap / kg', aisle: 'produce', estUgx: 3000 },
+    { id: 'staple_onions', name: 'Red Onions', qtyText: '1 heap / kg', aisle: 'produce', estUgx: 3000 },
+    { id: 'staple_garlic', name: 'Garlic & Ginger', qtyText: '1 bundle', aisle: 'produce', estUgx: 2000 },
+    { id: 'staple_avocado', name: 'Avocados', qtyText: '3 pcs', aisle: 'produce', estUgx: 3500 },
+    { id: 'staple_lime', name: 'Limes / Lemons', qtyText: '4 pcs', aisle: 'produce', estUgx: 2000 },
+    { id: 'staple_greens', name: 'Dodo / Sukuma / Nakati', qtyText: '2 bunches', aisle: 'greens', estUgx: 2000 },
+    { id: 'staple_coriander', name: 'Fresh Coriander (Dhania)', qtyText: '1 bunch', aisle: 'greens', estUgx: 1000 },
+    { id: 'staple_eggs', name: 'Farm Eggs', qtyText: '1/2 tray (15)', aisle: 'protein', estUgx: 7500 },
+    { id: 'staple_chicken', name: 'Chicken Breast / Thighs', qtyText: '500 g', aisle: 'protein', estUgx: 12000 },
+    { id: 'staple_tilapia', name: 'Fresh Tilapia', qtyText: '1 whole / fillets', aisle: 'protein', estUgx: 20000 },
+    { id: 'staple_mince', name: 'Lean Beef Mince', qtyText: '500 g', aisle: 'protein', estUgx: 12000 },
+    { id: 'staple_yogurt', name: 'Plain Yogurt', qtyText: '500 ml', aisle: 'protein', estUgx: 5500 },
+    { id: 'staple_milk', name: "Cow's / Soya Milk", qtyText: '1 liter', aisle: 'protein', estUgx: 4500 },
+    { id: 'staple_matooke', name: 'Matooke', qtyText: '1 cluster', aisle: 'produce', estUgx: 6000 },
+    { id: 'staple_irish', name: 'Irish Potatoes', qtyText: '2 kg', aisle: 'produce', estUgx: 5000 },
+    { id: 'staple_sweetpot', name: 'Sweet Potatoes', qtyText: '1 heap', aisle: 'produce', estUgx: 3000 },
+    { id: 'staple_beans', name: 'Black / Red Beans', qtyText: '1 kg', aisle: 'grains', estUgx: 5000 },
+    { id: 'staple_chia', name: 'Chia Seeds', qtyText: '1 pack', aisle: 'grains', estUgx: 8000 },
+    { id: 'staple_pineapple', name: 'Pineapple', qtyText: '1 large', aisle: 'produce', estUgx: 4000 },
+    { id: 'staple_mango', name: 'Mangoes / Pawpaw', qtyText: '3 pcs', aisle: 'produce', estUgx: 3500 }
+  ];
+
+  function getActiveWeekRecipeEntries() {
+    if (appState.settings.syncWeekGroceries === false) return [];
+    const counts = new Map();
+    for (const { ymd } of getWeekDates(ui.weekMonday)) {
+      const rec = getDayRecord(ymd);
+      const ids = [...rec.breakfast, ...rec.lunch, ...rec.dinner, ...rec.juice];
+      for (const rId of ids) {
+        const r = getRecipeById(rId);
+        if (!r) continue;
+        counts.set(rId, (counts.get(rId) || 0) + r.servings);
+      }
+    }
+    return Array.from(counts.entries()).map(([recipeId, servings]) => ({ recipeId, servings }));
+  }
+
   function buildAggregatedGroceries() {
     const map = new Map();
-    for (const entry of appState.groceryEntries) {
+    const combinedEntries = [...getActiveWeekRecipeEntries(), ...appState.groceryEntries];
+    for (const entry of combinedEntries) {
       const recipe = getRecipeById(entry.recipeId);
       if (!recipe) continue;
       const ratio = (Number(entry.servings) || recipe.servings) / recipe.servings;
@@ -556,7 +595,7 @@
         aisle: c.aisle || 'produce',
         estUgx: Math.max(0, Math.round(Number(c.estUgx) || 0)),
         checked: Boolean(c.checked),
-        recipes: c.source ? [c.source] : ['Added manually'],
+        recipes: c.source ? [c.source] : ['Market staple / manual'],
         isCustom: true
       });
     }
@@ -573,31 +612,29 @@
     $('groceryTotalUgx').textContent = formatUgx(totalUgx);
     $('groceryCheckedRatio').textContent = `${checkedCount}/${totalCount}`;
     $('grocerySummaryMeta').textContent = totalCount
-      ? `${appState.groceryEntries.length} recipe(s) + ${appState.customGroceries.length} extra · Tap any UGX pill to adjust market price`
-      : 'Add recipes or build from your Meal Calendar to generate a grouped market list.';
+      ? `${totalCount} item(s) on your list · Tap any UGX pill to adjust market price`
+      : 'Tap everyday staples below, add custom items, or schedule meals in Planner.';
+
+    const syncToggle = $('syncWeekGroceriesToggle');
+    if (syncToggle) syncToggle.checked = appState.settings.syncWeekGroceries !== false;
+
+    const staplesEl = $('quickGroceryStaples');
+    if (staplesEl) {
+      staplesEl.innerHTML = QUICK_GROCERY_STAPLES.map((s) => {
+        const active = appState.customGroceries.some((c) => c.id === s.id);
+        return `<button class="pantry-chip ${active ? 'active' : ''}" type="button" data-toggle-staple="${escapeHtml(s.id)}">${active ? '&#10003; ' : '+ '}${escapeHtml(s.name)}</button>`;
+      }).join('');
+    }
 
     const badge = $('navGroceryBadge');
     const remaining = totalCount - checkedCount;
     badge.textContent = String(remaining);
     badge.classList.toggle('hidden', remaining <= 0);
 
-    $('groceryBasketChips').innerHTML = appState.groceryEntries.length
-      ? appState.groceryEntries.map((e, idx) => {
-          const r = getRecipeById(e.recipeId);
-          if (!r) return '';
-          return `
-            <span class="basket-chip">
-              <span>${escapeHtml(r.title)} (${e.servings}x)</span>
-              <button type="button" data-remove-basket="${idx}" aria-label="Remove recipe">&times;</button>
-            </span>
-          `;
-        }).join('')
-      : '<span class="muted-label">No recipes in basket yet.</span>';
-
     if (!items.length) {
       $('groceryAislesContainer').innerHTML = `
         <div class="empty-state">
-          Open any recipe and tap <strong>Add to Groceries</strong>, or build from <strong>Planner</strong>.
+          Tap any staple above, type an item, or schedule meals in <strong>Planner</strong>.
         </div>
       `;
       return;
@@ -627,6 +664,7 @@
           <button class="price-edit-btn" type="button" data-edit-price="${escapeHtml(item.key)}" data-custom="${item.isCustom ? '1' : '0'}" data-current-price="${item.estUgx}">
             ${formatUgx(item.estUgx)}
           </button>
+          ${item.isCustom ? `<button class="grocery-remove-btn" type="button" data-remove-custom="${escapeHtml(item.key)}" aria-label="Remove item">&times;</button>` : ''}
         </div>
       `).join('');
       return `

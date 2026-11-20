@@ -6852,7 +6852,7 @@
                     {
                         "id":  "mince-cabbage-veggie-soup",
                         "title":  "Slow-Simmered Mince, Cabbage \u0026 Veggie Soup",
-                        "subtitle":  "Rich one-pot lean beef mince simmered slowly with sweet cabbage, carrots, and peppers — great on its own or over pasta, rice, or Irish",
+                        "subtitle":  "Rich one-pot lean beef mince simmered slowly with chunky cabbage, zucchini, carrots, broccoli \u0026 cauliflower — great on its own or over pasta, rice, or Irish",
                         "cuisine":  "Ugandan",
                         "category":  "onepot",
                         "mealSlots":  [
@@ -6893,16 +6893,25 @@
                                                 "unit":  "medium head",
                                                 "aisle":  "greens",
                                                 "estUgx":  1500,
-                                                "prep":  "coarsely shredded"
+                                                "prep":  "chopped into large chunks"
                                             },
                                             {
-                                                "id":  "carrots",
-                                                "name":  "Carrots \u0026 bell pepper",
-                                                "amount":  2,
+                                                "id":  "courgette",
+                                                "name":  "Zucchini (courgette) \u0026 carrots",
+                                                "amount":  3,
                                                 "unit":  "pcs",
                                                 "aisle":  "produce",
-                                                "estUgx":  1500,
-                                                "prep":  "diced"
+                                                "estUgx":  2500,
+                                                "prep":  "thick chunks \u0026 rounds"
+                                            },
+                                            {
+                                                "id":  "broccoli",
+                                                "name":  "Broccoli \u0026 cauliflower florets (optional)",
+                                                "amount":  1.5,
+                                                "unit":  "cups",
+                                                "aisle":  "greens",
+                                                "estUgx":  3000,
+                                                "prep":  "bite-sized florets"
                                             },
                                             {
                                                 "id":  "tomatoes",
@@ -6914,22 +6923,13 @@
                                                 "prep":  "chopped or blended"
                                             },
                                             {
-                                                "id":  "onion",
-                                                "name":  "Onion",
+                                                "id":  "onion-garlic",
+                                                "name":  "Onion, garlic, fresh ginger \u0026 thyme",
                                                 "amount":  1,
-                                                "unit":  "pcs",
-                                                "aisle":  "produce",
-                                                "estUgx":  600,
-                                                "prep":  "chopped"
-                                            },
-                                            {
-                                                "id":  "garlic",
-                                                "name":  "Garlic",
-                                                "amount":  2,
-                                                "unit":  "cloves",
-                                                "aisle":  "produce",
-                                                "estUgx":  300,
-                                                "prep":  "minced"
+                                                "unit":  "set",
+                                                "aisle":  "pantry",
+                                                "estUgx":  1000,
+                                                "prep":  "finely chopped"
                                             },
                                             {
                                                 "id":  "coriander",
@@ -6951,8 +6951,12 @@
                                           "timerMin":  5
                                       },
                                       {
-                                          "text":  "Add diced carrots, bell pepper, shredded cabbage, salt, black pepper, and 3.5 cups water. Cover and simmer gently on low heat for 25 to 30 minutes until the broth is deeply flavorful and veggies are tender.",
-                                          "timerMin":  28
+                                          "text":  "Add carrot rounds, large cabbage chunks, salt, black pepper, and 3.5 cups water. Cover and simmer gently on low heat for 20 minutes so the flavors deepen.",
+                                          "timerMin":  20
+                                      },
+                                      {
+                                          "text":  "Add zucchini chunks plus optional broccoli and cauliflower florets; simmer 8 to 10 more minutes until tender without turning mushy.",
+                                          "timerMin":  10
                                       },
                                       {
                                           "text":  "Finish with chopped fresh coriander. Enjoy as a hearty bowl on its own, or ladle over boiled Irish potatoes, steamed rice, or pasta."
