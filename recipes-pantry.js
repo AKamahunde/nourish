@@ -105,7 +105,7 @@
       ],
       steps: [
         { text: 'Coat chicken strips in half the plain yogurt mixed with garlic, ginger, turmeric, cumin, lemon juice, and salt.' },
-        { text: 'Sear in a hot lightly oiled skillet for 4 minutes per side until golden-charred and cooked through.', timerMin: 8 },
+        { text: 'Sear in a hot lightly oiled skillet for 4 minutes per side (8 minutes total) until golden-charred and cooked through.', timerMin: 8 },
         { text: 'Mix remaining plain yogurt with grated cucumber, chopped mint, lemon pinch, and salt as a cooling drizzle over the chicken and salad.' }
       ],
       ugandaTip: 'That savory cucumber-mint yogurt sauce (tzatziki/raita style) also tastes amazing over grilled tilapia or roasted sweet potatoes.'

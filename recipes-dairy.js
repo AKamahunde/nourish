@@ -99,7 +99,7 @@
         { id: 'mint-garlic', name: 'Fresh mint, garlic & lemon', amount: 1, unit: 'set', aisle: 'greens', estUgx: 800, prep: 'stirred into yogurt' }
       ],
       steps: [
-        { text: 'Rub tilapia fillets with turmeric, cumin, salt, and lemon; sear in 1 teaspoon oil for 4 minutes per side until flaky.', timerMin: 8 },
+        { text: 'Rub tilapia fillets with turmeric, cumin, salt, and lemon; sear in 1 teaspoon oil for 4 minutes per side (8 minutes total) until flaky.', timerMin: 8 },
         { text: 'Whisk plain yogurt with minced garlic, chopped mint, and lemon juice; spoon alongside cucumber-tomato salad and warm fish.' }
       ],
       ugandaTip: 'Swap tilapia for pan-seared chicken strips anytime using the exact same yogurt-mint sauce.'

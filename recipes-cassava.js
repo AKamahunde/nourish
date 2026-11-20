@@ -79,7 +79,7 @@
         { id: 'dodo', name: 'Fresh dodo or sukuma greens', amount: 1, unit: 'bunch', aisle: 'greens', estUgx: 1000, prep: 'washed & chopped' }
       ],
       steps: [
-        { text: 'Saute onion, garlic, and ginger in 1 measured tablespoon oil for 3 minutes, then cook diced tomatoes down into a rich paste.', timerMin: 5 },
+        { text: 'Saute onion, garlic, and ginger in 1 measured tablespoon oil for 3 minutes, then cook diced tomatoes down for 2 more minutes (5 minutes total) into a rich paste.', timerMin: 5 },
         { text: 'Stir in pre-boiled beans and lay cassava chunks on top; add water just to cover, lid tightly, and simmer 20 minutes until cassava is tender.', timerMin: 20 },
         { text: 'Fold in chopped dodo greens for the final 2 minutes off heat so they stay bright green.' }
       ],
