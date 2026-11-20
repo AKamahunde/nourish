@@ -6,20 +6,15 @@
 
   const DEFAULT_STATE = {
     favorites: [],
-    mealPlan: {
-      Mon: [], Tue: [], Wed: [], Thu: [], Fri: [], Sat: [], Sun: []
-    },
     calendarPlan: {}, // { 'YYYY-MM-DD': { breakfast: [], lunch: [], dinner: [], juice: [] } }
-    pantryHave: [],   // ['tomatoes', 'onion', ...]
+    pantryHave: [],   // ['tomato', 'onion', ...]
     groceryEntries: [], // [{ recipeId, servings }]
     groceryChecked: {}, // { itemKey: true }
     customGroceries: [], // [{ id, name, qtyText, aisle, estUgx, checked }]
     priceOverrides: {}, // { itemKey: number }
-    cookedLog: [],
     settings: {
       theme: 'sage',
-      pocketLedgerUrl: 'https://pocketledger-brd.pages.dev/',
-      keepAwake: false
+      pocketLedgerUrl: 'https://pocketledger-brd.pages.dev/'
     }
   };
 
@@ -70,14 +65,12 @@
     if (!raw || typeof raw !== 'object') return base;
     return {
       favorites: Array.isArray(raw.favorites) ? raw.favorites : base.favorites,
-      mealPlan: { ...base.mealPlan, ...(raw.mealPlan && typeof raw.mealPlan === 'object' ? raw.mealPlan : {}) },
       calendarPlan: raw.calendarPlan && typeof raw.calendarPlan === 'object' ? raw.calendarPlan : {},
       pantryHave: Array.isArray(raw.pantryHave) ? raw.pantryHave : [],
       groceryEntries: Array.isArray(raw.groceryEntries) ? raw.groceryEntries : base.groceryEntries,
       groceryChecked: raw.groceryChecked && typeof raw.groceryChecked === 'object' ? raw.groceryChecked : {},
       customGroceries: Array.isArray(raw.customGroceries) ? raw.customGroceries : [],
       priceOverrides: raw.priceOverrides && typeof raw.priceOverrides === 'object' ? raw.priceOverrides : {},
-      cookedLog: Array.isArray(raw.cookedLog) ? raw.cookedLog : [],
       settings: { ...base.settings, ...(raw.settings && typeof raw.settings === 'object' ? raw.settings : {}) }
     };
   }
