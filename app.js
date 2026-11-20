@@ -37,6 +37,7 @@
     { key: 'mango', label: 'Mango', aliases: ['mango'] },
     { key: 'groundnut', label: 'G-Nut / Peanut Butter', aliases: ['gnut-paste', 'groundnut', 'peanut-butter', 'peanut butter'] },
     { key: 'bread', label: 'Brown Bread', aliases: ['whole-bread', 'bread'] },
+    { key: 'chapati', label: 'Chapati', aliases: ['chapati', 'samosa-sheets', 'spring-roll-wrappers'] },
     { key: 'citrus', label: 'Lime / Lemon', aliases: ['lime', 'lemon'] },
     { key: 'spaghetti', label: 'Pasta', aliases: ['spaghetti', 'pasta', 'pasta-shapes'] },
     { key: 'rice', label: 'Rice', aliases: ['rice', 'cooked-rice'] },

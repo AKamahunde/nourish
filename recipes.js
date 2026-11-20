@@ -8405,6 +8405,365 @@
                                       }
                                   ],
                         "ugandaTip":  "Adding warm (not cold) water is the trick that turns thick groundnut or simsim paste silky smooth in seconds."
+                    },
+                    {
+                        "id":  "light-whole-wheat-chapati-beans",
+                        "title":  "Light Whole-Wheat Chapati \u0026 Spiced Nambale Beans",
+                        "subtitle":  "Soft minimal-oil chapati paired with rich tomato-garlic red beans and fresh kachumbari",
+                        "cuisine":  "Ugandan",
+                        "category":  "onepot",
+                        "mealSlots":  [
+                                          "breakfast",
+                                          "lunch",
+                                          "dinner"
+                                      ],
+                        "image":  "./images/light-whole-wheat-chapati-beans.jpg",
+                        "prepMinutes":  15,
+                        "cookMinutes":  20,
+                        "totalMinutes":  35,
+                        "servings":  3,
+                        "tags":  [
+                                     "Plant-Forward",
+                                     "High-Protein",
+                                     "No Red Meat",
+                                     "Low-Sugar"
+                                 ],
+                        "healthNote":  "Using half whole-wheat (atta) flour and lightly brushing the pan cuts chapati oil in half while beans add fiber.",
+                        "nutrition":  {
+                                          "kcal":  435,
+                                          "protein":  "16g",
+                                          "fiber":  "11g",
+                                          "sugar":  "Low"
+                                      },
+                        "ingredients":  [
+                                            {
+                                                "id":  "chapati",
+                                                "name":  "Whole-wheat / atta \u0026 wheat flour (or 3 light chapatis)",
+                                                "amount":  1.5,
+                                                "unit":  "cups",
+                                                "aisle":  "grains",
+                                                "estUgx":  2000,
+                                                "prep":  "kneaded with warm water \u0026 pinch salt"
+                                            },
+                                            {
+                                                "id":  "cooked-beans",
+                                                "name":  "Pre-boiled Nambale or red beans",
+                                                "amount":  2,
+                                                "unit":  "cups",
+                                                "aisle":  "grains",
+                                                "estUgx":  2500,
+                                                "prep":  "with bean broth"
+                                            },
+                                            {
+                                                "id":  "tomatoes",
+                                                "name":  "Ripe tomatoes, onion \u0026 garlic",
+                                                "amount":  3,
+                                                "unit":  "pcs",
+                                                "aisle":  "produce",
+                                                "estUgx":  1800,
+                                                "prep":  "diced"
+                                            },
+                                            {
+                                                "id":  "olive-oil",
+                                                "name":  "Cooking oil (brushed lightly)",
+                                                "amount":  1,
+                                                "unit":  "tbsp",
+                                                "aisle":  "pantry",
+                                                "estUgx":  600,
+                                                "prep":  "total for pan \u0026 beans"
+                                            },
+                                            {
+                                                "id":  "coriander",
+                                                "name":  "Fresh coriander \u0026 lime (for side kachumbari)",
+                                                "amount":  0.5,
+                                                "unit":  "bunch",
+                                                "aisle":  "greens",
+                                                "estUgx":  600,
+                                                "prep":  "chopped"
+                                            }
+                                        ],
+                        "steps":  [
+                                      {
+                                          "text":  "Knead flour with warm water and a pinch of salt into a soft dough; rest 10 minutes, roll thin, and cook on a hot dry skillet brushing each side lightly with 1/2 teaspoon oil.",
+                                          "timerMin":  10
+                                      },
+                                      {
+                                          "text":  "Simmer onion, garlic, tomatoes, and pre-boiled beans for 12 minutes until thick and savory.",
+                                          "timerMin":  12
+                                      },
+                                      {
+                                          "text":  "Serve 1 light chapati per person alongside generous spiced beans, greens, and fresh kachumbari."
+                                      }
+                                  ],
+                        "ugandaTip":  "Stick to 1 chapati and let the beans, greens, and avocado fill the rest of your plate for steady energy."
+                    },
+                    {
+                        "id":  "chapati-lean-mince-rolex-wrap",
+                        "title":  "Soft Chapati with Spiced Lean Beef Mince \u0026 Greens",
+                        "subtitle":  "Warm chapati paired with savory garlic-ginger beef mince, tomatoes, and crisp avocado",
+                        "cuisine":  "Ugandan",
+                        "category":  "quick",
+                        "mealSlots":  [
+                                          "breakfast",
+                                          "lunch",
+                                          "dinner"
+                                      ],
+                        "image":  "./images/chapati-lean-mince-rolex-wrap.jpg",
+                        "prepMinutes":  6,
+                        "cookMinutes":  12,
+                        "totalMinutes":  18,
+                        "servings":  2,
+                        "tags":  [
+                                     "High-Protein",
+                                     "Low-Sugar"
+                                 ],
+                        "healthNote":  "Lean beef mince and raw veggies turn everyday chapati into a balanced high-protein wrap or plate.",
+                        "nutrition":  {
+                                          "kcal":  455,
+                                          "protein":  "31g",
+                                          "fiber":  "6g",
+                                          "sugar":  "Low"
+                                      },
+                        "ingredients":  [
+                                            {
+                                                "id":  "chapati",
+                                                "name":  "Light whole-wheat or plain chapatis",
+                                                "amount":  2,
+                                                "unit":  "pcs",
+                                                "aisle":  "grains",
+                                                "estUgx":  2000,
+                                                "prep":  "warmed"
+                                            },
+                                            {
+                                                "id":  "beef-mince",
+                                                "name":  "Lean beef mince",
+                                                "amount":  300,
+                                                "unit":  "g",
+                                                "aisle":  "protein",
+                                                "estUgx":  7500,
+                                                "prep":  "browned dry"
+                                            },
+                                            {
+                                                "id":  "tomatoes",
+                                                "name":  "Ripe tomatoes, onion \u0026 bell pepper",
+                                                "amount":  2,
+                                                "unit":  "pcs",
+                                                "aisle":  "produce",
+                                                "estUgx":  1500,
+                                                "prep":  "finely diced"
+                                            },
+                                            {
+                                                "id":  "garlic-ginger",
+                                                "name":  "Garlic, fresh ginger \u0026 cumin pinch",
+                                                "amount":  1,
+                                                "unit":  "tbsp",
+                                                "aisle":  "pantry",
+                                                "estUgx":  600,
+                                                "prep":  "minced"
+                                            },
+                                            {
+                                                "id":  "avocado",
+                                                "name":  "Ripe avocado \u0026 shredded cabbage",
+                                                "amount":  0.5,
+                                                "unit":  "pc",
+                                                "aisle":  "produce",
+                                                "estUgx":  1000,
+                                                "prep":  "fresh crunch"
+                                            }
+                                        ],
+                        "steps":  [
+                                      {
+                                          "text":  "Brown lean beef mince in a dry hot pan for 5 minutes with salt, garlic, ginger, and cumin, draining off any excess fat.",
+                                          "timerMin":  5
+                                      },
+                                      {
+                                          "text":  "Add onion, bell pepper, and tomatoes; simmer 6 minutes until rich and saucy.",
+                                          "timerMin":  6
+                                      },
+                                      {
+                                          "text":  "Serve beside warm chapati (or roll inside like a healthy wrap) with shredded cabbage, coriander, and sliced avocado."
+                                      }
+                                  ],
+                        "ugandaTip":  "Adding a spoonful of plain yogurt with lemon on the mince wrap tastes incredible and keeps it light."
+                    },
+                    {
+                        "id":  "baked-crispy-veggie-beef-samosas",
+                        "title":  "Baked Crispy Lean Beef \u0026 Pea Samosas",
+                        "subtitle":  "Golden oven-baked or air-fried Ugandan samosas filled with spiced lean mince and peas — zero deep-frying",
+                        "cuisine":  "Ugandan",
+                        "category":  "breakfast",
+                        "mealSlots":  [
+                                          "breakfast",
+                                          "juice"
+                                      ],
+                        "image":  "./images/baked-crispy-veggie-beef-samosas.jpg",
+                        "prepMinutes":  18,
+                        "cookMinutes":  20,
+                        "totalMinutes":  38,
+                        "servings":  4,
+                        "tags":  [
+                                     "High-Protein",
+                                     "Low-Sugar"
+                                 ],
+                        "healthNote":  "Brushing samosa pockets lightly with oil and baking cuts fat by over 70% compared to deep-fried street samosas.",
+                        "nutrition":  {
+                                          "kcal":  285,
+                                          "protein":  "19g",
+                                          "fiber":  "4g",
+                                          "sugar":  "Low"
+                                      },
+                        "ingredients":  [
+                                            {
+                                                "id":  "samosa-sheets",
+                                                "name":  "Samosa wrapper sheets (or thin dough)",
+                                                "amount":  12,
+                                                "unit":  "sheets",
+                                                "aisle":  "grains",
+                                                "estUgx":  4000,
+                                                "prep":  "ready to fold"
+                                            },
+                                            {
+                                                "id":  "beef-mince",
+                                                "name":  "Lean beef mince",
+                                                "amount":  300,
+                                                "unit":  "g",
+                                                "aisle":  "protein",
+                                                "estUgx":  7500,
+                                                "prep":  "browned dry"
+                                            },
+                                            {
+                                                "id":  "carrots",
+                                                "name":  "Green peas \u0026 finely diced carrots",
+                                                "amount":  1,
+                                                "unit":  "cup",
+                                                "aisle":  "produce",
+                                                "estUgx":  1200,
+                                                "prep":  "cooked tender"
+                                            },
+                                            {
+                                                "id":  "onion-garlic",
+                                                "name":  "Onion, garlic, ginger, cumin \u0026 coriander",
+                                                "amount":  1,
+                                                "unit":  "set",
+                                                "aisle":  "pantry",
+                                                "estUgx":  1000,
+                                                "prep":  "finely chopped"
+                                            },
+                                            {
+                                                "id":  "olive-oil",
+                                                "name":  "Oil for light brushing",
+                                                "amount":  1,
+                                                "unit":  "tbsp",
+                                                "aisle":  "pantry",
+                                                "estUgx":  600,
+                                                "prep":  "measured"
+                                            }
+                                        ],
+                        "steps":  [
+                                      {
+                                          "text":  "Brown lean beef mince dry for 5 minutes with onion, garlic, ginger, cumin, paprika, peas, and carrots until dry and fragrant; cool slightly and fold in fresh coriander.",
+                                          "timerMin":  7
+                                      },
+                                      {
+                                          "text":  "Spoon filling into samosa wrappers, fold into tight triangles, seal edges with a flour-water paste, and brush lightly with oil."
+                                      },
+                                      {
+                                          "text":  "Bake at 200C (or air-fry at 190C) for 16 to 20 minutes, flipping halfway, until golden and crisp.",
+                                          "timerMin":  18
+                                      }
+                                  ],
+                        "ugandaTip":  "Freeze unbaked folded samosas in a box so you can pop 2 into the oven or air-fryer for a hot 15-minute breakfast."
+                    },
+                    {
+                        "id":  "baked-crispy-veggie-spring-rolls",
+                        "title":  "Crispy Baked Veggie \u0026 Chicken Spring Rolls",
+                        "subtitle":  "Light crunchy spring rolls packed with cabbage, carrots, ginger, and shredded chicken",
+                        "cuisine":  "Asian",
+                        "category":  "breakfast",
+                        "mealSlots":  [
+                                          "breakfast",
+                                          "lunch",
+                                          "juice"
+                                      ],
+                        "image":  "./images/baked-crispy-veggie-spring-rolls.jpg",
+                        "prepMinutes":  15,
+                        "cookMinutes":  18,
+                        "totalMinutes":  33,
+                        "servings":  4,
+                        "tags":  [
+                                     "High-Protein",
+                                     "Light \u0026 Lean",
+                                     "No Red Meat",
+                                     "Low-Sugar"
+                                 ],
+                        "healthNote":  "Stuffed with high-fiber crunchy veggies and lean chicken, then baked crisp with just a light brush of oil.",
+                        "nutrition":  {
+                                          "kcal":  240,
+                                          "protein":  "16g",
+                                          "fiber":  "4g",
+                                          "sugar":  "Low"
+                                      },
+                        "ingredients":  [
+                                            {
+                                                "id":  "spring-roll-wrappers",
+                                                "name":  "Spring roll wrapper sheets",
+                                                "amount":  12,
+                                                "unit":  "sheets",
+                                                "aisle":  "grains",
+                                                "estUgx":  4500,
+                                                "prep":  "thawed \u0026 covered with damp cloth"
+                                            },
+                                            {
+                                                "id":  "chicken-breast",
+                                                "name":  "Finely shredded cooked chicken (or skip for vegan)",
+                                                "amount":  200,
+                                                "unit":  "g",
+                                                "aisle":  "protein",
+                                                "estUgx":  5000,
+                                                "prep":  "shredded fine"
+                                            },
+                                            {
+                                                "id":  "cabbage",
+                                                "name":  "Cabbage, carrots \u0026 bell pepper",
+                                                "amount":  2.5,
+                                                "unit":  "cups",
+                                                "aisle":  "greens",
+                                                "estUgx":  2000,
+                                                "prep":  "thin matchsticks"
+                                            },
+                                            {
+                                                "id":  "ginger-soy",
+                                                "name":  "Grated ginger, garlic \u0026 light soy sauce",
+                                                "amount":  1.5,
+                                                "unit":  "tbsp",
+                                                "aisle":  "pantry",
+                                                "estUgx":  800,
+                                                "prep":  "seasoning"
+                                            },
+                                            {
+                                                "id":  "olive-oil",
+                                                "name":  "Oil for light brushing",
+                                                "amount":  1,
+                                                "unit":  "tbsp",
+                                                "aisle":  "pantry",
+                                                "estUgx":  600,
+                                                "prep":  "measured"
+                                            }
+                                        ],
+                        "steps":  [
+                                      {
+                                          "text":  "Flash-saute shredded cabbage, carrots, bell pepper, ginger, garlic, chicken, and soy sauce for 3 minutes until just wilted and dry; cool 5 minutes.",
+                                          "timerMin":  3
+                                      },
+                                      {
+                                          "text":  "Roll filling tightly into spring roll wrappers, seal with flour-water paste, and brush lightly with oil."
+                                      },
+                                      {
+                                          "text":  "Bake at 200C (or air-fry at 190C) for 15 to 18 minutes, turning once, until golden and crisp. Serve with Asian Ginger-Lime dressing.",
+                                          "timerMin":  16
+                                      }
+                                  ],
+                        "ugandaTip":  "Pair 2 baked spring rolls with a glass of hibiscus sobolo or green dodo juice for a light, energizing breakfast."
                     }
                 ]
 };
