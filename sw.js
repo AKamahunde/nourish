@@ -1,4 +1,4 @@
-const CACHE_NAME = 'nourishtable-v18';
+const CACHE_NAME = 'nourishtable-v19';
 
 const APP_ASSETS = [
   './',
