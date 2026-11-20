@@ -1,4 +1,4 @@
-const CACHE_NAME = 'nourishtable-v12';
+const CACHE_NAME = 'nourishtable-v13';
 
 const APP_ASSETS = [
   './',
@@ -10,8 +10,10 @@ const APP_ASSETS = [
   './recipes-intl.js',
   './recipes-expanded.js',
   './recipes-pantry.js',
+  './recipes-cassava.js',
   './recipes-veggies.js',
   './recipes-comfort.js',
+  './recipes-dairy.js',
   './db.js',
   './icons.js',
   './app.js',
@@ -25,6 +27,9 @@ const APP_ASSETS = [
   './images/veggie-herb-omelette.jpg',
   './images/bread-and-eggs-plate.jpg',
   './images/bread-peanut-butter-banana.jpg',
+  './images/boiled-cassava-eggs-breakfast.jpg',
+  './images/baked-herb-cassava-wedges.jpg',
+  './images/cassava-beans-katogo.jpg',
   './images/mediterranean-shakshuka-greens.jpg',
   './images/avocado-poached-egg-toast.jpg',
   './images/green-power-smoothie-bowl.jpg',
@@ -80,7 +85,11 @@ const APP_ASSETS = [
   './images/ugandan-irish-potato-herb-hash.jpg',
   './images/mediterranean-chicken-pasta-salad.jpg',
   './images/creamy-yogurt-irish-potato-salad.jpg',
-  './images/slow-baked-mince-irish-potato-casserole.jpg'
+  './images/slow-baked-mince-irish-potato-casserole.jpg',
+  './images/turmeric-ginger-golden-milk.jpg',
+  './images/soya-milk-chia-banana-shake.jpg',
+  './images/milk-soaked-oats-chia-berry-jar.jpg',
+  './images/creamy-yogurt-herb-tilapia-bowl.jpg'
 ];
 
 self.addEventListener('install', (event) => {

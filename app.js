@@ -1,5 +1,5 @@
 (() => {
-  const APP_VERSION = 12;
+  const APP_VERSION = 13;
   const MEAL_SLOTS = [
     { id: 'breakfast', label: 'Breakfast' },
     { id: 'lunch', label: 'Lunch' },
@@ -19,8 +19,10 @@
     { key: 'black beans', label: 'Black Beans', aliases: ['black-beans', 'black beans'] },
     { key: 'beans', label: 'Red Beans', aliases: ['beans', 'cooked-beans', 'white-beans', 'black-beans'] },
     { key: 'yogurt', label: 'Plain Yogurt', aliases: ['yogurt'] },
+    { key: 'milk', label: "Cow's / Soya Milk", aliases: ['milk', 'soya', 'cow'] },
     { key: 'chia', label: 'Chia Seeds', aliases: ['chia', 'chia-seeds'] },
     { key: 'matooke', label: 'Matooke', aliases: ['matooke'] },
+    { key: 'cassava', label: 'Cassava', aliases: ['cassava', 'muwogo'] },
     { key: 'irish', label: 'Irish Potatoes', aliases: ['irish-potatoes', 'irish'] },
     { key: 'sweet potato', label: 'Sweet Potato', aliases: ['sweet-potato', 'sweet potato'] },
     { key: 'greens', label: 'Dodo / Sukuma', aliases: ['dodo', 'sukuma', 'nakati', 'lettuce'] },
