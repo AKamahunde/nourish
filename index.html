@@ -38,14 +38,38 @@
     <main class="main-content">
       <!-- DISCOVER VIEW -->
       <section id="view-discover" class="view active" aria-label="Discover recipes">
-        <div class="search-wrap">
-          <span class="search-icon" id="searchIconSlot"></span>
-          <input id="searchInput" class="search-input" type="search" placeholder="Search tilapia, pasta, stir-fry, matooke, juice..." autocomplete="off" />
-          <button id="clearSearchBtn" class="clear-btn hidden" type="button" aria-label="Clear search"></button>
+        <div class="mode-switch" role="tablist" aria-label="Discover mode">
+          <button id="modeBrowseBtn" class="mode-pill active" type="button" data-discover-mode="browse">Browse Cookbook</button>
+          <button id="modeKitchenBtn" class="mode-pill" type="button" data-discover-mode="kitchen">
+            In My Kitchen <span id="pantryCountBadge" class="inline-count hidden">0</span>
+          </button>
         </div>
 
-        <div id="categoryTabs" class="chip-row" role="tablist" aria-label="Recipe categories"></div>
-        <div id="goalTabs" class="chip-row chip-row-secondary" aria-label="Health focus filters"></div>
+        <div id="browseControls">
+          <div class="search-wrap">
+            <span class="search-icon" id="searchIconSlot"></span>
+            <input id="searchInput" class="search-input" type="search" placeholder="Search tilapia, pasta, breakfast, stir-fry, juice..." autocomplete="off" />
+            <button id="clearSearchBtn" class="clear-btn hidden" type="button" aria-label="Clear search"></button>
+          </div>
+
+          <div id="categoryTabs" class="chip-row" role="tablist" aria-label="Recipe categories"></div>
+          <div id="goalTabs" class="chip-row chip-row-secondary" aria-label="Health focus filters"></div>
+        </div>
+
+        <article id="kitchenPanel" class="card kitchen-panel hidden">
+          <div class="card-head">
+            <div>
+              <h2 class="card-title">What's in your kitchen right now?</h2>
+              <p class="card-sub">Tap what you have or type ingredients to see what you can cook immediately.</p>
+            </div>
+            <button id="clearPantryBtn" class="text-danger-btn" type="button">Clear</button>
+          </div>
+          <form id="pantryAddForm" class="quick-add-form">
+            <input id="pantryInput" class="text-input" type="text" placeholder="Add ingredient (e.g. avocado, eggs, tilapia)" />
+            <button class="secondary-btn" type="submit">Add</button>
+          </form>
+          <div id="pantryStaplesGrid" class="pantry-chips"></div>
+        </article>
 
         <article id="spotlightCard" class="spotlight-card"></article>
 
@@ -57,18 +81,34 @@
         <div id="recipeGrid" class="recipe-grid"></div>
       </section>
 
-      <!-- SAVED & WEEKLY PLAN VIEW -->
-      <section id="view-plan" class="view" aria-label="Saved recipes and weekly menu">
+      <!-- SAVED & MEAL CALENDAR VIEW -->
+      <section id="view-plan" class="view" aria-label="Meal calendar and saved recipes">
         <article class="card">
-          <div class="card-head">
+          <div class="cal-header">
             <div>
-              <h2 class="card-title">This Week's Menu</h2>
-              <p class="card-sub">Tap a day to pick a healthy dish or juice, then build your market list in one tap.</p>
+              <h2 class="card-title">Meal Calendar</h2>
+              <p id="calRangeLabel" class="card-sub"></p>
+            </div>
+            <div class="cal-nav-btns">
+              <button id="calPrevBtn" class="cal-icon-btn" type="button" aria-label="Previous week">&lsaquo;</button>
+              <button id="calTodayBtn" class="cal-text-btn" type="button">Today</button>
+              <button id="calNextBtn" class="cal-icon-btn" type="button" aria-label="Next week">&rsaquo;</button>
+              <button id="calMonthToggleBtn" class="cal-text-btn" type="button">Month</button>
             </div>
           </div>
-          <div id="weekPlanList" class="week-list"></div>
+
+          <div id="monthCalendarBox" class="month-cal hidden"></div>
+          <div id="weekStrip" class="week-strip"></div>
+
+          <div class="selected-day-bar">
+            <h3 id="selectedDayTitle" class="selected-day-title"></h3>
+            <button id="addDayToGroceriesBtn" class="ghost-btn compact-btn" type="button">Day &rarr; Market</button>
+          </div>
+
+          <div id="daySlotsContainer" class="meal-slots-stack"></div>
+
           <div class="card-actions-row">
-            <button id="buildGroceriesFromWeekBtn" class="primary-btn" type="button">Build Grocery List from Week</button>
+            <button id="buildGroceriesFromWeekBtn" class="primary-btn" type="button">Build Week's Market List</button>
             <button id="clearWeekPlanBtn" class="ghost-btn" type="button">Clear Week</button>
           </div>
         </article>
@@ -188,7 +228,7 @@
       </button>
       <button class="nav-btn" data-view="plan" type="button">
         <span class="nav-icon" data-icon="plan"></span>
-        <span>Menu</span>
+        <span>Planner</span>
       </button>
       <button class="nav-btn" data-view="groceries" type="button">
         <span class="nav-icon" data-icon="groceries"></span>
@@ -274,6 +314,7 @@
   <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
 
   <script src="./recipes.js"></script>
+  <script src="./recipes-breakfast.js"></script>
   <script src="./recipes-more.js"></script>
   <script src="./recipes-intl.js"></script>
   <script src="./db.js"></script>

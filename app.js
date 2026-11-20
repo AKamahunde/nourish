@@ -1,6 +1,35 @@
 (() => {
-  const APP_VERSION = 2;
-  const DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+  const APP_VERSION = 3;
+  const MEAL_SLOTS = [
+    { id: 'breakfast', label: 'Breakfast' },
+    { id: 'lunch', label: 'Lunch' },
+    { id: 'dinner', label: 'Dinner' },
+    { id: 'juice', label: 'Juice / Snack' }
+  ];
+  const PANTRY_STAPLES = [
+    { key: 'tomato', label: 'Tomatoes', aliases: ['tomato', 'tomatoes'] },
+    { key: 'onion', label: 'Onion', aliases: ['onion', 'red-onion', 'onion-garlic'] },
+    { key: 'garlic', label: 'Garlic', aliases: ['garlic', 'garlic-ginger', 'garlic-cumin', 'onion-garlic', 'ginger-garlic'] },
+    { key: 'ginger', label: 'Ginger', aliases: ['ginger', 'garlic-ginger', 'ginger-garlic'] },
+    { key: 'avocado', label: 'Avocado', aliases: ['avocado', 'feta-or-avocado'] },
+    { key: 'eggs', label: 'Eggs', aliases: ['eggs', 'egg'] },
+    { key: 'chicken', label: 'Chicken', aliases: ['chicken', 'chicken-breast', 'chicken-pieces'] },
+    { key: 'tilapia', label: 'Tilapia', aliases: ['tilapia', 'tilapia-fillet', 'whole-tilapia'] },
+    { key: 'beans', label: 'Beans', aliases: ['beans', 'cooked-beans', 'white-beans'] },
+    { key: 'matooke', label: 'Matooke', aliases: ['matooke'] },
+    { key: 'sweet potato', label: 'Sweet Potato', aliases: ['sweet-potato', 'sweet potato'] },
+    { key: 'greens', label: 'Dodo / Sukuma', aliases: ['dodo', 'sukuma', 'nakati', 'lettuce'] },
+    { key: 'cabbage', label: 'Cabbage', aliases: ['cabbage', 'lettuce-cabbage'] },
+    { key: 'cucumber', label: 'Cucumber', aliases: ['cucumber'] },
+    { key: 'carrots', label: 'Carrots', aliases: ['carrots', 'carrot'] },
+    { key: 'pineapple', label: 'Pineapple', aliases: ['pineapple'] },
+    { key: 'mango', label: 'Mango', aliases: ['mango'] },
+    { key: 'groundnut', label: 'G-Nut Paste', aliases: ['gnut-paste', 'groundnut'] },
+    { key: 'citrus', label: 'Lime / Lemon', aliases: ['lime', 'lemon'] },
+    { key: 'chickpeas', label: 'Chickpeas', aliases: ['chickpeas'] },
+    { key: 'spaghetti', label: 'Spaghetti', aliases: ['spaghetti', 'pasta'] },
+    { key: 'oats', label: 'Oats', aliases: ['rolled-oats', 'oats'] }
+  ];
   const PALETTES = [
     { id: 'sage', label: 'Botanical Sage', dots: ['#1F4E3D', '#D98A1E'], themeColor: '#FBF9F5' },
     { id: 'terracotta', label: 'Terracotta Clay', dots: ['#9A3F26', '#2A5C48'], themeColor: '#FCF8F5' },
@@ -11,11 +40,37 @@
   const data = window.NourishData;
   const icons = window.NourishIcons;
 
+  function toYMD(d) {
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${y}-${m}-${day}`;
+  }
+
+  function parseYMD(ymd) {
+    const [y, m, d] = ymd.split('-').map(Number);
+    return new Date(y, (m || 1) - 1, d || 1);
+  }
+
+  function getMondayOfWeek(dateObj) {
+    const d = new Date(dateObj.getFullYear(), dateObj.getMonth(), dateObj.getDate());
+    const dow = (d.getDay() + 6) % 7;
+    d.setDate(d.getDate() - dow);
+    return d;
+  }
+
+  const todayStr = toYMD(new Date());
+
   const ui = {
     view: 'discover',
+    discoverMode: 'browse',
     category: 'all',
     goal: '',
     search: '',
+    selectedDate: todayStr,
+    weekMonday: toYMD(getMondayOfWeek(new Date())),
+    showMonthCal: false,
+    pickerSlot: 'lunch',
     detailRecipeId: null,
     detailServings: 2,
     wakeLock: null,
@@ -25,7 +80,6 @@
   };
 
   let appState = window.NourishDB.cloneDefaults();
-
   const $ = (id) => document.getElementById(id);
 
   function escapeHtml(str) {
@@ -38,8 +92,7 @@
   }
 
   function formatUgx(val) {
-    const n = Math.round(Number(val) || 0);
-    return `UGX ${n.toLocaleString('en-US')}`;
+    return `UGX ${Math.round(Number(val) || 0).toLocaleString('en-US')}`;
   }
 
   function formatAmount(val) {
@@ -103,12 +156,51 @@
     });
     const titles = {
       discover: 'Cookbook',
-      plan: 'Saved & Menu',
+      plan: 'Meal Planner',
       groceries: 'Market List',
       guide: 'Health Guide'
     };
     $('viewTitle').textContent = titles[viewName] || 'Cookbook';
     window.scrollTo({ top: 0, behavior: 'instant' });
+  }
+
+  // Pantry matching logic
+  function ingredientMatchesPantry(ing, pantryTokens) {
+    if (!pantryTokens.length) return false;
+    const ingName = ing.name.toLowerCase();
+    const ingId = ing.id.toLowerCase();
+    for (const token of pantryTokens) {
+      const t = token.toLowerCase().trim();
+      if (!t) continue;
+      const staple = PANTRY_STAPLES.find((s) => s.key === t || s.label.toLowerCase() === t);
+      if (staple) {
+        if (staple.aliases.some((a) => ingId.includes(a) || ingName.includes(a.replace('-', ' ')))) {
+          return true;
+        }
+      }
+      if (ingName.includes(t) || ingId.includes(t.replace(/\s+/g, '-'))) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  function getPantryMatchInfo(recipe) {
+    const tokens = appState.pantryHave || [];
+    const matched = [];
+    const missing = [];
+    for (const ing of recipe.ingredients) {
+      if (ingredientMatchesPantry(ing, tokens)) matched.push(ing);
+      else missing.push(ing);
+    }
+    const total = recipe.ingredients.length || 1;
+    return {
+      matched,
+      missing,
+      matchedCount: matched.length,
+      missingCount: missing.length,
+      ratio: matched.length / total
+    };
   }
 
   function getFilteredRecipes() {
@@ -129,8 +221,24 @@
     });
   }
 
-  function renderRecipeCard(r) {
+  function renderRecipeCard(r, matchInfo = null) {
     const saved = isFavorite(r.id);
+    let matchHtml = '';
+    if (matchInfo && (appState.pantryHave || []).length > 0) {
+      if (matchInfo.missingCount === 0) {
+        matchHtml = `<div class="match-bar ready">All ${matchInfo.matchedCount} ingredients ready</div>`;
+      } else {
+        const missingNames = matchInfo.missing.slice(0, 2).map((m) => m.name.split('(')[0].trim()).join(', ');
+        const extra = matchInfo.missingCount > 2 ? ` +${matchInfo.missingCount - 2}` : '';
+        matchHtml = `
+          <div class="match-bar partial">
+            <span>Have ${matchInfo.matchedCount}/${r.ingredients.length} · Need ${escapeHtml(missingNames)}${extra}</span>
+            <button class="match-missing-btn" type="button" data-add-missing="${escapeHtml(r.id)}">+ Add Missing</button>
+          </div>
+        `;
+      }
+    }
+
     return `
       <article class="recipe-card" data-open-recipe="${escapeHtml(r.id)}">
         <div class="recipe-thumb">
@@ -144,6 +252,7 @@
           <span class="recipe-cat-label">${escapeHtml(r.cuisine ? `${r.cuisine} · ${getCategoryLabel(r.category)}` : getCategoryLabel(r.category))}</span>
           <h3 class="recipe-card-title">${escapeHtml(r.title)}</h3>
           <p class="recipe-card-sub">${escapeHtml(r.subtitle)}</p>
+          ${matchHtml}
           <div class="card-tags">
             ${r.tags.slice(0, 2).map((t) => `<span class="mini-tag">${escapeHtml(t)}</span>`).join('')}
           </div>
@@ -153,6 +262,56 @@
   }
 
   function renderDiscover() {
+    const isKitchen = ui.discoverMode === 'kitchen';
+    $('modeBrowseBtn').classList.toggle('active', !isKitchen);
+    $('modeKitchenBtn').classList.toggle('active', isKitchen);
+    $('browseControls').classList.toggle('hidden', isKitchen);
+    $('kitchenPanel').classList.toggle('hidden', !isKitchen);
+
+    const pantryCount = (appState.pantryHave || []).length;
+    $('pantryCountBadge').textContent = String(pantryCount);
+    $('pantryCountBadge').classList.toggle('hidden', pantryCount === 0);
+
+    if (isKitchen) {
+      $('spotlightCard').classList.add('hidden');
+      const customTokens = (appState.pantryHave || []).filter(
+        (t) => !PANTRY_STAPLES.some((s) => s.key === t)
+      );
+      const stapleChips = PANTRY_STAPLES.map((s) => {
+        const active = (appState.pantryHave || []).includes(s.key);
+        return `<button class="pantry-chip ${active ? 'active' : ''}" type="button" data-toggle-pantry="${escapeHtml(s.key)}">${escapeHtml(s.label)}</button>`;
+      }).join('');
+      const customChips = customTokens.map((t) =>
+        `<button class="pantry-chip active" type="button" data-toggle-pantry="${escapeHtml(t)}">${escapeHtml(t)} &times;</button>`
+      ).join('');
+      $('pantryStaplesGrid').innerHTML = stapleChips + customChips;
+
+      if (pantryCount === 0) {
+        $('recipeGridHeading').textContent = 'Select what you have';
+        $('recipeCountLabel').textContent = '0 selected';
+        $('recipeGrid').innerHTML = `<div class="empty-state">Tap ingredients above (like Tomatoes, Eggs, Tilapia, Matooke) to see dishes you can make right now.</div>`;
+        return;
+      }
+
+      const scored = data.RECIPES
+        .map((r) => ({ recipe: r, match: getPantryMatchInfo(r) }))
+        .filter((x) => x.match.matchedCount > 0)
+        .sort((a, b) => {
+          if (a.match.missingCount !== b.match.missingCount) {
+            return a.match.missingCount - b.match.missingCount;
+          }
+          return b.match.ratio - a.match.ratio;
+        });
+
+      const readyCount = scored.filter((x) => x.match.missingCount === 0).length;
+      $('recipeGridHeading').textContent = readyCount ? `Ready to Cook (${readyCount})` : 'Best Matches';
+      $('recipeCountLabel').textContent = `${scored.length} matches`;
+      $('recipeGrid').innerHTML = scored.length
+        ? scored.map((x) => renderRecipeCard(x.recipe, x.match)).join('')
+        : `<div class="empty-state">No exact matches for those items yet — try adding one staple like Onion, Tomatoes, or Eggs.</div>`;
+      return;
+    }
+
     $('categoryTabs').innerHTML = data.CATEGORIES.map((cat) => `
       <button class="chip-btn ${ui.category === cat.id ? 'active' : ''}" type="button" data-cat="${escapeHtml(cat.id)}">
         ${escapeHtml(cat.label)}
@@ -190,34 +349,128 @@
     const list = getFilteredRecipes();
     $('recipeGridHeading').textContent = ui.category === 'all' ? 'All Recipes' : getCategoryLabel(ui.category);
     $('recipeCountLabel').textContent = `${list.length} ${list.length === 1 ? 'dish' : 'dishes'}`;
+    $('recipeGrid').innerHTML = list.length
+      ? list.map((r) => renderRecipeCard(r)).join('')
+      : `<div class="empty-state">No dishes match that filter yet. Try clearing the search or health tag.</div>`;
+  }
 
-    if (!list.length) {
-      $('recipeGrid').innerHTML = `<div class="empty-state">No dishes match that filter yet. Try clearing the search or health tag.</div>`;
-    } else {
-      $('recipeGrid').innerHTML = list.map(renderRecipeCard).join('');
-    }
+  // Meal Calendar helpers
+  function getDayRecord(ymd) {
+    const rec = appState.calendarPlan[ymd];
+    return {
+      breakfast: Array.isArray(rec?.breakfast) ? rec.breakfast : [],
+      lunch: Array.isArray(rec?.lunch) ? rec.lunch : [],
+      dinner: Array.isArray(rec?.dinner) ? rec.dinner : [],
+      juice: Array.isArray(rec?.juice) ? rec.juice : []
+    };
+  }
+
+  function dayHasMeals(ymd) {
+    const r = getDayRecord(ymd);
+    return r.breakfast.length + r.lunch.length + r.dinner.length + r.juice.length > 0;
+  }
+
+  function getWeekDates(mondayYmd) {
+    const start = parseYMD(mondayYmd);
+    return Array.from({ length: 7 }, (_, i) => {
+      const d = new Date(start.getFullYear(), start.getMonth(), start.getDate() + i);
+      return { date: d, ymd: toYMD(d) };
+    });
+  }
+
+  function renderMonthCalendar() {
+    const box = $('monthCalendarBox');
+    box.classList.toggle('hidden', !ui.showMonthCal);
+    $('calMonthToggleBtn').classList.toggle('active', ui.showMonthCal);
+    if (!ui.showMonthCal) return;
+
+    const ref = parseYMD(ui.selectedDate);
+    const y = ref.getFullYear();
+    const m = ref.getMonth();
+    const monthLabel = ref.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+    const first = new Date(y, m, 1);
+    const startOffset = (first.getDay() + 6) % 7;
+    const gridStart = new Date(y, m, 1 - startOffset);
+
+    const cells = Array.from({ length: 42 }, (_, idx) => {
+      const d = new Date(gridStart.getFullYear(), gridStart.getMonth(), gridStart.getDate() + idx);
+      const ymd = toYMD(d);
+      const isOther = d.getMonth() !== m;
+      const isSelected = ymd === ui.selectedDate;
+      const hasDot = dayHasMeals(ymd);
+      return `
+        <button class="month-cell ${isOther ? 'other-month' : ''} ${isSelected ? 'active' : ''}" type="button" data-select-date="${ymd}">
+          <span>${d.getDate()}</span>
+          ${hasDot ? '<span class="day-dot"></span>' : ''}
+        </button>
+      `;
+    }).join('');
+
+    box.innerHTML = `
+      <div class="month-cal-title">${escapeHtml(monthLabel)}</div>
+      <div class="month-cal-grid">
+        <span class="month-dow">M</span><span class="month-dow">T</span><span class="month-dow">W</span>
+        <span class="month-dow">T</span><span class="month-dow">F</span><span class="month-dow">S</span><span class="month-dow">S</span>
+        ${cells}
+      </div>
+    `;
   }
 
   function renderPlan() {
-    $('weekPlanList').innerHTML = DAYS.map((day) => {
-      const ids = appState.mealPlan[day] || [];
-      const chips = ids.map((id, idx) => {
-        const r = getRecipeById(id);
+    const week = getWeekDates(ui.weekMonday);
+    const firstLbl = week[0].date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    const lastLbl = week[6].date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    $('calRangeLabel').textContent = `${firstLbl} – ${lastLbl}`;
+
+    renderMonthCalendar();
+
+    $('weekStrip').innerHTML = week.map(({ date, ymd }) => {
+      const dow = date.toLocaleDateString('en-US', { weekday: 'short' });
+      const active = ymd === ui.selectedDate;
+      const isToday = ymd === todayStr;
+      const has = dayHasMeals(ymd);
+      return `
+        <button class="week-day-pill ${active ? 'active' : ''} ${isToday ? 'today' : ''}" type="button" data-select-date="${ymd}">
+          <small>${dow}</small>
+          <strong>${date.getDate()}</strong>
+          ${has ? '<span class="day-dot"></span>' : ''}
+        </button>
+      `;
+    }).join('');
+
+    const selDateObj = parseYMD(ui.selectedDate);
+    const selHeading = selDateObj.toLocaleDateString('en-US', { weekday: 'long', day: 'numeric', month: 'short' });
+    $('selectedDayTitle').textContent = ui.selectedDate === todayStr ? `${selHeading} · Today` : selHeading;
+
+    const dayRec = getDayRecord(ui.selectedDate);
+    $('daySlotsContainer').innerHTML = MEAL_SLOTS.map((slot) => {
+      const ids = dayRec[slot.id] || [];
+      const itemsHtml = ids.map((rId, idx) => {
+        const r = getRecipeById(rId);
         if (!r) return '';
         return `
-          <span class="day-meal-chip">
-            <span data-open-recipe="${escapeHtml(r.id)}" style="cursor:pointer">${escapeHtml(r.title)}</span>
-            <button class="day-meal-remove" type="button" data-remove-day="${day}" data-remove-idx="${idx}" aria-label="Remove">&times;</button>
-          </span>
+          <div class="slot-meal-row">
+            <img src="${escapeHtml(r.image)}" alt="" />
+            <div class="slot-meal-info" data-open-recipe="${escapeHtml(r.id)}">
+              <strong>${escapeHtml(r.title)}</strong>
+              <span>${r.totalMinutes} min · ${r.nutrition.kcal} kcal</span>
+            </div>
+            <button class="day-meal-remove" type="button" data-remove-slot="${slot.id}" data-remove-idx="${idx}" aria-label="Remove">&times;</button>
+          </div>
         `;
       }).join('');
+
       return `
-        <div class="day-row">
-          <span class="day-name">${day}</span>
-          <div class="day-meals">${chips || '<span class="muted-label">Open day</span>'}</div>
-          <button class="day-add-btn" type="button" data-pick-for-day="${day}" aria-label="Add dish to ${day}">
-            ${icons.get('plus')}
-          </button>
+        <div class="meal-slot-card">
+          <div class="meal-slot-head">
+            <span class="meal-slot-label">${escapeHtml(slot.label)}</span>
+            <button class="day-add-btn" type="button" data-pick-for-slot="${slot.id}" aria-label="Add ${escapeHtml(slot.label)}">
+              ${icons.get('plus')}
+            </button>
+          </div>
+          <div class="meal-slot-items">
+            ${itemsHtml || '<span class="muted-label">Nothing planned yet</span>'}
+          </div>
         </div>
       `;
     }).join('');
@@ -225,8 +478,8 @@
     const favRecipes = appState.favorites.map(getRecipeById).filter(Boolean);
     $('favCountLabel').textContent = `${favRecipes.length} saved`;
     $('favoritesGrid').innerHTML = favRecipes.length
-      ? favRecipes.map(renderRecipeCard).join('')
-      : `<div class="empty-state">Tap the heart on any salad, meal, or juice to keep your go-to dishes right here.</div>`;
+      ? favRecipes.map((r) => renderRecipeCard(r)).join('')
+      : `<div class="empty-state">Tap the heart on any salad, meal, breakfast, or juice to keep your go-to dishes right here.</div>`;
   }
 
   function buildAggregatedGroceries() {
@@ -278,7 +531,7 @@
         aisle: c.aisle || 'produce',
         estUgx: Math.max(0, Math.round(Number(c.estUgx) || 0)),
         checked: Boolean(c.checked),
-        recipes: ['Added manually'],
+        recipes: c.source ? [c.source] : ['Added manually'],
         isCustom: true
       });
     }
@@ -296,7 +549,7 @@
     $('groceryCheckedRatio').textContent = `${checkedCount}/${totalCount}`;
     $('grocerySummaryMeta').textContent = totalCount
       ? `${appState.groceryEntries.length} recipe(s) + ${appState.customGroceries.length} extra · Tap any UGX pill to adjust market price`
-      : 'Add recipes or build from your weekly menu to generate a grouped market list.';
+      : 'Add recipes or build from your Meal Calendar to generate a grouped market list.';
 
     const badge = $('navGroceryBadge');
     const remaining = totalCount - checkedCount;
@@ -319,7 +572,7 @@
     if (!items.length) {
       $('groceryAislesContainer').innerHTML = `
         <div class="empty-state">
-          Open any recipe and tap <strong>Add to Groceries</strong>, or build from <strong>Menu</strong>.
+          Open any recipe and tap <strong>Add to Groceries</strong>, or build from <strong>Planner</strong>.
         </div>
       `;
       return;
@@ -471,7 +724,6 @@
     }
   }
 
-  // Wake lock for kitchen cooking
   async function toggleWakeLock() {
     if (!('wakeLock' in navigator)) {
       showToast('Keep Awake is handled by your iPhone screen settings');
@@ -493,7 +745,6 @@
     }
   }
 
-  // Cooking timer with subtle WebAudio chime
   function playTimerChime() {
     try {
       const ctx = new (window.AudioContext || window.webkitAudioContext)();
@@ -545,26 +796,62 @@
     $('floatingTimerBar').classList.add('hidden');
   }
 
-  // Day Picker Modal
-  function openDayPickerForRecipe(recipeId) {
+  // Schedule Pickers (Calendar Date + Meal Slot)
+  function openSlotPickerForRecipe(recipeId) {
     const r = getRecipeById(recipeId);
     if (!r) return;
-    $('dayPickerTitle').textContent = `Schedule "${r.title}"`;
-    $('dayPickerBody').innerHTML = DAYS.map((day) => `
-      <button class="day-pick-btn" type="button" data-assign-day="${day}" data-assign-recipe="${escapeHtml(recipeId)}">
-        <span>${day}</span>
-        <span class="muted-label">${(appState.mealPlan[day] || []).length} planned</span>
-      </button>
-    `).join('');
+    if (r.category === 'breakfast') ui.pickerSlot = 'breakfast';
+    else if (r.category === 'juices') ui.pickerSlot = 'juice';
+    else ui.pickerSlot = 'dinner';
+
+    const renderPicker = () => {
+      const week = getWeekDates(ui.weekMonday);
+      const slotButtons = MEAL_SLOTS.map((s) => `
+        <button class="slot-pick-btn ${ui.pickerSlot === s.id ? 'active' : ''}" type="button" data-choose-picker-slot="${s.id}">
+          ${escapeHtml(s.label)}
+        </button>
+      `).join('');
+
+      const dayButtons = week.map(({ date, ymd }) => {
+        const lbl = date.toLocaleDateString('en-US', { weekday: 'short', day: 'numeric', month: 'short' });
+        const count = getDayRecord(ymd)[ui.pickerSlot].length;
+        return `
+          <button class="day-pick-btn" type="button" data-assign-date="${ymd}" data-assign-slot="${ui.pickerSlot}" data-assign-recipe="${escapeHtml(recipeId)}">
+            <span>${escapeHtml(lbl)}${ymd === todayStr ? ' (Today)' : ''}</span>
+            <span class="muted-label">${count} planned</span>
+          </button>
+        `;
+      }).join('');
+
+      $('dayPickerTitle').textContent = `Schedule "${r.title}"`;
+      $('dayPickerBody').innerHTML = `
+        <div class="slot-pick-tabs">${slotButtons}</div>
+        ${dayButtons}
+      `;
+    };
+    openSlotPickerForRecipe._render = renderPicker;
+    renderPicker();
     $('dayPickerModal').classList.remove('hidden');
   }
 
-  function openRecipePickerForDay(day) {
-    $('dayPickerTitle').textContent = `Add dish to ${day}`;
-    $('dayPickerBody').innerHTML = data.RECIPES.map((r) => `
-      <button class="day-pick-btn" type="button" data-assign-day="${day}" data-assign-recipe="${escapeHtml(r.id)}">
+  function openRecipePickerForSlot(slotId) {
+    const slotLabel = MEAL_SLOTS.find((s) => s.id === slotId)?.label || slotId;
+    const selLabel = parseYMD(ui.selectedDate).toLocaleDateString('en-US', { weekday: 'short', day: 'numeric', month: 'short' });
+    $('dayPickerTitle').textContent = `${slotLabel} · ${selLabel}`;
+
+    const sorted = [...data.RECIPES].sort((a, b) => {
+      const score = (rec) => {
+        if (slotId === 'breakfast') return rec.category === 'breakfast' ? 0 : rec.category === 'juices' ? 1 : 2;
+        if (slotId === 'juice') return rec.category === 'juices' ? 0 : rec.category === 'salads' ? 1 : 2;
+        return rec.category === 'juices' ? 2 : 0;
+      };
+      return score(a) - score(b);
+    });
+
+    $('dayPickerBody').innerHTML = sorted.map((r) => `
+      <button class="day-pick-btn" type="button" data-assign-date="${ui.selectedDate}" data-assign-slot="${slotId}" data-assign-recipe="${escapeHtml(r.id)}">
         <span>${escapeHtml(r.title)}</span>
-        <span class="muted-label">${r.totalMinutes}m</span>
+        <span class="muted-label">${escapeHtml(getCategoryLabel(r.category))} · ${r.totalMinutes}m</span>
       </button>
     `).join('');
     $('dayPickerModal').classList.remove('hidden');
@@ -574,7 +861,6 @@
     $('dayPickerModal').classList.add('hidden');
   }
 
-  // PocketLedger Bridge
   function sendGroceriesToPocketLedger() {
     const items = buildAggregatedGroceries();
     if (!items.length) {
@@ -635,7 +921,7 @@
     $('closeDayPickerBtn').innerHTML = icons.get('close');
 
     $('addToGroceryBtn').innerHTML = `${icons.get('groceries')} Add to Groceries`;
-    $('addToPlanBtn').innerHTML = `${icons.get('plan')} Add to Menu`;
+    $('addToPlanBtn').innerHTML = `${icons.get('plan')} Add to Calendar`;
     $('sendToPocketLedgerBtn').innerHTML = `${icons.get('external')} Log in PocketLedger`;
     $('copyGrocerySummaryBtn').innerHTML = `${icons.get('copy')} Copy List`;
 
@@ -664,7 +950,116 @@
       renderDiscover();
     });
 
+    $('pantryAddForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const raw = $('pantryInput').value.trim();
+      if (!raw) return;
+      const parts = raw.split(',').map((s) => s.trim().toLowerCase()).filter(Boolean);
+      const next = new Set(appState.pantryHave || []);
+      for (const part of parts) {
+        const staple = PANTRY_STAPLES.find((s) => s.key === part || s.label.toLowerCase() === part);
+        next.add(staple ? staple.key : part);
+      }
+      appState.pantryHave = Array.from(next);
+      $('pantryInput').value = '';
+      await persist();
+      renderDiscover();
+    });
+
+    $('clearPantryBtn').addEventListener('click', async () => {
+      appState.pantryHave = [];
+      await persist();
+      renderDiscover();
+    });
+
+    $('calPrevBtn').addEventListener('click', () => {
+      const m = parseYMD(ui.weekMonday);
+      m.setDate(m.getDate() - 7);
+      ui.weekMonday = toYMD(m);
+      ui.selectedDate = ui.weekMonday;
+      renderPlan();
+    });
+
+    $('calNextBtn').addEventListener('click', () => {
+      const m = parseYMD(ui.weekMonday);
+      m.setDate(m.getDate() + 7);
+      ui.weekMonday = toYMD(m);
+      ui.selectedDate = ui.weekMonday;
+      renderPlan();
+    });
+
+    $('calTodayBtn').addEventListener('click', () => {
+      ui.selectedDate = todayStr;
+      ui.weekMonday = toYMD(getMondayOfWeek(new Date()));
+      renderPlan();
+    });
+
+    $('calMonthToggleBtn').addEventListener('click', () => {
+      ui.showMonthCal = !ui.showMonthCal;
+      renderPlan();
+    });
+
+    $('addDayToGroceriesBtn').addEventListener('click', async () => {
+      const dayRec = getDayRecord(ui.selectedDate);
+      const allIds = [...dayRec.breakfast, ...dayRec.lunch, ...dayRec.dinner, ...dayRec.juice];
+      if (!allIds.length) {
+        showToast('Add a meal to this day first');
+        return;
+      }
+      for (const rId of allIds) {
+        const r = getRecipeById(rId);
+        if (!r) continue;
+        const existing = appState.groceryEntries.find((e) => e.recipeId === rId);
+        if (existing) existing.servings += r.servings;
+        else appState.groceryEntries.push({ recipeId: rId, servings: r.servings });
+      }
+      await persist();
+      renderGroceries();
+      setView('groceries');
+      showToast('Added day meals to Market List');
+    });
+
     document.addEventListener('click', async (e) => {
+      const modeBtn = e.target.closest('[data-discover-mode]');
+      if (modeBtn) {
+        ui.discoverMode = modeBtn.dataset.discoverMode;
+        renderDiscover();
+        return;
+      }
+
+      const pantryBtn = e.target.closest('[data-toggle-pantry]');
+      if (pantryBtn) {
+        const key = pantryBtn.dataset.togglePantry;
+        const cur = appState.pantryHave || [];
+        appState.pantryHave = cur.includes(key) ? cur.filter((x) => x !== key) : [...cur, key];
+        await persist();
+        renderDiscover();
+        return;
+      }
+
+      const addMissingBtn = e.target.closest('[data-add-missing]');
+      if (addMissingBtn) {
+        e.stopPropagation();
+        const r = getRecipeById(addMissingBtn.dataset.addMissing);
+        if (!r) return;
+        const info = getPantryMatchInfo(r);
+        for (const ing of info.missing) {
+          appState.customGroceries.push({
+            id: `miss_${r.id}_${ing.id}_${Date.now()}_${Math.random().toString(36).slice(2, 5)}`,
+            name: ing.name,
+            qtyText: `${formatAmount(ing.amount)} ${ing.unit}`,
+            aisle: ing.aisle || 'produce',
+            estUgx: ing.estUgx || 0,
+            checked: false,
+            source: `Missing for ${r.title}`
+          });
+        }
+        await persist();
+        renderGroceries();
+        showToast(`Added ${info.missingCount} missing item(s) to Market List`);
+        return;
+      }
+
       const favBtn = e.target.closest('[data-fav-id]');
       if (favBtn) {
         e.stopPropagation();
@@ -692,32 +1087,53 @@
         return;
       }
 
-      const pickDayBtn = e.target.closest('[data-pick-for-day]');
-      if (pickDayBtn) {
-        openRecipePickerForDay(pickDayBtn.dataset.pickForDay);
+      const dateBtn = e.target.closest('[data-select-date]');
+      if (dateBtn) {
+        ui.selectedDate = dateBtn.dataset.selectDate;
+        ui.weekMonday = toYMD(getMondayOfWeek(parseYMD(ui.selectedDate)));
+        renderPlan();
         return;
       }
 
-      const assignBtn = e.target.closest('[data-assign-day]');
+      const slotPickBtn = e.target.closest('[data-pick-for-slot]');
+      if (slotPickBtn) {
+        openRecipePickerForSlot(slotPickBtn.dataset.pickForSlot);
+        return;
+      }
+
+      const choosePickerSlot = e.target.closest('[data-choose-picker-slot]');
+      if (choosePickerSlot) {
+        ui.pickerSlot = choosePickerSlot.dataset.choosePickerSlot;
+        openSlotPickerForRecipe._render?.();
+        return;
+      }
+
+      const assignBtn = e.target.closest('[data-assign-date]');
       if (assignBtn) {
-        const day = assignBtn.dataset.assignDay;
+        const ymd = assignBtn.dataset.assignDate;
+        const slot = assignBtn.dataset.assignSlot;
         const rId = assignBtn.dataset.assignRecipe;
-        const existing = appState.mealPlan[day] || [];
-        if (!existing.includes(rId)) {
-          appState.mealPlan[day] = [...existing, rId];
+        const rec = getDayRecord(ymd);
+        if (!rec[slot].includes(rId)) {
+          rec[slot] = [...rec[slot], rId];
+          appState.calendarPlan[ymd] = rec;
           await persist();
+          ui.selectedDate = ymd;
+          ui.weekMonday = toYMD(getMondayOfWeek(parseYMD(ymd)));
           renderPlan();
         }
         closeDayPicker();
-        showToast(`Added to ${day}`);
+        showToast(`Scheduled for ${MEAL_SLOTS.find((s) => s.id === slot)?.label || slot}`);
         return;
       }
 
-      const remDayBtn = e.target.closest('[data-remove-day]');
-      if (remDayBtn) {
-        const day = remDayBtn.dataset.removeDay;
-        const idx = Number(remDayBtn.dataset.removeIdx);
-        appState.mealPlan[day] = (appState.mealPlan[day] || []).filter((_, i) => i !== idx);
+      const remSlotBtn = e.target.closest('[data-remove-slot]');
+      if (remSlotBtn) {
+        const slot = remSlotBtn.dataset.removeSlot;
+        const idx = Number(remSlotBtn.dataset.removeIdx);
+        const rec = getDayRecord(ui.selectedDate);
+        rec[slot] = rec[slot].filter((_, i) => i !== idx);
+        appState.calendarPlan[ui.selectedDate] = rec;
         await persist();
         renderPlan();
         return;
@@ -803,18 +1219,15 @@
     $('addToGroceryBtn').addEventListener('click', async () => {
       if (!ui.detailRecipeId) return;
       const existing = appState.groceryEntries.find((e) => e.recipeId === ui.detailRecipeId);
-      if (existing) {
-        existing.servings += ui.detailServings;
-      } else {
-        appState.groceryEntries.push({ recipeId: ui.detailRecipeId, servings: ui.detailServings });
-      }
+      if (existing) existing.servings += ui.detailServings;
+      else appState.groceryEntries.push({ recipeId: ui.detailRecipeId, servings: ui.detailServings });
       await persist();
       renderGroceries();
       showToast('Added ingredients to Market List');
     });
 
     $('addToPlanBtn').addEventListener('click', () => {
-      if (ui.detailRecipeId) openDayPickerForRecipe(ui.detailRecipeId);
+      if (ui.detailRecipeId) openSlotPickerForRecipe(ui.detailRecipeId);
     });
 
     $('closeDayPickerBtn').addEventListener('click', closeDayPicker);
@@ -824,15 +1237,17 @@
 
     $('buildGroceriesFromWeekBtn').addEventListener('click', async () => {
       const counts = new Map();
-      for (const day of DAYS) {
-        for (const rId of (appState.mealPlan[day] || [])) {
+      for (const { ymd } of getWeekDates(ui.weekMonday)) {
+        const rec = getDayRecord(ymd);
+        const ids = [...rec.breakfast, ...rec.lunch, ...rec.dinner, ...rec.juice];
+        for (const rId of ids) {
           const r = getRecipeById(rId);
           if (!r) continue;
           counts.set(rId, (counts.get(rId) || 0) + r.servings);
         }
       }
       if (!counts.size) {
-        showToast('Add at least one dish to your week first');
+        showToast('Schedule at least one meal in this week first');
         return;
       }
       appState.groceryEntries = Array.from(counts.entries()).map(([recipeId, servings]) => ({ recipeId, servings }));
@@ -840,14 +1255,16 @@
       await persist();
       renderGroceries();
       setView('groceries');
-      showToast('Built Market List from weekly menu');
+      showToast("Built Market List for this week's menu");
     });
 
     $('clearWeekPlanBtn').addEventListener('click', async () => {
-      DAYS.forEach((d) => { appState.mealPlan[d] = []; });
+      for (const { ymd } of getWeekDates(ui.weekMonday)) {
+        delete appState.calendarPlan[ymd];
+      }
       await persist();
       renderPlan();
-      showToast('Weekly menu cleared');
+      showToast('Cleared meals for this week');
     });
 
     $('clearGroceryBasketBtn').addEventListener('click', async () => {

@@ -1,10 +1,11 @@
-const CACHE_NAME = 'nourishtable-v2';
+const CACHE_NAME = 'nourishtable-v3';
 
 const APP_ASSETS = [
   './',
   './index.html',
   './styles.css',
   './recipes.js',
+  './recipes-breakfast.js',
   './recipes-more.js',
   './recipes-intl.js',
   './db.js',
@@ -15,6 +16,8 @@ const APP_ASSETS = [
   './icons/icon-192.png',
   './icons/icon-512.png',
   './icons/apple-touch-icon.png',
+  './images/egg-sukuma-scramble.jpg',
+  './images/savory-oat-simsim-bowl.jpg',
   './images/avocado-mango-kachumbari.jpg',
   './images/tilapia-avocado-salad.jpg',
   './images/nambale-bean-salad.jpg',

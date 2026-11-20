@@ -1,6 +1,7 @@
 (() => {
   const CATEGORIES = [
     { id: 'all', label: 'All Recipes' },
+    { id: 'breakfast', label: 'Breakfast' },
     { id: 'salads', label: 'Salads' },
     { id: 'quick', label: '15-Min' },
     { id: 'onepot', label: 'One-Pot' },
