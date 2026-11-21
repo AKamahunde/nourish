@@ -1,5 +1,5 @@
 ﻿(() => {
-  const APP_VERSION = 43;
+  const APP_VERSION = 44;
   const MEAL_SLOTS = [
     { id: 'breakfast', label: 'Breakfast' },
     { id: 'lunch', label: 'Lunch' },
@@ -543,10 +543,30 @@
     { id: 'staple_irish', name: 'Irish Potatoes', qtyText: '2 kg', aisle: 'produce', estUgx: 5000 },
     { id: 'staple_sweetpot', name: 'Sweet Potatoes', qtyText: '1 heap', aisle: 'produce', estUgx: 3000 },
     { id: 'staple_beans', name: 'Black / Red Beans', qtyText: '1 kg', aisle: 'grains', estUgx: 5000 },
-    { id: 'staple_chia', name: 'Chia Seeds', qtyText: '1 pack', aisle: 'grains', estUgx: 8000 },
-    { id: 'staple_pineapple', name: 'Pineapple', qtyText: '1 large', aisle: 'produce', estUgx: 4000 },
-    { id: 'staple_mango', name: 'Mangoes / Pawpaw', qtyText: '3 pcs', aisle: 'produce', estUgx: 3500 }
+    { id: 'staple_chia', name: 'Chia Seeds', qtyText: '1 pack', aisle: 'grains', estUgx: 8000 }
   ];
+
+  const QUICK_FRUIT_STAPLES = [
+    { id: 'fruit_bananas', name: 'Sweet Bananas (Bogoya)', qtyText: '1 bunch', aisle: 'produce', estUgx: 3000, core: true },
+    { id: 'fruit_mangoes', name: 'Ripe Mangoes', qtyText: '3 pcs', aisle: 'produce', estUgx: 3500, core: true },
+    { id: 'fruit_pineapple', name: 'Sweet Pineapple', qtyText: '1 large', aisle: 'produce', estUgx: 4000, core: true },
+    { id: 'fruit_pawpaw', name: 'Ripe Pawpaw (Papaya)', qtyText: '1 medium', aisle: 'produce', estUgx: 3500, core: true },
+    { id: 'fruit_watermelon', name: 'Watermelon', qtyText: '1 medium', aisle: 'produce', estUgx: 5000, core: true },
+    { id: 'fruit_passion', name: 'Passion Fruits', qtyText: '10 pcs', aisle: 'produce', estUgx: 3000, core: true },
+    { id: 'fruit_oranges', name: 'Oranges / Tangerines', qtyText: '6 pcs', aisle: 'produce', estUgx: 3000, core: true },
+    { id: 'fruit_apples', name: 'Crisp Green / Red Apples', qtyText: '4 pcs', aisle: 'produce', estUgx: 5000, core: false },
+    { id: 'fruit_soursop', name: 'Soursop (Kitafeeri)', qtyText: '1 ripe', aisle: 'produce', estUgx: 4000, core: false },
+    { id: 'fruit_gonja', name: 'Sweet Plantains (Gonja)', qtyText: '4 fingers', aisle: 'produce', estUgx: 4000, core: false },
+    { id: 'fruit_grapes', name: 'Grapes / Fresh Berries', qtyText: '1 punnet', aisle: 'produce', estUgx: 7000, core: false },
+    { id: 'fruit_tamarind', name: 'Tamarind (Nkoggo)', qtyText: '1 pack', aisle: 'produce', estUgx: 2000, core: false }
+  ];
+
+  const FRUIT_KEYWORDS = ['banana', 'mango', 'pineapple', 'pawpaw', 'papaya', 'watermelon', 'passion', 'orange', 'tangerine', 'apple', 'soursop', 'kitafeeri', 'grape', 'berr', 'gonja', 'plantain', 'tamarind', 'nkoggo', 'fruit'];
+
+  function isFruitGroceryItem(item) {
+    const hay = `${item.key || ''} ${item.name || ''}`.toLowerCase();
+    return hay.startsWith('fruit_') || FRUIT_KEYWORDS.some((kw) => hay.includes(kw));
+  }
 
   const QUICK_SPICE_STAPLES = [
     { id: 'spice_cumin', name: 'Cumin (Ground/Seeds)', qtyText: '1 jar/pack', aisle: 'pantry', estUgx: 3000, core: true },
@@ -567,6 +587,7 @@
 
   const GROCERY_AISLE_FILTERS = [
     { id: 'all', label: 'All' },
+    { id: 'fruits', label: 'Fruits' },
     { id: 'pantry', label: 'Spices & Pantry' },
     { id: 'greens', label: 'Greens & Herbs' },
     { id: 'produce', label: 'Produce' },
@@ -597,6 +618,9 @@
     carrot: 'carrots',
     avocado: 'avocados',
     banana: 'bananas',
+    apple: 'apples',
+    mango: 'mangoes',
+    orange: 'oranges',
     lime: 'limes',
     lemon: 'lemons',
     'irish-potato': 'irish-potatoes',
@@ -783,6 +807,21 @@
       }).join('');
     }
 
+    const fruitEl = $('quickFruitStaples');
+    if (fruitEl) {
+      let activeFruitCount = 0;
+      fruitEl.innerHTML = QUICK_FRUIT_STAPLES.map((s) => {
+        const active = appState.customGroceries.some((c) => c.id === s.id);
+        if (active) activeFruitCount++;
+        return `<button class="pantry-chip ${active ? 'active' : ''}" type="button" data-toggle-staple="${escapeHtml(s.id)}">${active ? '&#10003; ' : '+ '}${escapeHtml(s.name)}</button>`;
+      }).join('');
+      const fruitBadge = $('fruitSelectedCount');
+      if (fruitBadge) {
+        fruitBadge.textContent = String(activeFruitCount);
+        fruitBadge.classList.toggle('hidden', activeFruitCount === 0);
+      }
+    }
+
     const spiceEl = $('quickSpiceStaples');
     if (spiceEl) {
       let activeSpiceCount = 0;
@@ -801,7 +840,11 @@
     const filterRowEl = $('groceryAisleFilterRow');
     if (filterRowEl) {
       filterRowEl.innerHTML = GROCERY_AISLE_FILTERS.map((f) => {
-        const cnt = f.id === 'all' ? items.length : items.filter((it) => it.aisle === f.id).length;
+        const cnt = f.id === 'all'
+          ? items.length
+          : f.id === 'fruits'
+            ? items.filter(isFruitGroceryItem).length
+            : items.filter((it) => it.aisle === f.id).length;
         const active = ui.groceryAisleFilter === f.id;
         return `<button class="chip-btn ${active ? 'active' : ''}" type="button" data-grocery-filter="${escapeHtml(f.id)}">${escapeHtml(f.label)}${cnt > 0 ? ` (${cnt})` : ''}</button>`;
       }).join('');
@@ -814,7 +857,9 @@
 
     const visibleItems = ui.groceryAisleFilter === 'all'
       ? items
-      : items.filter((it) => it.aisle === ui.groceryAisleFilter);
+      : ui.groceryAisleFilter === 'fruits'
+        ? items.filter(isFruitGroceryItem)
+        : items.filter((it) => it.aisle === ui.groceryAisleFilter);
 
     if (!visibleItems.length) {
       $('groceryAislesContainer').innerHTML = `
@@ -1398,7 +1443,9 @@
     const allItems = buildAggregatedGroceries();
     const items = ui.groceryAisleFilter === 'all'
       ? allItems
-      : allItems.filter((i) => i.aisle === ui.groceryAisleFilter);
+      : ui.groceryAisleFilter === 'fruits'
+        ? allItems.filter(isFruitGroceryItem)
+        : allItems.filter((i) => i.aisle === ui.groceryAisleFilter);
     if (!items.length) {
       showToast('No items in this grocery view to copy');
       return;
@@ -1732,7 +1779,7 @@
       const stapleBtn = e.target.closest('[data-toggle-staple]');
       if (stapleBtn) {
         const sId = stapleBtn.dataset.toggleStaple;
-        const staple = [...QUICK_GROCERY_STAPLES, ...QUICK_SPICE_STAPLES].find((s) => s.id === sId);
+        const staple = [...QUICK_GROCERY_STAPLES, ...QUICK_FRUIT_STAPLES, ...QUICK_SPICE_STAPLES].find((s) => s.id === sId);
         if (!staple) return;
         const exists = appState.customGroceries.some((c) => c.id === sId);
         if (exists) {
@@ -1745,7 +1792,11 @@
             aisle: staple.aisle,
             estUgx: staple.estUgx,
             checked: false,
-            source: sId.startsWith('spice_') ? 'Spice & herb staple' : 'Market staple'
+            source: sId.startsWith('spice_')
+              ? 'Spice & herb staple'
+              : sId.startsWith('fruit_')
+                ? 'Fresh fruit staple'
+                : 'Market staple'
           });
         }
         await persist();
@@ -2010,6 +2061,28 @@
         if (img.isConnected) img.src = `${baseSrc}?retry=${attempt + 1}`;
       }, attempt === 0 ? 350 : 1000);
     }, true);
+
+    $('addCoreFruitsBtn')?.addEventListener('click', async () => {
+      let added = 0;
+      for (const f of QUICK_FRUIT_STAPLES) {
+        if (!f.core) continue;
+        if (!appState.customGroceries.some((c) => c.id === f.id)) {
+          appState.customGroceries.push({
+            id: f.id,
+            name: f.name,
+            qtyText: f.qtyText,
+            aisle: f.aisle,
+            estUgx: f.estUgx,
+            checked: false,
+            source: 'Weekly fruit basket'
+          });
+          added++;
+        }
+      }
+      await persist();
+      renderGroceries();
+      showToast(added ? `Added ${added} fresh fruits to your list` : 'Core fruits are already on your list');
+    });
 
     $('addCoreSpicesBtn')?.addEventListener('click', async () => {
       let added = 0;
