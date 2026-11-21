@@ -513,6 +513,35 @@
         { text: 'Stir in hibiscus petals off the heat, steep 4 minutes until deep ruby, then strain and enjoy hot or over ice.', timerMin: 4 }
       ],
       ugandaTip: 'If tartness feels sharp at first, drop in 2 slices of fresh sweet pineapple while steeping instead of adding sugar.'
+    },
+    {
+      id: 'mince-cabbage-pasta-soup',
+      title: 'One-Pot Beef Mince, Cabbage & Pasta Soup',
+      subtitle: 'Cozy savory tomato-herb broth simmered with lean beef mince, sweet cabbage ribbons, carrots, and short pasta',
+      cuisine: 'Ugandan',
+      category: 'onepot',
+      image: './images/mince-cabbage-pasta-soup.jpg',
+      prepMinutes: 10,
+      cookMinutes: 25,
+      totalMinutes: 35,
+      servings: 4,
+      tags: ['High-Protein', 'Light & Lean', 'Low-Sugar'],
+      healthNote: 'Cooking pasta directly in a lean beef mince and cabbage vegetable broth creates a deeply comforting, fiber-rich one-pot meal.',
+      nutrition: { kcal: 365, protein: '26g', fiber: '6g', sugar: 'Low' },
+      ingredients: [
+        { id: 'beef-mince', name: 'Lean beef mince', amount: 350, unit: 'g', aisle: 'protein', estUgx: 8500, prep: 'fresh' },
+        { id: 'cabbage', name: 'Fresh green cabbage', amount: 3, unit: 'cups', aisle: 'greens', estUgx: 1500, prep: 'coarsely shredded' },
+        { id: 'pasta', name: 'Short macaroni, shells or broken spaghetti', amount: 1, unit: 'cup', aisle: 'grains', estUgx: 2000, prep: 'uncooked' },
+        { id: 'tomatoes', name: 'Ripe tomatoes, carrots & onion', amount: 4, unit: 'pcs', aisle: 'produce', estUgx: 2500, prep: 'diced & sliced' },
+        { id: 'garlic-thyme', name: 'Garlic, ginger, thyme & fresh coriander', amount: 1, unit: 'set', aisle: 'pantry', estUgx: 900, prep: 'minced' }
+      ],
+      steps: [
+        { text: 'Brown lean beef mince in a dry heavy pot over medium-high heat for 5 minutes until crumbly, draining off any excess fat.', timerMin: 5 },
+        { text: 'Stir in diced onion, minced garlic, ginger, thyme, paprika pinch, and tomatoes; cook 4 minutes until saucy.', timerMin: 4 },
+        { text: 'Add sliced carrots, shredded green cabbage, salt, black pepper, and 4.5 cups water; cover and simmer gently for 10 minutes.', timerMin: 10 },
+        { text: 'Stir in uncooked short pasta and simmer uncovered 8 to 10 minutes until pasta is tender and broth is rich; finish with fresh coriander.', timerMin: 9 }
+      ],
+      ugandaTip: 'If reheating leftovers the next day, add a splash of hot water since pasta continues absorbing the savory broth.'
     }
   ];
 
