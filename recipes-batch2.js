@@ -110,34 +110,6 @@
         { text: 'Pour through a fine mesh sieve or clean muslin cloth into a pitcher, pressing pulp firmly with a spoon; stir in a bright squeeze of fresh lemon juice and serve chilled over ice.' }
       ],
       ugandaTip: 'Swap apple for sweet pineapple anytime for an all-local Kampala market version.'
-    },
-    {
-      id: 'celery-cucumber-ginger-detox',
-      title: 'Cucumber, Celery, Ginger & Lemon Green Detox',
-      subtitle: 'Crisp hydrating green tonic with garden greens, green apple, and zesty lemon',
-      cuisine: 'Ugandan',
-      category: 'juices',
-      image: './images/celery-cucumber-ginger-detox.jpg',
-      prepMinutes: 10,
-      cookMinutes: 0,
-      totalMinutes: 10,
-      servings: 2,
-      tags: ['Light & Lean', 'Plant-Forward', 'No Red Meat', 'Low-Sugar'],
-      healthNote: 'Ultra-low-sugar green hydration packed with electrolytes, ginger warmth, and vitamin C.',
-      nutrition: { kcal: 58, protein: '1g', fiber: '2g', sugar: 'Low' },
-      ingredients: [
-        { id: 'cucumber', name: 'Fresh cucumber & celery stalks', amount: 2, unit: 'pcs', aisle: 'produce', estUgx: 2000, prep: 'chopped' },
-        { id: 'dodo', name: 'Spinach or tender kale/dodo', amount: 1, unit: 'handful', aisle: 'greens', estUgx: 700, prep: 'washed' },
-        { id: 'apple', name: 'Green apple', amount: 1, unit: 'pc', aisle: 'produce', estUgx: 1500, prep: 'cored' },
-        { id: 'ginger-lemon', name: 'Fresh ginger & lemon', amount: 1, unit: 'set', aisle: 'produce', estUgx: 700, prep: 'peeled & juiced' }
-      ],
-      steps: [
-        { text: 'Wash cucumber (keep peel on for extra minerals), trim celery ends, rinse leafy spinach or tender dodo, core the green apple, and peel fresh ginger.' },
-        { text: 'Chop everything into small chunks and place cucumber and apple at the bottom of the blender with 1 cup cold water so blades catch smoothly.' },
-        { text: 'Add celery, leafy greens, and sliced ginger; blend on high for 45 to 60 seconds until vibrant emerald green and completely smooth.' },
-        { text: 'Strain through a fine mesh sieve into a chilled bottle or two glasses, stir in fresh lemon juice right before serving, and drink cold for maximum freshness.' }
-      ],
-      ugandaTip: 'Drink first thing in the morning or mid-afternoon before coffee to feel refreshed.'
     }
   ];
 
