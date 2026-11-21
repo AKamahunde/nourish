@@ -1,5 +1,5 @@
 ﻿(() => {
-  const APP_VERSION = 40;
+  const APP_VERSION = 41;
   const MEAL_SLOTS = [
     { id: 'breakfast', label: 'Breakfast' },
     { id: 'lunch', label: 'Lunch' },
@@ -648,9 +648,22 @@
     return UNIT_ALIASES[raw] || raw;
   }
 
-  function buildAggregatedGroceries() {
+  function getFavoriteRecipeEntries() {
+    if (!appState.settings.syncFavoritesGroceries) return [];
+    const out = [];
+    for (const rId of (appState.favorites || [])) {
+      const r = getRecipeById(rId);
+      if (r) out.push({ recipeId: r.id, servings: r.servings });
+    }
+    return out;
+  }
+
+  function buildAggregatedGroceries(ignorePantryFilter = false) {
     const map = new Map();
-    const combinedEntries = [...getActiveWeekRecipeEntries(), ...appState.groceryEntries];
+    const weekEntries = getActiveWeekRecipeEntries();
+    const seenIds = new Set(weekEntries.map((e) => e.recipeId));
+    const favEntries = getFavoriteRecipeEntries().filter((e) => !seenIds.has(e.recipeId));
+    const combinedEntries = [...weekEntries, ...favEntries, ...appState.groceryEntries];
     for (const entry of combinedEntries) {
       const recipe = getRecipeById(entry.recipeId);
       if (!recipe) continue;
@@ -712,7 +725,21 @@
       });
     }
 
+    const hidePantry = !ignorePantryFilter && appState.settings.hidePantryInGroceries !== false;
+    const pantryTokens = appState.pantryHave || [];
+    if (hidePantry && pantryTokens.length) {
+      return items.filter((it) => !ingredientMatchesPantry({ id: it.key, name: it.name }, pantryTokens));
+    }
+
     return items;
+  }
+
+  function countHiddenPantryGroceries() {
+    const pantryTokens = appState.pantryHave || [];
+    if (!pantryTokens.length || appState.settings.hidePantryInGroceries === false) return 0;
+    const allCount = buildAggregatedGroceries(true).length;
+    const shownCount = buildAggregatedGroceries(false).length;
+    return Math.max(0, allCount - shownCount);
   }
 
   function renderGroceries() {
@@ -729,6 +756,24 @@
 
     const syncToggle = $('syncWeekGroceriesToggle');
     if (syncToggle) syncToggle.checked = appState.settings.syncWeekGroceries !== false;
+
+    const favToggle = $('syncFavGroceriesToggle');
+    if (favToggle) favToggle.checked = Boolean(appState.settings.syncFavoritesGroceries);
+    const favSyncCount = $('favSyncCount');
+    if (favSyncCount) {
+      const fc = (appState.favorites || []).length;
+      favSyncCount.textContent = String(fc);
+      favSyncCount.classList.toggle('hidden', fc === 0);
+    }
+
+    const hidePantryToggle = $('hidePantryGroceriesToggle');
+    if (hidePantryToggle) hidePantryToggle.checked = appState.settings.hidePantryInGroceries !== false;
+    const pantryHiddenBadge = $('pantryHiddenBadge');
+    if (pantryHiddenBadge) {
+      const hc = countHiddenPantryGroceries();
+      pantryHiddenBadge.textContent = `${hc} hidden`;
+      pantryHiddenBadge.classList.toggle('hidden', hc === 0);
+    }
 
     const staplesEl = $('quickGroceryStaples');
     if (staplesEl) {
@@ -1855,6 +1900,50 @@
       appState.settings.syncWeekGroceries = e.target.checked;
       await persist();
       renderGroceries();
+    });
+
+    $('autoBuildWeekListBtn')?.addEventListener('click', async () => {
+      const shuffle = (arr) => [...arr].sort(() => Math.random() - 0.5);
+      const breakfasts = shuffle(data.RECIPES.filter((r) => r.category === 'breakfast'));
+      const lunches = shuffle(data.RECIPES.filter((r) => r.category === 'salads' || r.category === 'quick'));
+      const dinners = shuffle(data.RECIPES.filter((r) => r.category === 'onepot' || r.category === 'slow'));
+      const drinks = shuffle(data.RECIPES.filter((r) => r.category === 'juices'));
+      const week = getWeekDates(ui.weekMonday);
+      week.forEach(({ ymd }, idx) => {
+        const rec = getDayRecord(ymd);
+        if (!rec.breakfast.length && breakfasts.length) rec.breakfast = [breakfasts[idx % breakfasts.length].id];
+        if (!rec.lunch.length && lunches.length) rec.lunch = [lunches[idx % lunches.length].id];
+        if (!rec.dinner.length && dinners.length) rec.dinner = [dinners[idx % dinners.length].id];
+        if (!rec.juice.length && drinks.length) rec.juice = [drinks[idx % drinks.length].id];
+        appState.calendarPlan[ymd] = rec;
+      });
+      appState.settings.syncWeekGroceries = true;
+      await persist();
+      renderPlan();
+      renderGroceries();
+      showToast('7-day menu & full Market List built!');
+    });
+
+    $('resetNextShopBtn')?.addEventListener('click', async () => {
+      appState.groceryChecked = {};
+      appState.customGroceries = appState.customGroceries.map((c) => ({ ...c, checked: false }));
+      await persist();
+      renderGroceries();
+      showToast('Unchecked all items — ready for your next shop');
+    });
+
+    $('syncFavGroceriesToggle')?.addEventListener('change', async (e) => {
+      appState.settings.syncFavoritesGroceries = Boolean(e.target.checked);
+      await persist();
+      renderGroceries();
+      showToast(e.target.checked ? 'Saved Favorites included in Market List' : 'Saved Favorites removed from auto-sync');
+    });
+
+    $('hidePantryGroceriesToggle')?.addEventListener('change', async (e) => {
+      appState.settings.hidePantryInGroceries = Boolean(e.target.checked);
+      await persist();
+      renderGroceries();
+      showToast(e.target.checked ? 'Hiding items already in My Kitchen' : 'Showing all items including pantry');
     });
 
     $('clearCheckedGroceriesBtn')?.addEventListener('click', async () => {

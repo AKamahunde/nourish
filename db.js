@@ -15,7 +15,9 @@
     settings: {
       theme: 'sage',
       pocketLedgerUrl: 'https://pocketledger-brd.pages.dev/',
-      syncWeekGroceries: true
+      syncWeekGroceries: true,
+      syncFavoritesGroceries: false,
+      hidePantryInGroceries: true
     }
   };
 

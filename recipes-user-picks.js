@@ -21,8 +21,10 @@
         { id: 'ginger-garlic', name: 'Ginger, garlic & light soy sauce', amount: 1.5, unit: 'tbsp', aisle: 'pantry', estUgx: 800, prep: 'seasoning' }
       ],
       steps: [
-        { text: 'Toss shredded chicken, cabbage, carrots, ginger, garlic, and soy sauce in a dry hot pan for 3 minutes until veggies soften; cool slightly.', timerMin: 3 },
-        { text: 'Roll filling tightly in spring roll wrappers, brush lightly with 1 teaspoon oil, and bake at 200°C / 400°F for 16 to 18 minutes until crisp and golden.', timerMin: 18 }
+        { text: 'Preheat your oven to 200°C / 390°F (or air-fryer to 190°C / 375°F) and line a baking tray with parchment paper or a very light brush of oil. Keep thawed spring roll sheets covered with a damp cloth so edges do not dry out.' },
+        { text: 'Heat a wide pan over medium-high heat with 1/2 teaspoon oil; saute 1 teaspoon grated ginger, 2 minced garlic cloves, shredded cabbage, and grated carrots for 3 minutes until softened and dry. Fold in shredded chicken, 1 tablespoon light soy sauce, and black pepper, then cool for 5 minutes so steam does not tear the wrappers.', timerMin: 3 },
+        { text: 'Place 2 tablespoons of cooled filling near the bottom corner of each wrapper, fold the bottom corner over, tuck both sides in tightly, and roll forward cleanly. Dab the final tip with a little water-flour paste to seal.' },
+        { text: 'Arrange rolls seam-side down on the tray, brush all over with 1 teaspoon oil, and bake for 16 to 18 minutes (flipping halfway at 9 minutes) until deep golden and crisp to the tap. Cool 2 minutes before serving.', timerMin: 18 }
       ],
       ugandaTip: 'Serve with lime-chili vinegar or tomato-garlic sauce instead of sugary bottled chili glaze.'
     },
@@ -46,8 +48,10 @@
         { id: 'onion-garlic', name: 'Onion, garlic, cumin & coriander', amount: 1, unit: 'set', aisle: 'pantry', estUgx: 1000, prep: 'chopped' }
       ],
       steps: [
-        { text: 'Saute onion, garlic, cumin, and turmeric in 1 teaspoon oil for 3 minutes; fold in cooked lentils, peas, and fresh coriander.' },
-        { text: 'Fold into triangular pockets, brush lightly with oil, and bake at 200°C / 400°F for 18 minutes until golden crisp.', timerMin: 18 }
+        { text: 'Preheat oven to 200°C / 390°F (or air-fryer to 190°C / 375°F). Drain cooked lentils and green peas thoroughly in a sieve so the filling stays dry and pastry bakes crisp.' },
+        { text: 'Heat 1 teaspoon oil in a skillet over medium heat; saute 1 finely diced onion and 2 minced garlic cloves for 4 minutes until translucent. Stir in 1 teaspoon ground cumin, 1/2 teaspoon turmeric, 1/2 teaspoon salt, and black pepper for 30 seconds until fragrant.', timerMin: 4 },
+        { text: 'Add drained lentils and peas, cooking 2 minutes while mashing a few lightly with a spoon so the filling holds together; remove from heat, fold in chopped fresh coriander and a squeeze of lime, and let cool 5 minutes.' },
+        { text: 'Fold wrappers into neat cones, fill with 1.5 tablespoons mixture, seal edges with water-flour paste, brush lightly with oil, and bake 18 minutes (turning halfway) until golden-brown and crunchy.', timerMin: 18 }
       ],
       ugandaTip: 'Pair with plain yogurt mixed with mint and lemon for a refreshing snack.'
     },
@@ -73,8 +77,10 @@
         { id: 'coriander', name: 'Fresh coriander & mint', amount: 0.5, unit: 'bunch', aisle: 'greens', estUgx: 500, prep: 'chopped' }
       ],
       steps: [
-        { text: 'Saute sliced onion, garlic, ginger, and biryani spices in 1 tablespoon oil for 5 minutes; add chopped tomatoes and simmer 3 minutes.', timerMin: 5 },
-        { text: 'Stir in rinsed basmati rice and 2.5 cups water; cover low for 15 minutes until fluffy, then nestle halved boiled eggs and fresh herbs on top.', timerMin: 15 }
+        { text: 'Rinse basmati rice 3 times in cold water until the water runs mostly clear, then soak for 10 minutes and drain. Peel hard-boiled eggs and prick them gently with a fork or halve them so they absorb the spice aroma.' },
+        { text: 'Heat 1 tablespoon oil in a heavy pot over medium heat; saute thinly sliced red onion for 5 to 6 minutes until deep golden-brown at the edges. Add minced garlic, grated ginger, 1 teaspoon cumin, 1/2 teaspoon turmeric, and 3 crushed cardamom pods, stirring 30 seconds.', timerMin: 6 },
+        { text: 'Add diced ripe tomatoes and 1 teaspoon salt; simmer uncovered for 4 minutes until tomatoes break down into a thick, glossy masala paste. Stir in half the chopped coriander and mint.' },
+        { text: 'Fold in drained basmati rice and pour in 2.5 cups hot water; bring to a gentle boil, reduce heat to the lowest setting, cover tightly, and cook 14 minutes until water is absorbed. Nestle eggs on top, cover off-heat 5 minutes to steam, then fluff gently with remaining fresh herbs.', timerMin: 15 }
       ],
       ugandaTip: 'Serve alongside crisp tomato-cucumber kachumbari or a spoon of plain yogurt.'
     },
@@ -99,8 +105,10 @@
         { id: 'garlic-cumin', name: 'Garlic, ginger & cumin', amount: 1, unit: 'tbsp', aisle: 'pantry', estUgx: 600, prep: 'minced' }
       ],
       steps: [
-        { text: 'Steam rice in 2 cups water for 16 minutes while simmering beans with sautéed onion, tomato, garlic, ginger, and cumin for 12 minutes.', timerMin: 16 },
-        { text: 'Plate rice alongside rich red bean stew and fresh lime-tossed red onion kachumbari.' }
+        { text: 'Rinse 1 cup rice until water runs clear, place in a pot with 2 cups water and 1/2 teaspoon salt, bring to a boil, then cover on low heat for 15 minutes until fluffy. Let rest covered 5 minutes off-heat.', timerMin: 15 },
+        { text: 'While rice steams, heat 1 teaspoon oil in a separate pot over medium heat; saute half the diced onion, 2 minced garlic cloves, 1 teaspoon grated ginger, and 1/2 teaspoon cumin for 3 minutes until sweet and fragrant.' },
+        { text: 'Add 2 diced ripe tomatoes and cook 4 minutes until soft and saucy. Pour in pre-boiled Nambale beans with 1/2 cup of their broth, season with salt and black pepper, and simmer gently for 10 minutes (mash a spoonful of beans against the pot to thicken naturally).', timerMin: 10 },
+        { text: 'Toss remaining sliced red onion (rinsed in cold salted water), remaining diced tomato, fresh coriander, and lime juice for kachumbari; plate beside fluffy rice and rich red bean stew.' }
       ],
       ugandaTip: 'Keep the bean portion generous and the rice portion to 1/2 cup for steady afternoon energy.'
     },
@@ -124,8 +132,10 @@
         { id: 'tomatoes', name: 'Ripe tomatoes & onion', amount: 2, unit: 'pcs', aisle: 'produce', estUgx: 1000, prep: 'diced' }
       ],
       steps: [
-        { text: 'Boil or steam peeled matooke fingers in lightly salted water for 15 minutes until fork-tender.', timerMin: 15 },
-        { text: 'Scramble beaten eggs gently with sautéed tomato and onion in 1 teaspoon oil for 3 minutes; plate beside warm matooke.' }
+        { text: 'Peel green matooke fingers cleanly into a bowl of cold water (prevents browning), then rinse and place in a saucepan with just enough water to cover plus 1/2 teaspoon salt.' },
+        { text: 'Cover and boil over medium heat for 14 to 16 minutes until a knife slides easily into the center of a finger; drain completely and keep covered warm.', timerMin: 15 },
+        { text: 'Meanwhile, whisk 4 farm eggs in a bowl with a pinch of salt, cracked black pepper, and 1 tablespoon water for fluffiness. Heat 1 teaspoon oil in a skillet over medium heat and saute diced onion and tomatoes for 3 minutes until soft and juicy.' },
+        { text: 'Lower heat to medium-low, pour in beaten eggs, and fold gently with a spatula for 2 to 3 minutes until just set into soft glossy curds (remove slightly early so they stay tender). Plate beside warm matooke fingers.' }
       ],
       ugandaTip: 'Add sliced avocado on the side for extra healthy fats.'
     },
@@ -150,8 +160,10 @@
         { id: 'garlic-ginger', name: 'Garlic, curry pinch & lime', amount: 1, unit: 'set', aisle: 'pantry', estUgx: 500, prep: 'minced' }
       ],
       steps: [
-        { text: 'Dry-toast rinsed mukene in a hot pan for 4 minutes until crisp and fragrant.', timerMin: 4 },
-        { text: 'Add 1 teaspoon oil, onion, garlic, and tomatoes; simmer 6 minutes until saucy and serve warm with steamed rice and lime.', timerMin: 6 }
+        { text: 'Sort cleaned mukene briefly, rinse in warm water twice (removes excess dust and softens saltiness), then drain very well in a sieve and pat dry.' },
+        { text: 'Place drained mukene in a wide dry skillet over medium-high heat and dry-toast for 4 minutes, stirring often, until crisp, golden, and aromatic; push to one side of the pan.', timerMin: 4 },
+        { text: 'Add 1 teaspoon oil to the clear side of the pan; saute diced onion, 2 minced garlic cloves, and 1/2 teaspoon curry powder for 2 minutes until fragrant, then stir in diced ripe tomatoes and 2 tablespoons water.' },
+        { text: 'Simmer everything together over medium-low heat for 5 to 6 minutes until tomatoes melt into a thick savory coat around the mukene. Finish with fresh lime juice and serve hot beside steamed rice.', timerMin: 6 }
       ],
       ugandaTip: 'Buy pre-cleaned, sand-free mukene from trusted market stalls or supermarkets to save prep time.'
     },
@@ -176,8 +188,10 @@
         { id: 'lime', name: 'Fresh lime', amount: 1.5, unit: 'pcs', aisle: 'produce', estUgx: 750, prep: 'juiced' }
       ],
       steps: [
-        { text: 'Soak sliced red onion in salted cold water for 10 minutes, then drain well.', timerMin: 10 },
-        { text: 'Toss drained onions, diced tomatoes, chopped coriander, fresh lime juice, and salt right before serving.' }
+        { text: 'Slice red onion paper-thin into half-rings and rub gently with 1/2 teaspoon salt in a bowl of cold water; soak for 10 minutes to remove sharp raw bite while keeping the crunch.', timerMin: 10 },
+        { text: 'While onions soak, dice firm ripe tomatoes into neat bite-sized cubes (discard watery seeds if you want a crisper salad) and finely chop fresh coriander leaves and tender stems.' },
+        { text: 'Drain the soaked onions thoroughly, rinse once in cold water, and squeeze dry in a clean cloth or sieve.' },
+        { text: 'Combine drained onions, diced tomatoes, and chopped coriander in a serving bowl; dress with fresh lime juice, a pinch of sea salt, and optional minced chili right before serving so it stays bright and crisp.' }
       ],
       ugandaTip: 'Add 1 finely chopped bird-eye chili if you want classic Ugandan heat.'
     },
@@ -201,8 +215,10 @@
         { id: 'cinnamon', name: 'Cinnamon & sea salt pinch', amount: 0.25, unit: 'tsp', aisle: 'pantry', estUgx: 100, prep: 'dusting' }
       ],
       steps: [
-        { text: 'Brush diagonal gonja slices lightly with 1 teaspoon oil and cook on a hot dry skillet or 200°C / 400°F oven tray for 4 minutes per side until golden and tender.', timerMin: 8 },
-        { text: 'Serve warm beside boiled eggs, plain yogurt, or spicy beans.' }
+        { text: 'Trim ends of ripe yellow-spotted gonja, score lengthwise through the peel, remove skin, and slice diagonally into even 1.5 cm ovals so every piece cooks at the same pace.' },
+        { text: 'Toss or brush slices lightly with 1 teaspoon oil, 1/4 teaspoon ground cinnamon, and a tiny pinch of sea salt (salt intensifies natural plantain sweetness).' },
+        { text: 'Place in a single layer on a hot nonstick skillet over medium heat (or bake at 200°C / 390°F on a lined oven tray) for 4 minutes without moving until deep golden caramelized underneath.', timerMin: 4 },
+        { text: 'Flip each slice and cook 4 more minutes until tender when pierced with a fork and crisp-edged; serve warm beside boiled eggs, plain yogurt, or spicy beans.', timerMin: 4 }
       ],
       ugandaTip: 'Choose yellow gonja with a few black spots — they caramelize naturally without adding sugar.'
     },
@@ -227,8 +243,10 @@
         { id: 'soy-sauce', name: 'Light soy sauce & lime juice', amount: 2, unit: 'tbsp', aisle: 'pantry', estUgx: 800, prep: 'whisked' }
       ],
       steps: [
-        { text: 'Boil noodles 4 to 5 minutes until tender, then drain.', timerMin: 5 },
-        { text: 'Stir-fry cabbage, carrots, pepper, ginger, and garlic in 1 teaspoon oil over high heat for 3 minutes, then toss in noodles and soy-lime splash.', timerMin: 3 }
+        { text: 'Prep all vegetables first (thin matchstick carrots, shredded cabbage, sliced bell pepper, minced ginger & garlic) and whisk 1.5 tablespoons light soy sauce, juice of 1/2 lime, and 1 tablespoon water in a small cup — stir-frying moves fast.' },
+        { text: 'Boil noodles in salted water for 4 to 5 minutes until just tender (al dente), drain immediately, and rinse briefly in cool water so they do not clump.', timerMin: 5 },
+        { text: 'Heat 1 teaspoon oil in a wide skillet or wok over high heat until shimmering; toss ginger, garlic, carrots, bell pepper, and cabbage for 3 minutes until crisp-tender and bright.', timerMin: 3 },
+        { text: 'Add drained noodles and pour in the soy-lime sauce; toss vigorously for 1 to 2 minutes until evenly glossy and heated through, finishing with chopped spring onions.' }
       ],
       ugandaTip: 'Drop in 2 scrambled eggs or leftover chicken strips for an extra protein boost.'
     }

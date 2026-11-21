@@ -174,18 +174,33 @@
           <div class="card-head">
             <div>
               <h2 class="card-title">Single Market List</h2>
-              <p class="card-sub">Tap everyday staples to add, or auto-include this week's Planner meals.</p>
+              <p class="card-sub">Auto-build from your week or favorites — no manual typing needed.</p>
             </div>
             <div class="day-bar-actions">
-              <button id="clearCheckedGroceriesBtn" class="ghost-btn compact-btn" type="button">Clear Checked</button>
+              <button id="clearCheckedGroceriesBtn" class="ghost-btn compact-btn" type="button">Clear Packed</button>
               <button id="clearGroceryBasketBtn" class="text-danger-btn" type="button">Clear All</button>
             </div>
           </div>
 
-          <label class="pantry-toggle-row">
-            <input id="syncWeekGroceriesToggle" type="checkbox" checked />
-            <span>Auto-include this week's Planner meals</span>
-          </label>
+          <div class="effortless-grocery-bar">
+            <button id="autoBuildWeekListBtn" class="primary-btn" type="button">Auto-Build Week + List</button>
+            <button id="resetNextShopBtn" class="secondary-btn" type="button">Reset for Next Shop</button>
+          </div>
+
+          <div class="grocery-toggles-box">
+            <label class="pantry-toggle-row">
+              <input id="syncWeekGroceriesToggle" type="checkbox" checked />
+              <span>Auto-include this week's Planner meals</span>
+            </label>
+            <label class="pantry-toggle-row">
+              <input id="syncFavGroceriesToggle" type="checkbox" />
+              <span>Include my Saved Favorites <span id="favSyncCount" class="inline-count hidden">0</span></span>
+            </label>
+            <label class="pantry-toggle-row">
+              <input id="hidePantryGroceriesToggle" type="checkbox" checked />
+              <span>Hide items already in My Kitchen <span id="pantryHiddenBadge" class="inline-count hidden">0</span></span>
+            </label>
+          </div>
 
           <div id="quickGroceryStaples" class="pantry-chips" style="margin-bottom:10px;"></div>
 

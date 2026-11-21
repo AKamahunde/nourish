@@ -21,8 +21,10 @@
         { id: 'soy-sauce', name: 'Light soy sauce & lime juice', amount: 2, unit: 'tbsp', aisle: 'pantry', estUgx: 800, prep: 'whisked' }
       ],
       steps: [
-        { text: 'Brown lean beef mince in a dry hot pan for 5 minutes with garlic, ginger, and spring onions.', timerMin: 5 },
-        { text: 'Pour in light soy sauce and lime juice, toss 2 minutes until glazed, and spoon into crisp lettuce cups with fresh chili.' }
+        { text: 'Gently separate whole crisp lettuce leaves, rinse in cold water, shake dry thoroughly, and arrange on a serving platter so they stay crunchy.' },
+        { text: 'Heat a wide skillet over medium-high heat with no oil (or 1/2 teaspoon if very lean); add beef mince, breaking it into fine crumbles with a wooden spoon, and brown for 5 minutes until no pink remains and moisture evaporates.', timerMin: 5 },
+        { text: 'Stir in 1 tablespoon grated fresh ginger, 2 minced garlic cloves, white parts of spring onions, and a pinch of chili flakes; saute 1 minute until deeply aromatic.' },
+        { text: 'Pour in 1.5 tablespoons light soy sauce and juice of 1/2 lime, tossing 2 minutes until glossy and lightly caramelized. Spoon warm beef into crisp lettuce cups and scatter green spring onion tops and extra lime wedges.' }
       ],
       ugandaTip: 'Shredded cabbage leaves also work cleanly as sturdy cups if crisp lettuce is out of season.'
     },
@@ -46,7 +48,10 @@
         { id: 'apple', name: 'Crisp apple or mango', amount: 1, unit: 'pc', aisle: 'produce', estUgx: 1200, prep: 'diced' }
       ],
       steps: [
-        { text: 'Combine chopped fresh fruit in a wide bowl, pour chilled plain yogurt over top, and fold gently.' }
+        { text: 'Wash and core crisp apple (leave skin on for fiber) and dice into even bite-sized cubes; slice ripe yellow banana into coins and cube chilled sweet pineapple or mango.' },
+        { text: 'Toss the diced apple immediately with a light squeeze of fresh lemon or lime juice so it stays crisp and bright without browning.' },
+        { text: 'Whisk chilled plain unsweetened yogurt in a small bowl with 1/4 teaspoon ground cinnamon (and a tiny splash of milk if very thick) until smooth and pourable.' },
+        { text: 'Combine all chilled fruit in a wide serving bowl, pour creamy yogurt over top, fold gently so fruit stays intact, and finish with a sprinkle of toasted simsim or chia seeds.' }
       ],
       ugandaTip: 'Sprinkle 1 tablespoon chia seeds or toasted simsim on top for extra crunch and omega-3s.'
     },
@@ -71,8 +76,10 @@
         { id: 'garlic-thyme', name: 'Garlic, fresh ginger & thyme', amount: 1, unit: 'set', aisle: 'pantry', estUgx: 700, prep: 'bruised' }
       ],
       steps: [
-        { text: 'Place chicken, onion, garlic, ginger, thyme, salt, and 4 cups water in a pot; simmer gently covered for 20 minutes.', timerMin: 20 },
-        { text: 'Add cubed Irish potatoes and sliced carrots; simmer 12 more minutes until tender and flavorful.', timerMin: 12 }
+        { text: 'Remove skin and visible fat from chicken drumsticks or thighs so the broth stays light and clean. Peel and cut Irish potatoes into 2.5 cm chunks and slice carrots into coins.' },
+        { text: 'Place chicken, quartered onion, 3 smashed garlic cloves, 4 slices fresh ginger, 1/2 teaspoon dried thyme (or 2 fresh sprigs), 1 teaspoon salt, and 4.5 cups cold water in a heavy pot. Bring slowly to a boil over medium heat, skimming off any gray foam that rises to the surface.' },
+        { text: 'Lower heat to a gentle covered simmer for 18 to 20 minutes so the chicken bones release rich flavor and meat turns tender.', timerMin: 20 },
+        { text: 'Add cubed Irish potatoes and sliced carrots; cover and simmer 12 more minutes until a fork slides cleanly into the potatoes. Taste broth for salt and cracked black pepper, finish with chopped fresh coriander, and serve piping hot.', timerMin: 12 }
       ],
       ugandaTip: 'Skim any surface foam early so the broth stays crystal-clear and light.'
     },
@@ -97,8 +104,10 @@
         { id: 'ginger', name: 'Fresh ginger & lemon', amount: 1, unit: 'thumb', aisle: 'produce', estUgx: 600, prep: 'peeled' }
       ],
       steps: [
-        { text: 'Blend beetroot, carrots, apple, peeled orange, ginger, and 1.5 cups cold water until completely smooth.' },
-        { text: 'Strain through a fine sieve or cloth, stir in a squeeze of fresh lemon, and serve chilled.' }
+        { text: 'Scrub carrots and peel fresh beetroot, orange (removing seeds and thick white pith), and ginger root. Core the apple and chop all ingredients into small 1–2 cm cubes so your blender processes them effortlessly.' },
+        { text: 'Place the juiciest pieces (orange and apple) at the bottom of the blender first, add beetroot, carrots, sliced ginger, and 1.5 cups cold filtered water.' },
+        { text: 'Blend on high speed for 60 seconds until completely smooth and ruby-red with no gritty carrot pieces.' },
+        { text: 'Pour through a fine mesh sieve or clean muslin cloth into a pitcher, pressing pulp firmly with a spoon; stir in a bright squeeze of fresh lemon juice and serve chilled over ice.' }
       ],
       ugandaTip: 'Swap apple for sweet pineapple anytime for an all-local Kampala market version.'
     },
@@ -123,8 +132,10 @@
         { id: 'ginger-lemon', name: 'Fresh ginger & lemon', amount: 1, unit: 'set', aisle: 'produce', estUgx: 700, prep: 'peeled & juiced' }
       ],
       steps: [
-        { text: 'Blend cucumber, celery, leafy greens, green apple, ginger, and 1 cup cold water until smooth.' },
-        { text: 'Strain lightly through a mesh sieve, stir in fresh lemon juice, and bottle chilled.' }
+        { text: 'Wash cucumber (keep peel on for extra minerals), trim celery ends, rinse leafy spinach or tender dodo, core the green apple, and peel fresh ginger.' },
+        { text: 'Chop everything into small chunks and place cucumber and apple at the bottom of the blender with 1 cup cold water so blades catch smoothly.' },
+        { text: 'Add celery, leafy greens, and sliced ginger; blend on high for 45 to 60 seconds until vibrant emerald green and completely smooth.' },
+        { text: 'Strain through a fine mesh sieve into a chilled bottle or two glasses, stir in fresh lemon juice right before serving, and drink cold for maximum freshness.' }
       ],
       ugandaTip: 'Drink first thing in the morning or mid-afternoon before coffee to feel refreshed.'
     }

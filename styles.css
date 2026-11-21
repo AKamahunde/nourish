@@ -1063,6 +1063,20 @@ details[open] > .accordion-head .accordion-chevron {
   padding: 8px 0;
 }
 
+.effortless-grocery-bar {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.grocery-toggles-box {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 10px;
+}
+
 /* Floating Timers Stack */
 .floating-timer {
   position: fixed;
