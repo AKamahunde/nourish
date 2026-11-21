@@ -1,5 +1,5 @@
 ﻿(() => {
-  const APP_VERSION = 39;
+  const APP_VERSION = 40;
   const MEAL_SLOTS = [
     { id: 'breakfast', label: 'Breakfast' },
     { id: 'lunch', label: 'Lunch' },
@@ -1971,20 +1971,86 @@
     });
 
     $('checkUpdateBtn').addEventListener('click', async () => {
-      if (!('serviceWorker' in navigator)) {
-        showToast(`NourishTable v${APP_VERSION}`);
-        return;
-      }
-      const reg = await navigator.serviceWorker.getRegistration();
-      if (!reg) {
-        showToast(`NourishTable v${APP_VERSION}`);
-        return;
-      }
-      await reg.update();
-      showToast(reg.waiting ? 'Update ready — reloading...' : `Up to date (v${APP_VERSION})`);
-      if (reg.waiting) {
-        reg.waiting.postMessage({ type: 'SKIP_WAITING' });
-        setTimeout(() => location.reload(), 450);
+      const btn = $('checkUpdateBtn');
+      if (btn.disabled) return;
+      const origLabel = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = 'Checking...';
+      try {
+        if (!('serviceWorker' in navigator)) {
+          showToast(`NourishTable v${APP_VERSION}`);
+          return;
+        }
+
+        // Fetch live sw.js bypassing browser HTTP cache so iOS Safari cannot hide a newer deploy
+        let remoteVer = null;
+        try {
+          const swResp = await fetch(`./sw.js?t=${Date.now()}`, { cache: 'no-store' });
+          if (swResp.ok) {
+            const swText = await swResp.text();
+            const m = swText.match(/nourishtable-shell-v(\d+)/);
+            if (m) remoteVer = Number(m[1]);
+          }
+        } catch {
+          showToast('Offline — connect to internet to check updates');
+          return;
+        }
+
+        const reg = (await navigator.serviceWorker.getRegistration()) ||
+          (await navigator.serviceWorker.register('./sw.js', { updateViaCache: 'none' }));
+
+        let reloaded = false;
+        const doReload = () => {
+          if (reloaded) return;
+          reloaded = true;
+          location.reload();
+        };
+        navigator.serviceWorker.addEventListener('controllerchange', doReload, { once: true });
+
+        await reg.update();
+
+        const hasNewerRemote = remoteVer !== null && remoteVer > APP_VERSION;
+        const pendingWorker = reg.waiting || reg.installing;
+
+        if (!hasNewerRemote && !pendingWorker) {
+          showToast(`Up to date (v${APP_VERSION})`);
+          return;
+        }
+
+        showToast(hasNewerRemote ? `Updating to v${remoteVer}...` : 'Installing update...');
+
+        if (reg.waiting) {
+          reg.waiting.postMessage({ type: 'SKIP_WAITING' });
+        } else if (reg.installing) {
+          await new Promise((resolve) => {
+            const w = reg.installing;
+            const timer = setTimeout(resolve, 4000);
+            w.addEventListener('statechange', () => {
+              if (w.state === 'installed' || w.state === 'activated' || w.state === 'redundant') {
+                clearTimeout(timer);
+                if (w.state === 'installed') w.postMessage({ type: 'SKIP_WAITING' });
+                resolve();
+              }
+            });
+          });
+        }
+
+        // Guarantee fresh shell load if remote version is ahead (keep image caches intact)
+        if (hasNewerRemote && 'caches' in window) {
+          const keys = await caches.keys();
+          await Promise.all(
+            keys
+              .filter((k) => k.startsWith('nourishtable-shell-') && k !== `nourishtable-shell-v${remoteVer}`)
+              .map((k) => caches.delete(k))
+          );
+        }
+
+        setTimeout(doReload, 350);
+      } catch {
+        showToast('Update check failed — try again in a moment');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = origLabel;
       }
     });
   }
@@ -1992,7 +2058,7 @@
   async function registerSw() {
     if (!('serviceWorker' in navigator)) return;
     try {
-      await navigator.serviceWorker.register('./sw.js');
+      await navigator.serviceWorker.register('./sw.js', { updateViaCache: 'none' });
     } catch {
       // ignore local file protocol
     }
