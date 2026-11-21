@@ -1,6 +1,6 @@
-﻿const SHELL_CACHE = 'nourishtable-shell-v42';
+﻿const SHELL_CACHE = 'nourishtable-shell-v43';
 // Keep IMG_CACHE stable across minor text/code updates so mobile devices do not re-download 130+ photos.
-const IMG_CACHE = 'nourishtable-images-v11';
+const IMG_CACHE = 'nourishtable-images-v12';
 
 const SHELL_ASSETS = [
   './',
@@ -11,6 +11,7 @@ const SHELL_ASSETS = [
   './recipes-batch2.js',
   './recipes-batch3.js',
   './recipes-drinks.js',
+  './recipes-batch4.js',
   './db.js',
   './icons.js',
   './app.js',
