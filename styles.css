@@ -1019,6 +1019,50 @@ details[open] > .accordion-head .accordion-chevron {
   margin-top: 12px;
 }
 
+/* Collapsible Quick Spices Drawer in Groceries */
+.spice-drawer {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface-soft);
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+
+.spice-drawer-head {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 13px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  cursor: pointer;
+  user-select: none;
+}
+
+.spice-drawer-head::-webkit-details-marker {
+  display: none;
+}
+
+.spice-drawer[open] > .spice-drawer-head .accordion-chevron {
+  transform: rotate(-135deg);
+  margin-top: 4px;
+}
+
+.spice-drawer-body {
+  padding: 0 12px 12px;
+  border-top: 1px solid var(--border);
+}
+
+.spice-drawer-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 0;
+}
+
 /* Floating Timer */
 .floating-timer {
   position: fixed;

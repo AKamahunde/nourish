@@ -1,5 +1,5 @@
 ﻿(() => {
-  const APP_VERSION = 36;
+  const APP_VERSION = 37;
   const MEAL_SLOTS = [
     { id: 'breakfast', label: 'Breakfast' },
     { id: 'lunch', label: 'Lunch' },
@@ -79,6 +79,7 @@
     view: 'discover',
     discoverMode: 'browse',
     guideMode: 'guide',
+    groceryAisleFilter: 'all',
     category: 'all',
     cuisine: 'All',
     goal: '',
@@ -548,6 +549,32 @@
     { id: 'staple_mango', name: 'Mangoes / Pawpaw', qtyText: '3 pcs', aisle: 'produce', estUgx: 3500 }
   ];
 
+  const QUICK_SPICE_STAPLES = [
+    { id: 'spice_cumin', name: 'Cumin (Ground/Seeds)', qtyText: '1 jar/pack', aisle: 'pantry', estUgx: 3000, core: true },
+    { id: 'spice_turmeric', name: 'Turmeric (Ground/Root)', qtyText: '1 jar/pack', aisle: 'pantry', estUgx: 3000, core: true },
+    { id: 'spice_paprika', name: 'Paprika', qtyText: '1 jar/pack', aisle: 'pantry', estUgx: 3000, core: true },
+    { id: 'spice_thyme', name: 'Dried Thyme', qtyText: '1 jar/pack', aisle: 'pantry', estUgx: 3000, core: true },
+    { id: 'spice_oregano', name: 'Dried Oregano', qtyText: '1 jar/pack', aisle: 'pantry', estUgx: 3000, core: true },
+    { id: 'spice_blackpepper', name: 'Black Pepper', qtyText: '1 jar/pack', aisle: 'pantry', estUgx: 3000, core: true },
+    { id: 'spice_cinnamon', name: 'Cinnamon (Ground/Sticks)', qtyText: '1 pack', aisle: 'pantry', estUgx: 3500, core: true },
+    { id: 'spice_cardamom', name: 'Cardamom Pods', qtyText: '1 pack', aisle: 'pantry', estUgx: 4000, core: false },
+    { id: 'spice_cloves', name: 'Whole Cloves', qtyText: '1 pack', aisle: 'pantry', estUgx: 3000, core: false },
+    { id: 'spice_pilau', name: 'Pilau Masala / Curry', qtyText: '1 pack', aisle: 'pantry', estUgx: 3500, core: true },
+    { id: 'spice_hibiscus', name: 'Dried Hibiscus (Sobolo)', qtyText: '1 pack', aisle: 'pantry', estUgx: 3000, core: false },
+    { id: 'spice_rosemary', name: 'Fresh Rosemary', qtyText: '1 bunch', aisle: 'greens', estUgx: 1000, core: false },
+    { id: 'spice_mint', name: 'Fresh Garden Mint', qtyText: '1 bunch', aisle: 'greens', estUgx: 1000, core: false },
+    { id: 'spice_kisubi', name: 'Fresh Lemongrass (Kisubi)', qtyText: '1 bundle', aisle: 'greens', estUgx: 1000, core: false }
+  ];
+
+  const GROCERY_AISLE_FILTERS = [
+    { id: 'all', label: 'All' },
+    { id: 'pantry', label: 'Spices & Pantry' },
+    { id: 'greens', label: 'Greens & Herbs' },
+    { id: 'produce', label: 'Produce' },
+    { id: 'protein', label: 'Proteins' },
+    { id: 'grains', label: 'Grains & Beans' }
+  ];
+
   function getActiveWeekRecipeEntries() {
     if (appState.settings.syncWeekGroceries === false) return [];
     const counts = new Map();
@@ -644,22 +671,52 @@
       }).join('');
     }
 
+    const spiceEl = $('quickSpiceStaples');
+    if (spiceEl) {
+      let activeSpiceCount = 0;
+      spiceEl.innerHTML = QUICK_SPICE_STAPLES.map((s) => {
+        const active = appState.customGroceries.some((c) => c.id === s.id);
+        if (active) activeSpiceCount++;
+        return `<button class="pantry-chip ${active ? 'active' : ''}" type="button" data-toggle-staple="${escapeHtml(s.id)}">${active ? '&#10003; ' : '+ '}${escapeHtml(s.name)}</button>`;
+      }).join('');
+      const spiceBadge = $('spiceSelectedCount');
+      if (spiceBadge) {
+        spiceBadge.textContent = String(activeSpiceCount);
+        spiceBadge.classList.toggle('hidden', activeSpiceCount === 0);
+      }
+    }
+
+    const filterRowEl = $('groceryAisleFilterRow');
+    if (filterRowEl) {
+      filterRowEl.innerHTML = GROCERY_AISLE_FILTERS.map((f) => {
+        const cnt = f.id === 'all' ? items.length : items.filter((it) => it.aisle === f.id).length;
+        const active = ui.groceryAisleFilter === f.id;
+        return `<button class="chip-btn ${active ? 'active' : ''}" type="button" data-grocery-filter="${escapeHtml(f.id)}">${escapeHtml(f.label)}${cnt > 0 ? ` (${cnt})` : ''}</button>`;
+      }).join('');
+    }
+
     const badge = $('navGroceryBadge');
     const remaining = totalCount - checkedCount;
     badge.textContent = String(remaining);
     badge.classList.toggle('hidden', remaining <= 0);
 
-    if (!items.length) {
+    const visibleItems = ui.groceryAisleFilter === 'all'
+      ? items
+      : items.filter((it) => it.aisle === ui.groceryAisleFilter);
+
+    if (!visibleItems.length) {
       $('groceryAislesContainer').innerHTML = `
         <div class="empty-state">
-          Tap any staple above, type an item, or schedule meals in <strong>Planner</strong>.
+          ${items.length
+            ? 'No items in this section yet — tap a quick spice/staple above or switch to <strong>All</strong>.'
+            : 'Tap any staple or spice above, type an item, or schedule meals in <strong>Planner</strong>.'}
         </div>
       `;
       return;
     }
 
     const grouped = {};
-    for (const it of items) {
+    for (const it of visibleItems) {
       if (!grouped[it.aisle]) grouped[it.aisle] = [];
       grouped[it.aisle].push(it);
     }
@@ -1175,14 +1232,21 @@
   }
 
   async function copyGrocerySummary() {
-    const items = buildAggregatedGroceries();
+    const allItems = buildAggregatedGroceries();
+    const items = ui.groceryAisleFilter === 'all'
+      ? allItems
+      : allItems.filter((i) => i.aisle === ui.groceryAisleFilter);
     if (!items.length) {
-      showToast('Grocery list is empty');
+      showToast('No items in this grocery view to copy');
       return;
     }
+    const filterObj = GROCERY_AISLE_FILTERS.find((f) => f.id === ui.groceryAisleFilter);
+    const heading = ui.groceryAisleFilter === 'all'
+      ? 'NourishTable Market List'
+      : `NourishTable — ${filterObj ? filterObj.label : ui.groceryAisleFilter}`;
     const totalUgx = items.reduce((s, i) => s + i.estUgx, 0);
     const lines = [
-      'NourishTable Market List',
+      heading,
       `Estimated Total: ${formatUgx(totalUgx)}`,
       ''
     ];
@@ -1191,7 +1255,7 @@
     }
     try {
       await navigator.clipboard.writeText(lines.join('\n'));
-      showToast('Market list copied');
+      showToast(ui.groceryAisleFilter === 'all' ? 'Market list copied' : `${filterObj?.label || 'Filtered'} list copied`);
     } catch {
       showToast('Could not access clipboard');
     }
@@ -1496,10 +1560,17 @@
         return;
       }
 
+      const groceryFilterBtn = e.target.closest('[data-grocery-filter]');
+      if (groceryFilterBtn) {
+        ui.groceryAisleFilter = groceryFilterBtn.dataset.groceryFilter;
+        renderGroceries();
+        return;
+      }
+
       const stapleBtn = e.target.closest('[data-toggle-staple]');
       if (stapleBtn) {
         const sId = stapleBtn.dataset.toggleStaple;
-        const staple = QUICK_GROCERY_STAPLES.find((s) => s.id === sId);
+        const staple = [...QUICK_GROCERY_STAPLES, ...QUICK_SPICE_STAPLES].find((s) => s.id === sId);
         if (!staple) return;
         const exists = appState.customGroceries.some((c) => c.id === sId);
         if (exists) {
@@ -1512,7 +1583,7 @@
             aisle: staple.aisle,
             estUgx: staple.estUgx,
             checked: false,
-            source: 'Market staple'
+            source: sId.startsWith('spice_') ? 'Spice & herb staple' : 'Market staple'
           });
         }
         await persist();
@@ -1728,6 +1799,28 @@
         if (img.isConnected) img.src = `${baseSrc}?retry=${attempt + 1}`;
       }, attempt === 0 ? 350 : 1000);
     }, true);
+
+    $('addCoreSpicesBtn')?.addEventListener('click', async () => {
+      let added = 0;
+      for (const s of QUICK_SPICE_STAPLES) {
+        if (!s.core) continue;
+        if (!appState.customGroceries.some((c) => c.id === s.id)) {
+          appState.customGroceries.push({
+            id: s.id,
+            name: s.name,
+            qtyText: s.qtyText,
+            aisle: s.aisle,
+            estUgx: s.estUgx,
+            checked: false,
+            source: 'Spice starter kit'
+          });
+          added++;
+        }
+      }
+      await persist();
+      renderGroceries();
+      showToast(added ? `Added ${added} core spices to your list` : 'Core spices are already on your list');
+    });
 
     $('exportBackupBtn').addEventListener('click', () => {
       const blob = new Blob([JSON.stringify(appState, null, 2)], { type: 'application/json' });

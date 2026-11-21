@@ -1,4 +1,4 @@
-﻿const SHELL_CACHE = 'nourishtable-shell-v36';
+﻿const SHELL_CACHE = 'nourishtable-shell-v37';
 // Keep IMG_CACHE stable across minor text/code updates so mobile devices do not re-download 130+ photos.
 const IMG_CACHE = 'nourishtable-images-v10';
 

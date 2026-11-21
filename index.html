@@ -187,7 +187,21 @@
             <span>Auto-include this week's Planner meals</span>
           </label>
 
-          <div id="quickGroceryStaples" class="pantry-chips" style="margin-bottom:12px;"></div>
+          <div id="quickGroceryStaples" class="pantry-chips" style="margin-bottom:10px;"></div>
+
+          <details class="spice-drawer">
+            <summary class="spice-drawer-head">
+              <span>Quick Spices &amp; Herbs <span id="spiceSelectedCount" class="inline-count hidden">0</span></span>
+              <span class="accordion-chevron" aria-hidden="true"></span>
+            </summary>
+            <div class="spice-drawer-body">
+              <div class="spice-drawer-actions">
+                <span class="muted-label">Tap any spice to add to your list</span>
+                <button id="addCoreSpicesBtn" class="text-link-btn" type="button">+ Add Starter Kit</button>
+              </div>
+              <div id="quickSpiceStaples" class="pantry-chips"></div>
+            </div>
+          </details>
 
           <form id="customGroceryForm" class="quick-add-form quick-add-wrap">
             <input id="customItemName" class="text-input" type="text" placeholder="Add item (e.g. Mineral Water, Paprika)" required />
@@ -202,6 +216,8 @@
             <button class="secondary-btn" type="submit">Add</button>
           </form>
         </article>
+
+        <div id="groceryAisleFilterRow" class="chip-row" aria-label="Filter market list by section"></div>
 
         <div id="groceryAislesContainer" class="aisles-stack"></div>
       </section>
