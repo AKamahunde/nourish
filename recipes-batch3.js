@@ -73,7 +73,7 @@
         { id: 'tomatoes', name: 'Tomatoes, red onion & lime (kachumbari)', amount: 3, unit: 'pcs', aisle: 'produce', estUgx: 1200, prep: 'sliced' }
       ],
       steps: [
-        { text: 'Rub chicken quarters with garlic, paprika, rosemary, lemon juice, and salt; roast on a tray at 210C for 20 minutes.', timerMin: 20 },
+        { text: 'Rub chicken quarters with garlic, paprika, rosemary, lemon juice, and salt; roast on a tray at 210°C / 410°F for 20 minutes.', timerMin: 20 },
         { text: 'Toss Irish potato fries in 1 teaspoon oil and salt, spread on a separate hot tray, and bake 25 minutes alongside chicken until crisp; plate with kachumbari and yogurt-herb dip.', timerMin: 25 }
       ],
       ugandaTip: 'Par-boil potato fries for 4 minutes first, then oven-bake — they turn crisp outside with almost zero oil.'
@@ -152,7 +152,7 @@
       ],
       steps: [
         { text: 'Season chicken thighs, potatoes, and carrots with garlic, thyme, salt, black pepper, and 1 tablespoon oil in a roasting dish.', timerMin: 5 },
-        { text: 'Roast at 200C for 25 minutes, brush chicken with honey-soy glaze, and roast 10 minutes more until golden.', timerMin: 35 }
+        { text: 'Roast at 200°C / 400°F for 25 minutes, brush chicken with honey-soy glaze, and roast 10 minutes more until golden.', timerMin: 35 }
       ],
       ugandaTip: 'No oven? Sear thighs in a covered heavy sufuria first, then glaze and simmer gently beside steamed potatoes and carrots.'
     },
@@ -229,7 +229,7 @@
         { id: 'soy-ginger', name: 'Light soy sauce, garlic, ginger & onion', amount: 2, unit: 'tbsp', aisle: 'pantry', estUgx: 900, prep: 'whisked' }
       ],
       steps: [
-        { text: 'Toss Irish potato chips in 1 teaspoon oil and roast at 215C for 22 to 25 minutes until golden crisp.', timerMin: 25 },
+        { text: 'Toss Irish potato chips in 1 teaspoon oil and roast at 215°C / 420°F for 22 to 25 minutes until golden crisp.', timerMin: 25 },
         { text: 'Quickly sear beef strips, sliced onion, garlic, and ginger over high heat for 4 minutes; splash with soy sauce and lime juice and serve beside chips and lime-dressed slaw.', timerMin: 4 }
       ],
       ugandaTip: 'Skip heavy bottled mayonnaise in coleslaw — toss cabbage & carrots with 2 tablespoons plain yogurt, lime juice, and black pepper.'

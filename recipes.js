@@ -1679,7 +1679,7 @@
                                           "timerMin":  20
                                       },
                                       {
-                                          "text":  "Grill or bake at 200C for 22 to 25 minutes until skin blisters and flesh flakes cleanly from the bone.",
+                                          "text":  "Grill or bake at 200°C / 400°F for 22 to 25 minutes until skin blisters and flesh flakes cleanly from the bone.",
                                           "timerMin":  24
                                       },
                                       {
@@ -2296,7 +2296,7 @@
                                           "text":  "Toss chicken and chopped vegetables on a baking tray with 1 tablespoon oil, minced garlic, lemon juice, rosemary, salt, and pepper."
                                       },
                                       {
-                                          "text":  "Roast at 200C for 35 minutes, turning vegetables halfway, until chicken is golden and cooked through.",
+                                          "text":  "Roast at 200°C / 400°F for 35 minutes, turning vegetables halfway, until chicken is golden and cooked through.",
                                           "timerMin":  35
                                       }
                                   ],
@@ -3529,7 +3529,7 @@
                                           "text":  "Toss chicken, pumpkin wedges, sweet potato, and onion with garlic, rosemary, paprika, salt, and 1 tablespoon oil on a tray."
                                       },
                                       {
-                                          "text":  "Roast at 200C for 40 minutes until chicken reaches juicy perfection and roots caramelize at the edges.",
+                                          "text":  "Roast at 200°C / 400°F for 40 minutes until chicken reaches juicy perfection and roots caramelize at the edges.",
                                           "timerMin":  40
                                       }
                                   ],
@@ -3621,7 +3621,7 @@
                                           "timerMin":  15
                                       },
                                       {
-                                          "text":  "Bake fish at 200C (or cover-steam in a skillet) for 15 minutes until flaky.",
+                                          "text":  "Bake fish at 200°C / 400°F (or cover-steam in a skillet) for 15 minutes until flaky.",
                                           "timerMin":  15
                                       },
                                       {
@@ -4375,7 +4375,7 @@
                                           "text":  "Toss wedges gently with 1 tablespoon oil, crushed garlic, rosemary, paprika, and salt."
                                       },
                                       {
-                                          "text":  "Bake at 210C (or air-fry at 200C) for 20 minutes, flipping halfway, until golden and crisp outside. Squeeze lime over top.",
+                                          "text":  "Bake at 210°C / 410°F (or air-fry at 200°C / 400°F) for 20 minutes, flipping halfway, until golden and crisp outside. Squeeze lime over top.",
                                           "timerMin":  20
                                       }
                                   ],
@@ -4561,7 +4561,7 @@
                                           "text":  "Pat washed Irish potato wedges dry with a clean cloth (dry skins crisp up best) and toss with 1 tablespoon oil, paprika, garlic, rosemary, and salt."
                                       },
                                       {
-                                          "text":  "Spread in a single layer on a baking tray and bake at 210C (or air-fry at 200C) for 28 minutes, flipping halfway, until golden and crisp.",
+                                          "text":  "Spread in a single layer on a baking tray and bake at 210°C / 410°F (or air-fry at 200°C / 400°F) for 28 minutes, flipping halfway, until golden and crisp.",
                                           "timerMin":  28
                                       }
                                   ],
@@ -4807,7 +4807,7 @@
                                         ],
                         "steps":  [
                                       {
-                                          "text":  "Scrub large Irish potatoes, prick all over with a fork, rub with a tiny drop of oil and salt, and bake at 200C for 45 minutes until tender inside and crisp outside.",
+                                          "text":  "Scrub large Irish potatoes, prick all over with a fork, rub with a tiny drop of oil and salt, and bake at 200°C / 400°F for 45 minutes until tender inside and crisp outside.",
                                           "timerMin":  45
                                       },
                                       {
@@ -5361,7 +5361,7 @@
                                         ],
                         "steps":  [
                                       {
-                                          "text":  "Toss cauliflower florets with 1 teaspoon oil, cumin, paprika, and salt; roast at 200C (or pan-sear covered) for 16 minutes until golden at the edges.",
+                                          "text":  "Toss cauliflower florets with 1 teaspoon oil, cumin, paprika, and salt; roast at 200°C / 400°F (or pan-sear covered) for 16 minutes until golden at the edges.",
                                           "timerMin":  16
                                       },
                                       {
@@ -5447,7 +5447,7 @@
                                           "timerMin":  5
                                       },
                                       {
-                                          "text":  "Spoon filling into halved bell peppers, place in a baking dish (or covered pot with 2 tbsp water), and cook 22 minutes until peppers are tender.",
+                                          "text":  "Spoon filling into halved bell peppers, place in a baking dish at 200°C / 400°F (or covered pot with 2 tbsp water), and cook 22 minutes until peppers are tender.",
                                           "timerMin":  22
                                       }
                                   ],
@@ -5788,7 +5788,7 @@
                                         ],
                         "steps":  [
                                       {
-                                          "text":  "Toss chicken, carrots, and cauliflower with garlic, herbs, salt, and 1 tablespoon oil; roast at 200C for 15 minutes.",
+                                          "text":  "Toss chicken, carrots, and cauliflower with garlic, herbs, salt, and 1 tablespoon oil; roast at 200°C / 400°F for 15 minutes.",
                                           "timerMin":  15
                                       },
                                       {
@@ -6843,7 +6843,7 @@
                                           "timerMin":  10
                                       },
                                       {
-                                          "text":  "Spread mince in a baking dish, spoon mashed Irish potatoes over top, and bake at 200C for 20 minutes until golden.",
+                                          "text":  "Spread mince in a baking dish, spoon mashed Irish potatoes over top, and bake at 200°C / 400°F for 20 minutes until golden.",
                                           "timerMin":  20
                                       }
                                   ],
@@ -7865,7 +7865,7 @@
                                         ],
                         "steps":  [
                                       {
-                                          "text":  "Boil or roast cubed beetroot for 20 to 25 minutes until fork-tender, then cool slightly.",
+                                          "text":  "Boil or roast cubed beetroot at 200°C / 400°F for 20 to 25 minutes until fork-tender, then cool slightly.",
                                           "timerMin":  22
                                       },
                                       {
@@ -8668,7 +8668,7 @@
                                           "text":  "Spoon filling into samosa wrappers, fold into tight triangles, seal edges with a flour-water paste, and brush lightly with oil."
                                       },
                                       {
-                                          "text":  "Bake at 200C (or air-fry at 190C) for 16 to 20 minutes, flipping halfway, until golden and crisp.",
+                                          "text":  "Bake at 200°C / 400°F (or air-fry at 190°C / 375°F) for 16 to 20 minutes, flipping halfway, until golden and crisp.",
                                           "timerMin":  18
                                       }
                                   ],
@@ -8759,7 +8759,7 @@
                                           "text":  "Roll filling tightly into spring roll wrappers, seal with flour-water paste, and brush lightly with oil."
                                       },
                                       {
-                                          "text":  "Bake at 200C (or air-fry at 190C) for 15 to 18 minutes, turning once, until golden and crisp. Serve with Asian Ginger-Lime dressing.",
+                                          "text":  "Bake at 200°C / 400°F (or air-fry at 190°C / 375°F) for 15 to 18 minutes, turning once, until golden and crisp. Serve with Asian Ginger-Lime dressing.",
                                           "timerMin":  16
                                       }
                                   ],
@@ -8835,7 +8835,7 @@
                                           "text":  "Slice ripe gonja diagonally into 1.5cm pieces, brush lightly with 1 teaspoon oil and a pinch of salt, and arrange on a lined baking tray."
                                       },
                                       {
-                                          "text":  "Roast at 200C (or air-fry at 190C) for 18 to 20 minutes, flipping halfway, until golden and caramelized at the edges.",
+                                          "text":  "Roast at 200°C / 400°F (or air-fry at 190°C / 375°F) for 18 to 20 minutes, flipping halfway, until golden and caramelized at the edges.",
                                           "timerMin":  18
                                       },
                                       {
@@ -9002,7 +9002,7 @@
                                         ],
                         "steps":  [
                                       {
-                                          "text":  "Brush halved gonja lightly with 1 teaspoon oil and bake at 200C for 22 minutes until golden and tender.",
+                                          "text":  "Brush halved gonja lightly with 1 teaspoon oil and bake at 200°C / 400°F for 22 minutes until golden and tender.",
                                           "timerMin":  22
                                       },
                                       {

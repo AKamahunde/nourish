@@ -1,5 +1,5 @@
 ﻿(() => {
-  const APP_VERSION = 37;
+  const APP_VERSION = 38;
   const MEAL_SLOTS = [
     { id: 'breakfast', label: 'Breakfast' },
     { id: 'lunch', label: 'Lunch' },
@@ -94,8 +94,7 @@
     detailServings: 2,
     wakeLock: null,
     timerInterval: null,
-    timerEndMs: 0,
-    timerLabel: ''
+    timers: []
   };
 
   let appState = window.NourishDB.cloneDefaults();
@@ -590,6 +589,65 @@
     return Array.from(counts.entries()).map(([recipeId, servings]) => ({ recipeId, servings }));
   }
 
+  const ING_ID_ALIASES = {
+    tomato: 'tomatoes',
+    onion: 'onions',
+    'red-onion': 'onions',
+    egg: 'eggs',
+    carrot: 'carrots',
+    avocado: 'avocados',
+    banana: 'bananas',
+    lime: 'limes',
+    lemon: 'lemons',
+    'irish-potato': 'irish-potatoes',
+    'sweet-potato': 'sweet-potatoes',
+    'garlic-ginger': 'ginger-garlic',
+    'plain-yogurt': 'yogurt',
+    'cow-milk': 'milk',
+    'soya-milk': 'milk',
+    'basmati-rice': 'rice',
+    'rolled-oats': 'oats',
+    chia: 'chia-seeds',
+    dhania: 'coriander',
+    'cooked-beans': 'beans',
+    'red-beans': 'beans',
+    'black-beans': 'beans'
+  };
+
+  const UNIT_ALIASES = {
+    pc: 'pcs',
+    piece: 'pcs',
+    pieces: 'pcs',
+    medium: 'pcs',
+    large: 'pcs',
+    small: 'pcs',
+    cup: 'cups',
+    tablespoon: 'tbsp',
+    tablespoons: 'tbsp',
+    teaspoon: 'tsp',
+    teaspoons: 'tsp',
+    clove: 'cloves',
+    bunches: 'bunch',
+    handful: 'handfuls',
+    stalk: 'stalks',
+    thumb: 'thumbs',
+    finger: 'fingers',
+    sheet: 'sheets',
+    bag: 'bags',
+    head: 'heads',
+    fillet: 'fillets'
+  };
+
+  function normalizeIngredientId(id) {
+    const raw = String(id || '').toLowerCase().trim();
+    return ING_ID_ALIASES[raw] || raw;
+  }
+
+  function normalizeGroceryUnit(unit) {
+    const raw = String(unit || '').toLowerCase().trim();
+    return UNIT_ALIASES[raw] || raw;
+  }
+
   function buildAggregatedGroceries() {
     const map = new Map();
     const combinedEntries = [...getActiveWeekRecipeEntries(), ...appState.groceryEntries];
@@ -598,22 +656,24 @@
       if (!recipe) continue;
       const ratio = (Number(entry.servings) || recipe.servings) / recipe.servings;
       for (const ing of recipe.ingredients) {
-        const key = `${ing.id}__${ing.unit}`;
+        const key = normalizeIngredientId(ing.id);
+        const unit = normalizeGroceryUnit(ing.unit);
         const scaledAmt = ing.amount * ratio;
         const scaledUgx = Math.round((ing.estUgx || 0) * ratio);
         if (!map.has(key)) {
+          const unitMap = new Map();
+          unitMap.set(unit, scaledAmt);
           map.set(key, {
             key,
             name: ing.name,
-            amount: scaledAmt,
-            unit: ing.unit,
+            unitMap,
             aisle: ing.aisle || 'produce',
             defaultUgx: scaledUgx,
             recipes: [recipe.title]
           });
         } else {
           const cur = map.get(key);
-          cur.amount += scaledAmt;
+          cur.unitMap.set(unit, (cur.unitMap.get(unit) || 0) + scaledAmt);
           cur.defaultUgx += scaledUgx;
           if (!cur.recipes.includes(recipe.title)) cur.recipes.push(recipe.title);
         }
@@ -623,9 +683,16 @@
     const items = Array.from(map.values()).map((item) => {
       const override = appState.priceOverrides[item.key];
       const estUgx = override !== undefined ? Number(override) : item.defaultUgx;
+      const qtyText = Array.from(item.unitMap.entries())
+        .map(([u, amt]) => `${formatAmount(amt)} ${u}`.trim())
+        .join(' + ');
       return {
-        ...item,
-        qtyText: `${formatAmount(item.amount)} ${item.unit}`,
+        key: item.key,
+        name: item.name,
+        aisle: item.aisle,
+        defaultUgx: item.defaultUgx,
+        recipes: item.recipes,
+        qtyText,
         estUgx: Math.max(0, Math.round(estUgx)),
         checked: Boolean(appState.groceryChecked[item.key]),
         isCustom: false
@@ -992,35 +1059,86 @@
     }
   }
 
-  function startCookingTimer(minutes, label) {
-    clearInterval(ui.timerInterval);
-    ui.timerEndMs = Date.now() + minutes * 60 * 1000;
-    ui.timerLabel = label || 'Cooking timer';
-    $('floatingTimerLabel').textContent = ui.timerLabel;
-    $('floatingTimerBar').classList.remove('hidden');
-
-    const tick = () => {
-      const remSec = Math.max(0, Math.ceil((ui.timerEndMs - Date.now()) / 1000));
+  function renderActiveTimers() {
+    const bar = $('floatingTimerBar');
+    const listEl = $('floatingTimerList');
+    if (!bar || !listEl) return;
+    if (!ui.timers.length) {
+      bar.classList.add('hidden');
+      listEl.innerHTML = '';
+      return;
+    }
+    bar.classList.remove('hidden');
+    const now = Date.now();
+    listEl.innerHTML = ui.timers.map((t) => {
+      const remSec = Math.max(0, Math.ceil((t.endMs - now) / 1000));
       const mm = String(Math.floor(remSec / 60)).padStart(2, '0');
       const ss = String(remSec % 60).padStart(2, '0');
-      $('floatingTimerRemaining').textContent = `${mm}:${ss}`;
-      if (remSec <= 0) {
-        clearInterval(ui.timerInterval);
-        ui.timerInterval = null;
-        $('floatingTimerBar').classList.add('hidden');
-        playTimerChime();
-        showToast(`Timer done: ${ui.timerLabel}`);
-      }
-    };
-    tick();
-    ui.timerInterval = setInterval(tick, 1000);
-    showToast(`Started ${minutes} min timer`);
+      return `
+        <div class="floating-timer-row">
+          <div class="timer-info">
+            <span class="timer-icon-slot">${icons.get('timer')}</span>
+            <div class="timer-text-col">
+              <strong>${escapeHtml(t.label)}</strong>
+              <span>${mm}:${ss}</span>
+            </div>
+          </div>
+          <button class="timer-stop-btn" type="button" data-stop-timer="${escapeHtml(t.id)}">Stop</button>
+        </div>
+      `;
+    }).join('');
   }
 
-  function stopCookingTimer() {
-    clearInterval(ui.timerInterval);
-    ui.timerInterval = null;
-    $('floatingTimerBar').classList.add('hidden');
+  function tickCookingTimers() {
+    const now = Date.now();
+    const finished = ui.timers.filter((t) => t.endMs <= now);
+    if (finished.length) {
+      ui.timers = ui.timers.filter((t) => t.endMs > now);
+      playTimerChime();
+      for (const f of finished) {
+        showToast(`Timer done: ${f.label}`);
+      }
+    }
+    if (!ui.timers.length && ui.timerInterval) {
+      clearInterval(ui.timerInterval);
+      ui.timerInterval = null;
+    }
+    renderActiveTimers();
+  }
+
+  function startCookingTimer(minutes, label) {
+    const cleanLabel = label || 'Cooking timer';
+    const endMs = Date.now() + minutes * 60 * 1000;
+    const existing = ui.timers.find((t) => t.label === cleanLabel);
+    if (existing) {
+      existing.endMs = endMs;
+    } else {
+      ui.timers.push({
+        id: `t_${Date.now()}_${Math.random().toString(36).slice(2, 6)}`,
+        label: cleanLabel,
+        endMs
+      });
+    }
+    renderActiveTimers();
+    if (!ui.timerInterval) {
+      ui.timerInterval = setInterval(tickCookingTimers, 1000);
+    }
+    showToast(ui.timers.length > 1
+      ? `Started ${minutes} min timer (${ui.timers.length} active)`
+      : `Started ${minutes} min timer`);
+  }
+
+  function stopCookingTimer(timerId) {
+    if (timerId) {
+      ui.timers = ui.timers.filter((t) => t.id !== timerId);
+    } else {
+      ui.timers = [];
+    }
+    if (!ui.timers.length && ui.timerInterval) {
+      clearInterval(ui.timerInterval);
+      ui.timerInterval = null;
+    }
+    renderActiveTimers();
   }
 
   // Schedule Pickers (Calendar Date + Meal Slot)
@@ -1268,7 +1386,6 @@
     $('servingsMinusBtn').innerHTML = icons.get('minus');
     $('servingsPlusBtn').innerHTML = icons.get('plus');
     $('healthSparkSlot').innerHTML = icons.get('spark');
-    $('floatingTimerIcon').innerHTML = icons.get('timer');
     $('closeDayPickerBtn').innerHTML = icons.get('close');
     $('closeRandomModalBtn').innerHTML = icons.get('close');
     $('openRandomMealBtn').innerHTML = `${icons.get('shuffle')} Surprise Me`;
@@ -1649,6 +1766,12 @@
         return;
       }
 
+      const stopTimerBtn = e.target.closest('[data-stop-timer]');
+      if (stopTimerBtn) {
+        stopCookingTimer(stopTimerBtn.dataset.stopTimer);
+        return;
+      }
+
       const palBtn = e.target.closest('[data-pick-palette]');
       if (palBtn) {
         appState.settings.theme = palBtn.dataset.pickPalette;
@@ -1775,7 +1898,6 @@
     $('copyForPocketLedgerBtn').addEventListener('click', copyForPocketLedger);
     $('copyAmountBtn').addEventListener('click', copyGroceryAmount);
     $('copyGrocerySummaryBtn').addEventListener('click', copyGrocerySummary);
-    $('stopTimerBtn').addEventListener('click', stopCookingTimer);
 
     $('savePlUrlBtn').addEventListener('click', async () => {
       const val = $('pocketLedgerUrlInput').value.trim() || 'https://pocketledger-brd.pages.dev/';

@@ -305,16 +305,9 @@
       </section>
     </main>
 
-    <!-- ACTIVE COOKING TIMER BAR -->
-    <div id="floatingTimerBar" class="floating-timer hidden" role="status">
-      <div class="timer-info">
-        <span id="floatingTimerIcon"></span>
-        <div>
-          <strong id="floatingTimerLabel">Simmer</strong>
-          <span id="floatingTimerRemaining">00:00</span>
-        </div>
-      </div>
-      <button id="stopTimerBtn" class="timer-stop-btn" type="button">Stop</button>
+    <!-- ACTIVE COOKING TIMERS STACK -->
+    <div id="floatingTimerBar" class="floating-timer hidden" role="status" aria-live="polite">
+      <div id="floatingTimerList" class="floating-timer-list"></div>
     </div>
 
     <!-- BOTTOM NAVIGATION -->

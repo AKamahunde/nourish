@@ -22,7 +22,7 @@
       ],
       steps: [
         { text: 'Toss shredded chicken, cabbage, carrots, ginger, garlic, and soy sauce in a dry hot pan for 3 minutes until veggies soften; cool slightly.', timerMin: 3 },
-        { text: 'Roll filling tightly in spring roll wrappers, brush lightly with 1 teaspoon oil, and bake at 200C for 16 to 18 minutes until crisp and golden.', timerMin: 18 }
+        { text: 'Roll filling tightly in spring roll wrappers, brush lightly with 1 teaspoon oil, and bake at 200°C / 400°F for 16 to 18 minutes until crisp and golden.', timerMin: 18 }
       ],
       ugandaTip: 'Serve with lime-chili vinegar or tomato-garlic sauce instead of sugary bottled chili glaze.'
     },
@@ -47,7 +47,7 @@
       ],
       steps: [
         { text: 'Saute onion, garlic, cumin, and turmeric in 1 teaspoon oil for 3 minutes; fold in cooked lentils, peas, and fresh coriander.' },
-        { text: 'Fold into triangular pockets, brush lightly with oil, and bake at 200C for 18 minutes until golden crisp.', timerMin: 18 }
+        { text: 'Fold into triangular pockets, brush lightly with oil, and bake at 200°C / 400°F for 18 minutes until golden crisp.', timerMin: 18 }
       ],
       ugandaTip: 'Pair with plain yogurt mixed with mint and lemon for a refreshing snack.'
     },
@@ -201,7 +201,7 @@
         { id: 'cinnamon', name: 'Cinnamon & sea salt pinch', amount: 0.25, unit: 'tsp', aisle: 'pantry', estUgx: 100, prep: 'dusting' }
       ],
       steps: [
-        { text: 'Brush diagonal gonja slices lightly with 1 teaspoon oil and cook on a hot dry skillet or oven tray for 4 minutes per side until golden and tender.', timerMin: 8 },
+        { text: 'Brush diagonal gonja slices lightly with 1 teaspoon oil and cook on a hot dry skillet or 200°C / 400°F oven tray for 4 minutes per side until golden and tender.', timerMin: 8 },
         { text: 'Serve warm beside boiled eggs, plain yogurt, or spicy beans.' }
       ],
       ugandaTip: 'Choose yellow gonja with a few black spots — they caramelize naturally without adding sugar.'

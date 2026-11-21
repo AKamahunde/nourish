@@ -1063,7 +1063,7 @@ details[open] > .accordion-head .accordion-chevron {
   padding: 8px 0;
 }
 
-/* Floating Timer */
+/* Floating Timers Stack */
 .floating-timer {
   position: fixed;
   left: 50%;
@@ -1073,18 +1073,39 @@ details[open] > .accordion-head .accordion-chevron {
   background: var(--text);
   color: #FFFFFF;
   border-radius: 16px;
-  padding: 10px 14px;
+  padding: 8px 14px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+  z-index: 45;
+  max-height: 196px;
+  overflow-y: auto;
+}
+
+.floating-timer-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.floating-timer-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
-  z-index: 45;
+  gap: 10px;
+  padding: 6px 0;
+}
+
+.floating-timer-row + .floating-timer-row {
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.timer-text-col {
+  min-width: 0;
 }
 
 .timer-info {
   display: flex;
   align-items: center;
   gap: 10px;
+  min-width: 0;
 }
 
 .timer-info svg {
